@@ -1,0 +1,100 @@
+﻿
+@{
+    var Roles = ViewBag.Roles as IEnumerable<SelectListItem>; 
+    Layout = "~/Views/Shared/_Info.cshtml";
+}
+ 
+@section scripts{
+    <script>
+
+        layui.use(['jquery', 'form'], function () {
+            var form = layui.form,
+                $ = layui.jquery;
+
+            form.verify({
+                pwd: function (value, item) {
+                    if (value.trim()) {
+                        //判断两次密码是否一致
+                        if ($('#RePassword').val() != value) {
+                            return '两次密码不一致';
+                        }
+                    }
+                },
+                repwd: function (value, item) {
+                    if (value.trim()) {
+                        //判断两次密码是否一致
+                        if ($('#Password').val() != value) {
+                            return '两次密码不一致';
+                        }
+                    }
+                },
+            });
+
+            //提交表单数据
+            form.on('submit(ResetUpdate)', function (data) {
+                var param = data.field;
+                var param = data.field;
+
+                //参数处理
+                var index = layer.load(1, { time: 60 * 1000 });
+                $.ajax({
+                    type: 'post',
+                     url: '@Url.Action("ResetUpdate")',
+                    data: param,
+                    dataType: 'json',
+                    success: function (res) {
+                        layer.close(index);
+
+                        if (res.Status == 200) {
+                            res = res.Data;
+                            if (res.Status == 1) {
+                                layer.msg('保存成功');
+      //                          location.replace(location.href);
+                            }
+                            else {
+                                layer.msg(res.ErrorMessage);
+                            }
+                        }
+                        else {
+                            layer.msg('请求错误：' + res.ErrorMessage + '，' + res.Status);
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+}
+ 
+<div class="weadmin-body">
+    <form class="layui-form">
+        @*隐藏字段*@
+        <input type="hidden" name="Id" id="Id" value="@ViewBag.Id" />
+        <div class="layui-form-item ">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>密码
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.Password("Password", "", new Dictionary<string, object> { { "lay-verify", "pwd" }, { "class", "layui-input" }, { "placeholder", "可重置密码" } })
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>确认密码
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.Password("RePassword", "", new Dictionary<string, object> { { "lay-verify", "repwd" }, { "class", "layui-input" }, { "placeholder", "二次确认密码" } })
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+            </label>
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="ResetUpdate" lay-submit="">保存</button>
+            </div>
+        </div>
+
+    </form>
+</div>

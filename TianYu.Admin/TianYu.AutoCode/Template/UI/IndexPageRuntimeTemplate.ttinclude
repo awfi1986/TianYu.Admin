@@ -1,0 +1,71 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #> 
+<#@ assembly name="System.Data.dll" #>
+<#@ import namespace="System.Data" #>  
+<#@ import namespace="System.Data.SqlClient" #>  
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#+
+public class IndexPageTemplate : CSharpTemplate
+{ 
+    private string _tb_name;
+    private string _tb_desc;   
+	private DataTable _fileTable;
+    public IndexPageTemplate(string tb_name,string tb_desc,DataTable fileTable)
+    {
+        _tb_name = tb_name;
+		_tb_desc = tb_desc;
+		_fileTable = fileTable ;
+    }
+    
+	public DataTable FileTable
+	{
+	    get
+        {
+            return _fileTable;
+        }
+	}
+	 
+    public string EntityDesc
+    {
+        get
+        {
+            return _tb_desc;
+        }
+    }
+     
+    public string FileName
+    {
+        get
+        {
+            return "Index.cshtml";
+        }
+    }
+  
+    public string EntityName
+    {
+        get
+        {
+            return _tb_name.Replace("s_", string.Empty);
+        }
+    }
+     
+	public string SmallEntityName
+    {
+        get
+        {
+		    string name = _tb_name.Replace("s_", string.Empty);
+			return name.Substring(0,1).ToLower()+name.Substring(1); 
+        }
+    }
+    public override string TransformText()
+    {
+        base.TransformText();
+#> 
+ 
+<#+
+        return this.GenerationEnvironment.ToString();
+    } 
+}
+#>

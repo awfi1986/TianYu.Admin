@@ -1,0 +1,114 @@
+﻿@model TianYu.Core.Common.BaseViewModel.SystemLoginUserInfo
+@using TianYu.Admin.Domain.ViewModel;
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    @*<link href="/Content/layui/css/layui.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/Content/static/css/font.css">
+        <link rel="stylesheet" href="/Content/static/css/weadmin.css">
+        <script src="/Content/layui/layui.js"></script>*@
+
+    <link rel="stylesheet" href="@ViewBag.FileResourcesDomain/Content/static/css/font.css">
+    <link rel="stylesheet" href="@ViewBag.FileResourcesDomain/Content/static/css/weadmin.css">
+    <script src="@ViewBag.FileResourcesDomain/Content/layui/layui.js"></script>
+
+    <title>天宇后台管理系统</title>
+</head>
+<body>
+    <!-- 顶部开始 -->
+    <div class="container">
+        <div class="logo">
+            <a href="/Home/Index">天宇管理系统 V1.0</a>
+        </div>
+        <div class="left_open">
+            <i title="展开左侧栏" class="iconfont">&#xe699;</i>
+        </div>
+        <ul class="layui-nav left fast-add" lay-filter="" id="MenuNav">
+            @foreach (SystemMenuRoleViewModel module in ViewBag.OneLevelMenu)
+            {
+                <li class="layui-nav-item @(ViewBag.Refres == module.Id?"layui-this":"") ">
+                    <a href='/Home/index?logInDefault=@module.Id' id="@module.Id">@module.MenuName</a>
+                </li>
+            }
+        </ul>
+        <ul class="layui-nav right" lay-filter="">
+            <li class="layui-nav-item">
+                <a href="javascript:;">@Model.NickName</a>
+                <dl class="layui-nav-child">
+                    <!-- 二级菜单 -->
+                    @*<dd>
+                            <a onclick="WeAdminShow('个人信息','http://www.baidu.com')">个人信息</a>
+                        </dd>
+                        <dd>
+                            <a onclick="WeAdminShow('切换帐号','./login.html')">切换帐号</a>
+                        </dd>*@
+                    <dd>
+                        <a style="cursor:pointer"  onclick="WeAdminShow('修改密码','/SystemStaff/UpdPwd',400,300)">修改密码</a>
+                    </dd>
+                    <dd>
+                        <a class="btn-logout1" href="/Home/Api_Logout">退出</a>
+                    </dd>
+                </dl>
+            </li>
+            @*<li class="layui-nav-item to-index">
+                    <a href="/">前台首页</a>
+                </li>*@
+        </ul>
+    </div>
+    <!-- 顶部结束 -->
+    <!-- 中部开始 -->
+    <!-- 左侧菜单开始 -->
+    <div class="left-nav">
+        <div id="side-nav">
+            <ul id="nav">
+                @Html.Raw(ViewBag.OtherLevelMenuHtml)
+            </ul>
+        </div>
+    </div>
+    <!-- <div class="x-slide_left"></div> -->
+    <!-- 左侧菜单结束 -->
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="layui-tab tab" lay-filter="wenav_tab" id="WeTabTip" lay-allowclose="true">
+            <ul class="layui-tab-title" id="tabName">
+                <li>欢迎使用</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <iframe src="/Home/Wecome" frameborder="0" scrolling="yes" class="weIframe"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content-bg"></div>
+    <!-- 右侧主体结束 -->
+    <!-- 中部结束 -->
+    <!-- 底部开始 -->
+    <!-- 底部结束 -->
+    <script type="text/javascript">
+        layui.config({
+            base: '@ViewBag.FileResourcesDomain/Content/static/js/'
+            , version: '1.0'
+        }).use('admin');  
+    </script>
+
+</body>
+<!--Tab菜单右键弹出菜单-->
+<ul class="rightMenu" id="rightMenu">
+    <li data-type="fresh">刷新</li>
+    <li data-type="current">关闭当前</li>
+    <li data-type="other">关闭其它</li>
+    <li data-type="all">关闭所有</li>
+</ul>
+
+</html>

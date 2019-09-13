@@ -1,0 +1,150 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #> 
+<#@ assembly name="System.Data.dll" #>
+<#@ import namespace="System.Data" #>  
+<#@ import namespace="System.Data.SqlClient" #>  
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#+
+public class ServiceTemplate : CSharpTemplate
+{ 
+    private string _tb_name;
+    private string _tb_desc;    
+    public ServiceTemplate(string tb_name,string tb_desc)
+    {
+        _tb_name = tb_name;
+		_tb_desc = tb_desc; 
+    }
+     
+    public string EntityDesc
+    {
+        get
+        {
+            return _tb_desc;
+        }
+    }
+     
+    public string FileName
+    {
+        get
+        {
+            return string.Format("{0}Service.cs", _tb_name.Replace("s_", string.Empty));
+        }
+    }
+  
+    public string EntityName
+    {
+        get
+        {
+            return _tb_name.Replace("s_", string.Empty);
+        }
+    }
+    public string SmallEntityName
+    {
+        get
+        {
+		    string name = _tb_name.Replace("s_", string.Empty);
+			return name.Substring(0,1).ToLower()+name.Substring(1); 
+        }
+    }
+    public override string TransformText()
+    {
+        base.TransformText();
+#> 
+using TianYu.Admin.Domain;
+using TianYu.Admin.Domain.ViewModel.Request;
+using TianYu.Admin.Domain.ViewModel.Response;
+using TianYu.Admin.Repository.IModelRepository;
+using TianYu.Admin.Service.IService;
+using TianYu.Core.Common;
+using TianYu.Core.Common.BaseViewModel;
+
+namespace TianYu.Admin.Service.Service
+{
+    /// <summary> 
+	/// <#=EntityDesc#>业务逻辑类
+	/// </summary> 
+    public class <#=EntityName#>Service :I<#=EntityName#>Service
+    {
+        private readonly I<#=EntityName#>Repository _<#=SmallEntityName#>Repository;
+        public <#=EntityName#>Service(I<#=EntityName#>Repository <#=SmallEntityName#>Repository)
+        {
+            this._<#=SmallEntityName#>Repository = <#=SmallEntityName#>Repository;
+        }
+
+		/// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        public BusinessBaseViewModel<string> Insert(Add<#=EntityName#>RequestModel requestModel)
+        {
+            var res = new BusinessBaseViewModel<string>() { Status=ResponseStatus.Fail};
+
+
+            res.Status = ResponseStatus.Success; 
+            return res;
+        } 
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        public BusinessBaseViewModel<string> Remove(Remove<#=EntityName#>RequestModel requestModel)
+        {
+            var res = new BusinessBaseViewModel<string>() { Status = ResponseStatus.Fail };
+
+
+            res.Status = ResponseStatus.Success;
+            return res;
+        }
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        public BusinessBaseViewModel<string> Update(Update<#=EntityName#>RequestModel requestModel)
+        {
+            var res = new BusinessBaseViewModel<string>() { Status = ResponseStatus.Fail };
+
+
+            res.Status = ResponseStatus.Success;
+            return res;
+        }
+        /// <summary>
+        /// 查询列表
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        public BusinessPagedBaseViewModel<Query<#=EntityName#>ResponseModel> Query(Query<#=EntityName#>RequestModel requestModel)
+        {
+            var res = new BusinessPagedBaseViewModel<Query<#=EntityName#>ResponseModel>() { Status = ResponseStatus.Fail };
+
+
+            res.Status = ResponseStatus.Success;
+            return res;
+        }
+        /// <summary>
+        /// 查询明细
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        public BusinessBaseViewModel<QueryDetail<#=EntityName#>ResponseModel> QueryDetail(QueryDetail<#=EntityName#>RequestModel requestModel)
+        {
+            var res = new BusinessBaseViewModel<QueryDetail<#=EntityName#>ResponseModel>() { Status = ResponseStatus.Fail };
+
+
+            res.Status = ResponseStatus.Success;
+            return res;
+        }
+    }
+}
+
+
+
+<#+
+        return this.GenerationEnvironment.ToString();
+    } 
+}
+#>

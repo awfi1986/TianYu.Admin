@@ -1,0 +1,232 @@
+﻿
+@{
+    ViewBag.Module = "菜单管理";
+    ViewBag.Title = "菜单列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var userActions = ViewBag.UserActions as IEnumerable<TianYu.Admin.Domain.ViewModel.SystemButtonRoleViewModel>;
+}
+
+@section styles{
+    <link href="/Content/layui/lay/extend/treetable.css" rel="stylesheet" />
+}
+<div class="weadmin-body">
+    <!--查询条件-->
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 we-search">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">菜单名称</label>
+                    <div class="layui-input-block">
+                        <input name="KeyWord" id="KeyWord" placeholder="菜单名称" class="layui-input search-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn" lay-submit="" lay-filter="formSearch"><i class="layui-icon">&#xe615;</i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="layui-row">
+        <div class="xm">
+            @*<div class="xm-d2">
+                    <div class="xm-d2-hang1">
+                        <div class="pzright" style="width:101%;display: flex;justify-content: flex-start;float:right;left:100px">
+                            <p class="xm-d1-p2">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button id="add" onclick="Add(null)" class="layui-btn layui-btn-radius btnys"><i class="layui-icon">&#xe608;</i>添加</button>
+                                <button class="layui-btn" id="btn-expand">展开 / 折叠</button>
+                                <button class="layui-btn" id="btn-refresh">刷新表格</button>
+                            </p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="xm-d2-hang2">
+                    <table id="menuTable" class="layui-table" lay-filter="menuTable"></table>
+                    </div>
+                </div>*@
+            <script type="text/html" id="listToolbar2">
+                <div class="layui-btn-container">
+                    @*@if (userActions.Any(a => a.ButtonCode == "Insert"))
+                        {*@
+                    <a class="layui-btn layui-btn-danger" lay-event="addss">添加</a>
+                    @*}*@
+
+                    <button class="layui-btn" lay-event="expand" id="btn-expand">展开 / 折叠</button>
+                    <button class="layui-btn" lay-event="refresh" id="btn-refresh">刷新表格</button>
+                </div>
+            </script>
+            <script type="text/html" id="rowToolbar">
+                {{#  if(d.Level == 1){ }}
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add">添加子级</a>
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+                <a class="layui-btn layui-btn-disabled layui-btn-xs" lay-event="del">删除</a>
+                {{#  } else if(d.Level == 2) { }}
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add">添加子级</a>
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                {{#  } else { }}
+                <a class="layui-btn layui-btn-disabled layui-btn-xs" lay-event="add">添加子级</a>
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                {{#  } }}
+            </script>
+            <!-- 这里的 显示/隐藏 -->
+            <script type="text/html" id="switchTpl">
+                <input type="checkbox" name="Status" value="{{d.Id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="switch1" {{ d.Enabled == 1 ? 'checked' : '' }}>
+            </script>
+
+            <table id="menuTable" class="layui-table" lay-filter="menuTable"></table>
+        </div>
+    </div>
+</div>
+
+<script>
+    var tableId = 'menuTable';
+        /*使用模块加载的方式 加载文件*/
+        layui.extend({
+            treetable: '/Content/layui/lay/extend/treetable'
+        }).use(['layer', 'table', 'treetable', 'form', 'jquery'], function () {
+            var $ = layui.jquery;
+            var table = layui.table;
+            var layer = layui.layer;
+            var treetable = layui.treetable;
+            var form = layui.form;
+
+            // 渲染表格
+            var renderTable = function (where) {//参考文档：https://gitee.com/whvse/treetable-lay
+                layer.load(2);
+                treetable.render({
+                    toolbar: '#listToolbar2',
+                    treeColIndex: 2,//树形图标显示在第几列
+                    treeSpid: '-1',//最上级的父级id
+                    treeIdName: 'Id',//id字段的名称
+                    treePidName: 'ParentCode',//pid字段的名称
+                    treeDefaultClose: false,//是否默认折叠
+                    treeLinkage: true,//父级展开时是否自动展开所有子级
+                    elem: '#menuTable',
+                    url: '@Url.Action("Query")' //数据接口
+                    , where: where
+                    ,page: false
+                    ,cols: [[
+                        { type: 'numbers', title: '#' }
+                        , {
+                            field: 'MenuIcon', title: '图标', event: 'addIcon', style: 'cursor: pointer;', width: 100
+                            , templet: function (d) {
+                                return '<i class="fa fa-' + d.IconCode + '" style="font-size: 20px; color: #1E9FFF;"></i>'
+                            }
+                        }
+                        , { field: 'MenuName', width: 300, title: '名称' }
+                        //, { field: 'Level', width: 80, title: '类型', templet: '#typeTpl' }
+                        , { field: 'MenuUrl', title: '跳转Url' }
+                        , { field: 'MenuButtonName', width: 300, title: '操作权限' }
+                        , { field: 'Enabled', title: '启用|禁用', width: 90, templet: '#switchTpl', unresize: true }
+                        , { field: 'MenuSort', width: 50, title: '排序' }
+                        , { templet: '#rowToolbar', width: 200, align: 'center', title: '操作' }
+                    ]]
+                    ,done: function () {
+                        layer.closeAll('loading');
+                    }
+                });
+            };
+
+            renderTable();
+
+            //折叠/展开
+            var expand = true; 
+
+            //按条件搜索数据
+            form.on('submit(formSearch)', function (data) {
+                renderTable(data.field);
+                return false;
+            });
+            //监听事件
+            table.on('toolbar(menuTable)', function (obj) {
+              //var checkStatus = table.checkStatus(obj.config.id);
+              switch (obj.event) {
+                  case 'addss': add(obj.data); break;
+                  case 'expand':  
+                      if (expand) {
+                          treetable.foldAll('#menuTable');
+                          expand = false;
+                      } else {
+                          treetable.expandAll('#menuTable');
+                          expand = true;
+                      }
+                      break;
+                  case 'refresh': renderTable({ 'SystemCode': $('#SystemCode').val() }); break;
+              };
+          });
+            //监听工具条
+            table.on('tool(menuTable)', function (obj) {
+                var pdata = obj ? obj.data : null;
+                if (pdata == null) {
+                    return;
+                }
+
+                switch (obj.event) {
+                    case 'del': del(pdata); break;
+                    case 'add': add(pdata); break;
+                    case 'edit': WeAdminShow("修改菜单", "@Url.Action("Edit")?Id=" + pdata.Id, '600', '600'); break;
+                };
+            });
+
+
+             //单个删除
+            var del = function (obj) {
+                var pdata = obj ? obj.data : null;
+                if (pdata == null)
+                    return;
+                layer.confirm("你确定删除 [" + pdata.MenuName + "] 吗？如果存在下级节点则一并删除，此操作不能撤销！", { icon: 3, title: '提示' },
+                    function (index) {
+                        //确定回调
+                        obj.del();
+
+                        $.ajax({
+                            type: "post",
+                            dataType: 'json',
+                            url: '@Url.Action("Remove")',
+                            data: { Id: pdata.Id },
+                            success: function (res) {
+                                //layer.close(index);
+                                if (res.Status == 200) {
+                                    res = res.Data;
+                                    if (res.Status == 1) {
+                                        layer.msg('删除成功', { shift: -1, time: 1000 }, function () {
+                                            renderTable();//重新加载表格数据
+                                        });
+                                    }
+                                    else {
+                                        layer.msg(res.ErrorMessage);
+                                    }
+                                }
+                                else {
+                                    layer.msg('请求错误：' + res.ErrorMessage + '，' + res.Status);
+                                }
+                            },
+                            error: function (res) {
+                                layer.close(index);
+                                layer.msg("请求出错");
+                                console.log(res);
+                            }
+                        });
+                        layer.close(index);
+                    }, function (index) {
+                        //取消回调
+                        layer.close(index);
+                    }
+                );
+            };
+
+            //添加菜单
+            var add = function (data) {
+
+                var url = "@Url.Action("Add")?pId=-1&pCode=&pLevel=0&pName=";
+                if (data != null) {
+                    url = "@Url.Action("Add")?pId=" + data.Id + "&pCode=" + data.MenuCode + "&pLevel=" + data.Level + "&pName=" + data.MenuName;
+                }
+                WeAdminShow("添加菜单", url, '600', '600');
+            };
+        });
+
+
+</script>

@@ -1,0 +1,189 @@
+﻿@model TianYu.Admin.Domain.ViewModel.MQBusinessResponse
+@{
+    ViewBag.Module = "消息队列列表";
+    ViewBag.Title = "编辑消息队列";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script>
+        layui.use(['jquery', 'form'], function () {
+            var form = layui.form,
+                $ = layui.jquery;
+            $('#MqMessageType').val() == '0' ? $("#div_TimeInterval").show() : $("#div_TimeInterval").hide();
+            //提交表单数据
+            form.on('submit(Save)', function (data) {
+                //禁用提交按钮
+                toggleSubmitStatus(data.elem);
+                var param = data.field;
+                var index = layer.load(1, { time: 60 * 1000 });
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("AddOrUpsert")',
+                    data: param,
+                    dataType: 'json',
+                    success: function (res) {
+                        layer.close(index);
+                        if (res.Status == 200) {
+                            res = res.Data;
+                            if (res.Status == 1) {
+                                //刷新列表
+                                $(".layui-btn[lay-filter='formSearch']", window.parent.document).click();
+                                layer.msg('保存成功', function () {
+                                    //启用提交按钮
+                                    toggleSubmitStatus(data.elem, true);
+                                    //关闭当前弹出层
+                                    var index = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(index);
+                                });
+                            }
+                            else {
+                                //启用提交按钮
+                                toggleSubmitStatus(data.elem, true);
+                                layer.msg(res.ErrorMessage);
+                            }
+                        }
+                        else {
+                            //启用提交按钮
+                            toggleSubmitStatus(data.elem, true);
+                            layer.msg('请求错误：' + res.ErrorMessage + '，' + res.Status);
+                        }
+                    }
+                });
+            });
+            form.on('select(MqMessageType)', function (data) {
+                if (data.value == '0') {
+                    $("#div_TimeInterval").show();
+                }
+                else {
+                    $("#div_TimeInterval").hide();
+                }
+            });
+
+            form.on('select(ApiUrlPrefix)', function (data) {
+                var suffixUrl = $("#ApiUrlSuffix").val();
+                $("#strapi").html(data.value + suffixUrl);
+                $("#ApiUrl").val(data.value + suffixUrl);
+            });
+
+            $("#ApiUrlSuffix").change(function () {
+                var apiUrlPrefix = $("#ApiUrlPrefix option:selected").val();
+                var suffixUrl = $("#ApiUrlSuffix").val();
+                $("#strapi").html(apiUrlPrefix + suffixUrl);
+                $("#ApiUrl").val(apiUrlPrefix + suffixUrl);
+            })
+        });
+    </script>
+}
+
+<div class="weadmin-body">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <span class="we-red">*</span>任务名称：
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.TextBoxFor(x => x.BusinessName, new Dictionary<string, object> { { "lay-verify", "required" }, { "class", "layui-input" }, { "placeholder", "请输入任务名称" } })
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>接口地址:
+            </label>
+            <div class="layui-input-block">
+                <div class="layui-inline" style="width:120px">
+                    @Html.DropDownListFor(x => x.ApiUrlPrefix, ViewBag.MqRequestUrl as IEnumerable<SelectListItem>, new Dictionary<string, object> { { "lay-filter", "ApiUrlPrefix" }, { "lay-verify", "required" } })
+                </div>
+                <div class="layui-inline" style="width:240px">
+                    @Html.TextBoxFor(x => x.ApiUrlSuffix, new Dictionary<string, object> { { "lay-verify", "required" }, { "class", "layui-input" }, { "placeholder", "请输入接口地址" } })
+                </div>
+                @Html.HiddenFor(x => x.ApiUrl)
+                <span id="strapi" style="display:block; width:460px">@(Model.ApiUrl)</span>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                MQ路由:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.TextBoxFor(x => x.RoutingKey, new Dictionary<string, object> { { "lay-verify", "required" }, { "class", "layui-input" }, { "placeholder", "请输入路由地址" } })
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>交换机:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.TextBoxFor(x => x.Exchange, new Dictionary<string, object> { { "lay-verify", "required" }, { "class", "layui-input" }, { "placeholder", "请输入交换机地址" } })
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>队列名称:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.TextBoxFor(x => x.QueueName, new Dictionary<string, object> { { "lay-verify", "required" }, { "class", "layui-input" }, { "placeholder", "请输入队列名称" } })
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>消费方式:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.DropDownListFor(x => x.MqMessageType, ViewBag.MQConsumerType as IEnumerable<SelectListItem>, new Dictionary<string, object> { { "lay-filter", "MqMessageType" } })
+            </div>
+        </div>
+
+
+        <div class="layui-form-item" id="div_TimeInterval">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>时间间隔:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.TextBoxFor(x => x.TimeInterval, new Dictionary<string, object> { { "lay-verify", "required|number" }, { "class", "layui-input" }, { "placeholder", "Pull获取消息时间间隔" } })
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>异常重试次数:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.TextBoxFor(x => x.ExceptionNumber, new Dictionary<string, object> { { "lay-verify", "required|number" }, { "class", "layui-input" }, { "placeholder", "异常重试次数" } })
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>失败消息存储:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.DropDownListFor(x => x.IsSaveFailMessage, ViewBag.MQFailMsgType as IEnumerable<SelectListItem>, new Dictionary<string, object> { { "lay-filter", "IsSaveFailMessage" } })
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>任务状态:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.DropDownListFor(x => x.Status, ViewBag.StatusType as IEnumerable<SelectListItem>, new Dictionary<string, object> { { "lay-filter", "Status" } })
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+            </label>
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="Save" lay-submit="">保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+

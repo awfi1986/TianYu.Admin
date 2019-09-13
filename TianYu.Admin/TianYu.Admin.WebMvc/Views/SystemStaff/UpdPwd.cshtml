@@ -1,0 +1,107 @@
+﻿
+@{
+    var Roles = ViewBag.Roles as IEnumerable<SelectListItem>;
+    Layout = "~/Views/Shared/_Info.cshtml";
+}
+
+@section scripts{
+    <script>
+
+        layui.use(['jquery', 'form'], function () {
+            var form = layui.form,
+                $ = layui.jquery;
+
+            form.verify({
+                pwd: function (value, item) {
+                    if (value.trim()) {
+                        //判断两次密码是否一致
+                        if ($('#RePassword').val() != value) {
+                            return '两次密码不一致';
+                        }
+                    }
+                },
+                repwd: function (value, item) {
+                    if (value.trim()) {
+                        //判断两次密码是否一致
+                        if ($('#NewLoginPwd').val() != value) {
+                            return '两次密码不一致';
+                        }
+                    }
+                },
+            });
+
+            //提交表单数据
+            form.on('submit(ResetUpdate)', function (data) {
+                var param = data.field;
+
+                //参数处理 
+                $.ajax({
+                    type: 'post',
+                     url: '@Url.Action("UpdatePwd")',
+                    data: param,
+                    dataType: 'json',
+                    success: function (res) {  
+                        if (res.Status == 200) {
+                            res = res.Data;
+                            if (res.Status == 1) {
+                                layer.msg('修改成功', { time: 500 }, function () {
+                                    //关闭当前弹出层
+                                    var index = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(index);
+                                });
+                            }
+                            else {
+                                layer.msg(res.ErrorMessage);
+                            }
+                        }
+                        else {
+                            layer.msg('请求错误：' + res.ErrorMessage + '，' + res.Status);
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+}
+
+<div class="weadmin-body">
+    <form class="layui-form">
+        @*隐藏字段*@
+        <input type="hidden" name="Id" id="Id" value="@ViewBag.Id" />
+        <div class="layui-form-item ">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>旧密码
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                <input type="password" name="OldLoginPwd" class="layui-input" placeholder="旧密码" />
+            </div>
+        </div>
+        <div class="layui-form-item ">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>新密码
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                <input type="password" id="NewLoginPwd" name="NewLoginPwd" lay-verify="pwd" class="layui-input" placeholder="新密码" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>确认新密码
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                <input type="password" id="RePassword" name="RePassword" lay-verify="repwd" class="layui-input" placeholder="确认新密码" />
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+            </label>
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="ResetUpdate" lay-submit="">保存</button>
+            </div>
+        </div>
+
+    </form>
+</div>

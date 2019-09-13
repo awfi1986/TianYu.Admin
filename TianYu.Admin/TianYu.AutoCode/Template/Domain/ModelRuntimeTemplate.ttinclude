@@ -1,0 +1,187 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #> 
+<#@ assembly name="System.Data.dll" #>
+<#@ import namespace="System.Data" #>  
+<#@ import namespace="System.Data.SqlClient" #>  
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#+
+public class ModelTemplate : CSharpTemplate
+{ 
+    private string _tb_name;
+    private string _tb_desc;   
+	private DataTable _fileTable;
+    public ModelTemplate(string tb_name,string tb_desc,DataTable fileTable)
+    {
+        _tb_name = tb_name;
+		_tb_desc = tb_desc;
+		_fileTable = fileTable ;
+    }
+    
+	public DataTable FileTable
+	{
+	    get
+        {
+            return _fileTable;
+        }
+	}
+	 
+    public string EntityDesc
+    {
+        get
+        {
+            return _tb_desc;
+        }
+    }
+     
+    public string FileName
+    {
+        get
+        {
+            return string.Format("{0}.cs", _tb_name.Replace("s_", string.Empty));
+        }
+    }
+  
+    public string EntityName
+    {
+        get
+        {
+            return _tb_name.Replace("s_", string.Empty);
+        }
+    }
+ 
+    public override string TransformText()
+    {
+        base.TransformText();
+#> 
+using System;
+using TianYu.Admin.Domain.BaseModel; 
+
+namespace TianYu.Admin.Domain 
+{    
+    /// <summary> 
+	/// 实体-<#=EntityDesc#> 
+	/// </summary> 
+	public partial class <#=EntityName#>: AggregateRoot    
+    {    
+	    public <#=EntityName#>()
+        {
+        <#+    
+			foreach (DataRow dr in FileTable.Rows) 
+			{  
+			    //if(dr["默认值"]!=null&&dr["默认值"]!="")
+				//WriteLine("        this." + dr["字段名"] +"="+dr["默认值"]); 
+			} 
+        #>
+        }
+
+        <#+   
+		string dataType = string.Empty;
+		string isNull = string.Empty; 
+
+        foreach (DataRow dr in FileTable.Rows) 
+        { 
+			dataType = MapCsharpType(dr["类型"].ToString());
+			isNull = dataType=="string"?"":(Convert.ToInt32(dr["允许空"])==1 ? "?": ""); 
+
+			WriteLine("        ///<summary>");
+			WriteLine("        /// " + dr["字段说明"]);
+			WriteLine("        ///</summary>");
+            WriteLine("        public " + dataType + isNull + " " + dr["字段名"] + " { get; set; }");
+        } 
+        #>
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+    }
+  
+ 
+        public static string MapCsharpType(string dbtype)
+        {
+            if (string.IsNullOrEmpty(dbtype)) return dbtype;
+            dbtype = dbtype.ToLower();
+            string csharpType = "object";
+            switch (dbtype)
+            {
+                case "bigint": csharpType = "long"; break;
+                case "binary": csharpType = "byte[]"; break;
+                case "bit": csharpType = "bool"; break;
+                case "char": csharpType = "string"; break;
+                case "date": csharpType = "DateTime"; break;
+                case "datetime": csharpType = "DateTime"; break;
+                case "datetime2": csharpType = "DateTime"; break;
+                case "datetimeoffset": csharpType = "DateTimeOffset"; break;
+                case "decimal": csharpType = "decimal"; break;
+                case "float": csharpType = "double"; break;
+                case "image": csharpType = "byte[]"; break;
+                case "int": csharpType = "int"; break;
+                case "money": csharpType = "decimal"; break;
+                case "nchar": csharpType = "string"; break;
+                case "ntext": csharpType = "string"; break;
+                case "numeric": csharpType = "decimal"; break;
+                case "nvarchar": csharpType = "string"; break;
+                case "real": csharpType = "Single"; break;
+                case "smalldatetime": csharpType = "DateTime"; break;
+                case "smallint": csharpType = "short"; break;
+                case "smallmoney": csharpType = "decimal"; break;
+                case "sql_variant": csharpType = "object"; break;
+                case "sysname": csharpType = "object"; break;
+                case "text": csharpType = "string"; break;
+                case "time": csharpType = "TimeSpan"; break;
+                case "timestamp": csharpType = "byte[]"; break;
+                case "tinyint": csharpType = "byte"; break;
+                case "uniqueidentifier": csharpType = "Guid"; break;
+                case "varbinary": csharpType = "byte[]"; break;
+                case "varchar": csharpType = "string"; break;
+                case "xml": csharpType = "string"; break;
+                default: csharpType = "object"; break;
+            }
+            return csharpType;
+        }
+           
+        public static Type MapCommonType(string dbtype)
+        {
+            if (string.IsNullOrEmpty(dbtype)) return Type.Missing.GetType();
+            dbtype = dbtype.ToLower();
+            Type commonType = typeof(object);
+            switch (dbtype)
+            {
+                case "bigint": commonType = typeof(long); break;
+                case "binary": commonType = typeof(byte[]); break;
+                case "bit": commonType = typeof(bool); break;
+                case "char": commonType = typeof(string); break;
+                case "date": commonType = typeof(DateTime); break;
+                case "datetime": commonType = typeof(DateTime); break;
+                case "datetime2": commonType = typeof(DateTime); break;
+                case "datetimeoffset": commonType = typeof(DateTimeOffset); break;
+                case "decimal": commonType = typeof(decimal); break;
+                case "float": commonType = typeof(double); break;
+                case "image": commonType = typeof(byte[]); break;
+                case "int": commonType = typeof(int); break;
+                case "money": commonType = typeof(decimal); break;
+                case "nchar": commonType = typeof(string); break;
+                case "ntext": commonType = typeof(string); break;
+                case "numeric": commonType = typeof(decimal); break;
+                case "nvarchar": commonType = typeof(string); break;
+                case "real": commonType = typeof(Single); break;
+                case "smalldatetime": commonType = typeof(DateTime); break;
+                case "smallint": commonType = typeof(short); break;
+                case "smallmoney": commonType = typeof(decimal); break;
+                case "sql_variant": commonType = typeof(object); break;
+                case "sysname": commonType = typeof(object); break;
+                case "text": commonType = typeof(string); break;
+                case "time": commonType = typeof(TimeSpan); break;
+                case "timestamp": commonType = typeof(byte[]); break;
+                case "tinyint": commonType = typeof(byte); break;
+                case "uniqueidentifier": commonType = typeof(Guid); break;
+                case "varbinary": commonType = typeof(byte[]); break;
+                case "varchar": commonType = typeof(string); break;
+                case "xml": commonType = typeof(string); break;
+                default: commonType = typeof(object); break;
+            }
+            return commonType;
+        }
+    } 
+#>

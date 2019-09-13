@@ -1,0 +1,119 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #> 
+<#@ assembly name="System.Data.dll" #>
+<#@ import namespace="System.Data" #>  
+<#@ import namespace="System.Data.SqlClient" #>  
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#+
+public class MapTemplate : CSharpTemplate
+{ 
+    private string _tb_name;
+    private string _tb_desc;   
+	private DataTable _fileTable; 
+    public MapTemplate(string tb_name,string tb_desc,DataTable fileTable)
+    {
+        _tb_name = tb_name;
+		_tb_desc = tb_desc;
+		_fileTable = fileTable ;
+    }
+    
+	public DataTable FileTable
+	{
+	    get
+        {
+            return _fileTable;
+        }
+	}
+	 
+    public string EntityDesc
+    {
+        get
+        {
+            return _tb_desc;
+        }
+    }
+     
+    public string FileName
+    {
+        get
+        {
+            return string.Format("{0}Map.cs", _tb_name.Replace("s_", string.Empty));
+        }
+    }
+  
+    public string EntityName
+    {
+        get
+        {
+            return _tb_name.Replace("s_", string.Empty);
+        }
+    }
+ 
+    public string TableName
+    {
+        get
+        {
+            return _tb_name;
+        }
+    }
+    public override string TransformText()
+    {
+        base.TransformText();
+#> 
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TianYu.Admin.Domain.Mapping
+{
+    /// <summary>
+    /// <#=EntityDesc#>实体映射类
+    /// </summary>
+    public partial class <#=EntityName#>Map
+        : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TianYu.Admin.Domain.<#=EntityName#>>
+    {
+        public <#=EntityName#>Map()
+        {
+            // table
+            ToTable("<#=TableName#>", "dbo");
+
+			// keys
+		<#+
+        foreach (DataRow dr in FileTable.Rows) 
+        {    
+		    if(dr["主键"].ToString()=="1")
+			{ 
+				WriteLine("    HasKey(t => t."+dr["字段名"]+");");  
+				break;
+			} 
+        }  
+        #>
+	 
+			// Properties
+		<#+ 
+        foreach (DataRow dr in FileTable.Rows) 
+        {       
+		    WriteLine("           Property(t => t."+dr["字段名"]+")");
+		    if(dr["标识"].ToString()=="1") {
+			   WriteLine("                   .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)");
+			} 
+			if(dr["类型"].ToString()=="varchar"||dr["类型"].ToString()=="nvarchar"){
+			   WriteLine("                   .HasMaxLength("+dr["长度"]+")");
+			}
+			WriteLine("                   .HasColumnName(\""+dr["字段名"]+"\")"); 
+			WriteLine("                   "+ (Convert.ToInt32(dr["允许空"])==1?".IsOptional();":".IsRequired();")); 
+        }  
+        #>
+		 	 
+        }
+    }
+}
+
+<#+
+        return this.GenerationEnvironment.ToString();
+    } 
+}
+#>

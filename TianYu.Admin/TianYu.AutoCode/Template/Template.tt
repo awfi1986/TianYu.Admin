@@ -1,0 +1,147 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data.dll" #>
+<#@ import namespace="System.Data" #>  
+<#@ import namespace="System.Data.SqlClient" #>  
+<#@ Import Namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Reflection" #>
+<#@ Import Namespace="System.Collections.Generic" #> 
+<#@ output extension=".cs" #> 
+<#@ include file="T4Toolbox.tt" #> 
+<#@ include file="Domain/ModelRuntimeTemplate.ttinclude" #> 
+<#@ include file="Domain/MappingRuntimeTemplate.ttinclude" #> 
+<#@ include file="Domain/RequestModelRuntimeTemplate.ttinclude" #> 
+<#@ include file="Domain/ResponseModelRuntimeTemplate.ttinclude" #> 
+<#@ include file="Domain/ContextRuntimeTemplate.ttinclude" #> 
+<#@ include file="Repository/RepositoryRuntimeTemplate.ttinclude" #> 
+<#@ include file="Repository/IRepositoryRuntimeTemplate.ttinclude" #> 
+<#@ include file="Service/ServiceRuntimeTemplate.ttinclude" #> 
+<#@ include file="Service/IServiceRuntimeTemplate.ttinclude" #>  
+<#@ include file="UI/ControllerRuntimeTemplate.ttinclude" #>  
+<#@ include file="UI/AddPageRuntimeTemplate.ttinclude" #>  
+<#@ include file="UI/EditPageRuntimeTemplate.ttinclude" #> 
+<#@ include file="UI/IndexPageRuntimeTemplate.ttinclude" #> 
+<#
+    //当前Template.tt所在的模板路径<br>　　
+	//Host.Template 是当前文本模板Template.tt的路径
+    var currentPath = Path.GetDirectoryName(Host.TemplateFile);
+    //解决方案路径
+    //string solutionPath = currentPath.Substring(0, currentPath.LastIndexOf("\\"));
+    //项目名称
+    //string projectFullName = currentPath.Substring(currentPath.LastIndexOf("\\") + 1);
+
+	string connectionString= "server=192.168.253.136;uid=sa;pwd=sa1234;database=TianYu;MultipleActiveResultSets=True;";        
+    SqlConnection conn = new SqlConnection(connectionString);
+    conn.Open();
+    
+    string queryTableSql = @"SELECT a.name as tb_name, b.value as tb_desc FROM sys.objects a LEFT JOIN [sys].[extended_properties] b ON a.object_id = b.major_id AND b.minor_id = 0 WHERE a.type = 'U' and a.name='s_SystemPowerItem'";
+    string queryColumnSql = @"
+			SELECT  
+			字段序号   = a.colorder,
+			字段名     = a.name,
+			标识       = case when COLUMNPROPERTY( a.id,a.name,'IsIdentity')=1 then '1'else '0' end,
+			主键       = case when exists(SELECT 1 FROM sysobjects where xtype='PK' and parent_obj=a.id and name in (
+							 SELECT name FROM sysindexes WHERE indid in( SELECT indid FROM sysindexkeys WHERE id = a.id AND colid=a.colid))) then '1' else '0' end,
+			类型       = b.name,
+			占用字节数 = a.length,
+			长度       = COLUMNPROPERTY(a.id,a.name,'PRECISION'), 
+			允许空     = a.isnullable,
+			默认值     = isnull(e.text,''),
+			字段说明   = isnull(g.[value],'')
+			FROM  syscolumns a
+			left join  systypes b on a.xusertype=b.xusertype
+			inner join sysobjects d on a.id=d.id  and d.xtype='U' and d.name<>'dtproperties'
+			left join syscomments e on a.cdefault=e.id
+			left join sys.extended_properties g on a.id=G.major_id and a.colid=g.minor_id  
+			left join sys.extended_properties f on d.id=f.major_id and f.minor_id=0
+			where d.name= '@tableName'
+			order by a.id,a.colorder";
+             
+    SqlCommand command = new SqlCommand(queryTableSql, conn);
+    SqlDataAdapter ad = new SqlDataAdapter(command);
+    System.Data.DataSet ds = new DataSet();
+    System.Data.DataSet ds2 = new DataSet();
+    ad.Fill(ds);
+
+	//实例化context模板
+	var contextModel= new ContextTemplate("TianYuSystemPower",ds.Tables[0]);
+	string contextFilePath= Path.Combine(currentPath,"../Domain/DomainModel", contextModel.FileName);
+	contextModel.RenderToFile(contextFilePath);
+            
+    foreach (System.Data.DataRow row in ds.Tables[0].Rows)
+    {			
+        ds2.Tables.Clear();
+        string tb_name = row["tb_name"].ToString();
+        string tb_desc = row["tb_desc"].ToString();
+        command.CommandText = queryColumnSql.Replace("@tableName", tb_name);
+        ad.Fill(ds2); 
+
+		//实例化实体模板
+		var entity= new ModelTemplate(tb_name,tb_desc,ds2.Tables[0]);
+		string filePath= Path.Combine(currentPath,"../Domain/DomainModel/AgModel", entity.FileName);
+		entity.RenderToFile(filePath);
+
+		//实例化实体映射模板
+		var entity2= new MapTemplate(tb_name,tb_desc,ds2.Tables[0]);
+		string filePath2= Path.Combine(currentPath,"../Domain/DomainModel/Mapping", entity2.FileName);
+		entity2.RenderToFile(filePath2);
+
+		//实例化IRepository模板
+		var entity3= new IRepositoryTemplate(tb_name,tb_desc);
+		string filePath3= Path.Combine(currentPath,"../Repository/IModelRepository", entity3.FileName);
+		entity3.RenderToFile(filePath3);
+
+		//实例化Repository模板
+		var entity4= new RepositoryTemplate(tb_name,tb_desc);
+		string filePath4= Path.Combine(currentPath,"../Repository/ModelRepository", entity4.FileName);
+		entity4.RenderToFile(filePath4); 
+
+
+
+
+		//实例化IService模板
+		var entity5= new IServiceTemplate(tb_name,tb_desc);
+		string filePath5= Path.Combine(currentPath,"../Service/IService", entity5.FileName);
+		entity5.RenderToFile(filePath5); 
+
+		//实例化Service模板
+		var entity6= new ServiceTemplate(tb_name,tb_desc);
+		string filePath6= Path.Combine(currentPath,"../Service/Service", entity6.FileName);
+		entity6.RenderToFile(filePath6); 
+
+		//实例化RequestModel模板
+		var requestModel= new RequestModelTemplate(tb_name,tb_desc,ds2.Tables[0]);
+		string requestModelFilePath= Path.Combine(currentPath,"../Domain/ViewModel/Request", requestModel.FileName);
+		requestModel.RenderToFile(requestModelFilePath); 
+
+		//实例化ResponseModel模板
+		var responseModel= new ResponseModelTemplate(tb_name,tb_desc,ds2.Tables[0]);
+		string responseModelFilePath= Path.Combine(currentPath,"../Domain/ViewModel/Response", responseModel.FileName);
+		responseModel.RenderToFile(responseModelFilePath); 
+
+		//实例化Controller模板
+		var controller= new ControllerTemplate(tb_name,tb_desc);
+		string controllerFilePath= Path.Combine(currentPath,"../UI/Controllers", controller.FileName);
+		controller.RenderToFile(controllerFilePath);
+
+		//实例化AddPage模板
+		var addPage= new AddPageTemplate(tb_name,tb_desc,ds2.Tables[0]);
+		string addPageFilePath= Path.Combine(currentPath,$"../UI/Views/{addPage.EntityName}", addPage.FileName);
+		addPage.RenderToFile(addPageFilePath); 
+
+		//实例化EditPage模板
+		var editPage= new EditPageTemplate(tb_name,tb_desc,ds2.Tables[0]);
+		string editPageFilePath= Path.Combine(currentPath,$"../UI/Views/{editPage.EntityName}", editPage.FileName);
+		editPage.RenderToFile(editPageFilePath); 
+
+		//实例化IndexPage模板
+		var indexPage= new IndexPageTemplate(tb_name,tb_desc,ds2.Tables[0]);
+		string indexPageFilePath= Path.Combine(currentPath,$"../UI/Views/{indexPage.EntityName}", indexPage.FileName);
+		indexPage.RenderToFile(indexPageFilePath); 
+    }
+     conn.Close();   
+#> 
+
+     

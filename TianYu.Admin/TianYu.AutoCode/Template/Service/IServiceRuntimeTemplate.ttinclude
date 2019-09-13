@@ -1,0 +1,98 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #> 
+<#@ assembly name="System.Data.dll" #>
+<#@ import namespace="System.Data" #>  
+<#@ import namespace="System.Data.SqlClient" #>  
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#+
+public class IServiceTemplate : CSharpTemplate
+{ 
+    private string _tb_name;
+    private string _tb_desc;    
+    public IServiceTemplate(string tb_name,string tb_desc)
+    {
+        _tb_name = tb_name;
+		_tb_desc = tb_desc; 
+    }
+      
+    public string EntityDesc
+    {
+        get
+        {
+            return _tb_desc;
+        }
+    }
+     
+    public string FileName
+    {
+        get
+        {
+            return string.Format("I{0}Service.cs", _tb_name.Replace("s_", string.Empty));
+        }
+    }
+  
+    public string EntityName
+    {
+        get
+        {
+            return _tb_name.Replace("s_", string.Empty);
+        }
+    }
+  
+    public override string TransformText()
+    {
+        base.TransformText();
+#> 
+using TianYu.Core.Common.BaseViewModel; 
+using TianYu.Admin.Domain.ViewModel.Request;
+using TianYu.Admin.Domain.ViewModel.Response;
+
+namespace TianYu.Admin.Service.IService
+{
+    /// <summary>
+    /// <#=EntityDesc#>业务逻辑接口
+    /// </summary>
+    public interface I<#=EntityName#>Service
+    { 
+	    /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        BusinessBaseViewModel<string> Insert(Add<#=EntityName#>RequestModel requestModel); 
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        BusinessBaseViewModel<string> Remove(Remove<#=EntityName#>RequestModel requestModel);
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        BusinessBaseViewModel<string> Update(Update<#=EntityName#>RequestModel requestModel);
+        /// <summary>
+        /// 查询列表
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        BusinessPagedBaseViewModel<Query<#=EntityName#>ResponseModel> Query(Query<#=EntityName#>RequestModel requestModel);
+        /// <summary>
+        /// 查询明细
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        BusinessBaseViewModel<QueryDetail<#=EntityName#>ResponseModel> QueryDetail(QueryDetail<#=EntityName#>RequestModel requestModel);
+
+    }
+}
+
+
+<#+
+        return this.GenerationEnvironment.ToString();
+    } 
+}
+#>

@@ -1,0 +1,145 @@
+﻿@model TianYu.Admin.Domain.ViewModel.ScheduleTaskResponse
+
+@{
+    ViewBag.Module = "定时任务列表";
+    ViewBag.Title = "添加任务";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script>
+        layui.use(['jquery', 'form'], function () {
+            var form = layui.form,
+                $ = layui.jquery;
+            //提交表单数据
+            form.on('submit(Save)', function (data) {
+                //禁用提交按钮
+                toggleSubmitStatus(data.elem);
+                var param = data.field;
+                var index = layer.load(1, { time: 60 * 1000 });
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("AddOrUpsert")',
+                    data: param,
+                    dataType: 'json',
+                    success: function (res) {
+                        layer.close(index);
+                        if (res.Status == 200) {
+                            res = res.Data;
+                            if (res.Status == 1) {
+                                //刷新列表
+                                $(".layui-btn[lay-filter='formSearch']", window.parent.document).click();
+                                layer.msg('保存成功', function () {
+                                    //启用提交按钮
+                                    toggleSubmitStatus(data.elem, true);
+                                    //关闭当前弹出层
+                                    var index = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(index);
+                                });
+                            }
+                            else {
+                                //启用提交按钮
+                                toggleSubmitStatus(data.elem, true);
+                                layer.msg(res.ErrorMessage);
+                            }
+                        }
+                        else {
+                            //启用提交按钮
+                            toggleSubmitStatus(data.elem, true);
+                            layer.msg('请求错误：' + res.ErrorMessage + '，' + res.Status);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<div class="weadmin-body">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <span class="we-red">*</span>任务名称：
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.TextBoxFor(x => x.TaskName, new Dictionary<string, object> { { "lay-verify", "required" }, { "class", "layui-input" }, { "placeholder", "请输入任务名称" } })
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>接口地址:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.TextBoxFor(x => x.ApiUrl, new Dictionary<string, object> { { "lay-verify", "required" }, { "class", "layui-input" }, { "placeholder", "请输入接口地址" } })
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                请求参数:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.TextBoxFor(x => x.Parameters, new Dictionary<string, object> { { "class", "layui-input" } })
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>请求谓词:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.TextBoxFor(x => x.Method, new Dictionary<string, object> { { "lay-verify", "required" }, { "class", "layui-input" }, { "placeholder", "POST" } })
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>执行方式:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                
+                @Html.DropDownListFor(x => x.ExecuteType, ViewBag.TaskExecuteType as IEnumerable<SelectListItem>, new Dictionary<string, object> { { "lay-filter", "selType" } })
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>异常重试次数:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.TextBoxFor(x => x.ExceptionNumber, new Dictionary<string, object> { { "lay-verify", "required|number" }, { "class", "layui-input" }, { "placeholder", "异常重试次数" } })
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>间隔时间（秒）:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.TextBoxFor(x => x.DiffSeconds, new Dictionary<string, object> { { "lay-verify", "required|number" }, { "class", "layui-input" }, { "placeholder", "间隔时间（秒）" } })
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>任务状态:
+            </label>
+            <div class="layui-input-block" style="width:50%">
+                @Html.DropDownListFor(x => x.Status, ViewBag.TaskStatusType as IEnumerable<SelectListItem>, new Dictionary<string, object> { { "lay-filter", "selType" } })
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+            </label>
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="Save" lay-submit="">保存</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+

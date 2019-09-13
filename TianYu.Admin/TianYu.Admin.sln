@@ -1,0 +1,84 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TianYu.Admin.Service", "TianYu.Admin.Service\TianYu.Admin.Service.csproj", "{90ECE856-6042-4B70-AC2B-46EE9DD1139C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TianYu.Admin.Repository", "TianYu.Admin.Repository\TianYu.Admin.Repository.csproj", "{B5289F55-A25B-451C-8AF9-3E5EE6DEE230}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TianYu.Admin.Infrastructure", "TianYu.Admin.Infrastructure\TianYu.Admin.Infrastructure.csproj", "{C8506702-FDD7-477B-9811-0C89FA8F437B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TianYu.Admin.Domain", "TianYu.Admin.Domain\TianYu.Admin.Domain.csproj", "{AA2A0B57-C331-4E23-A5B8-2C8727D46173}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.应用层", "1.应用层", "{39D3DBA0-7BA8-41E8-86E6-D7131ED99E2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.业务逻辑层", "2.业务逻辑层", "{576666DD-0AE5-454A-A141-F9CF20AFDDA7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.领域模型层", "3.领域模型层", "{D0C95B8B-FD4D-49F0-9926-3B50AF456808}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.仓储层", "4.仓储层", "{B3722A71-BBF1-4F9D-8233-F6C4842DB141}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.公共设施层", "5.公共设施层", "{6C524230-BCFA-4C10-91DB-952AA5DF079C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TianYu.Admin.WebMvc", "TianYu.Admin.WebMvc\TianYu.Admin.WebMvc.csproj", "{17776319-6292-461A-9B99-B1EACF0717F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6.测试", "6.测试", "{478C8BB3-B5B9-4009-B517-F6CDB30AA3EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TianYu.Admin.UnitTest", "TianYu.Admin.UnitTest\TianYu.Admin.UnitTest.csproj", "{35A4AA4C-4F80-49F7-A1C9-E639B9669289}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7.T4模板", "7.T4模板", "{24701299-C3D7-4598-926D-D5D013467351}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TianYu.AutoCode", "TianYu.AutoCode\TianYu.AutoCode.csproj", "{2746400D-DFE9-412A-B31F-E368FA84A312}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90ECE856-6042-4B70-AC2B-46EE9DD1139C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90ECE856-6042-4B70-AC2B-46EE9DD1139C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90ECE856-6042-4B70-AC2B-46EE9DD1139C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90ECE856-6042-4B70-AC2B-46EE9DD1139C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5289F55-A25B-451C-8AF9-3E5EE6DEE230}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5289F55-A25B-451C-8AF9-3E5EE6DEE230}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5289F55-A25B-451C-8AF9-3E5EE6DEE230}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5289F55-A25B-451C-8AF9-3E5EE6DEE230}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8506702-FDD7-477B-9811-0C89FA8F437B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8506702-FDD7-477B-9811-0C89FA8F437B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8506702-FDD7-477B-9811-0C89FA8F437B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8506702-FDD7-477B-9811-0C89FA8F437B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA2A0B57-C331-4E23-A5B8-2C8727D46173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA2A0B57-C331-4E23-A5B8-2C8727D46173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA2A0B57-C331-4E23-A5B8-2C8727D46173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA2A0B57-C331-4E23-A5B8-2C8727D46173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17776319-6292-461A-9B99-B1EACF0717F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17776319-6292-461A-9B99-B1EACF0717F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17776319-6292-461A-9B99-B1EACF0717F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17776319-6292-461A-9B99-B1EACF0717F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A4AA4C-4F80-49F7-A1C9-E639B9669289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A4AA4C-4F80-49F7-A1C9-E639B9669289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A4AA4C-4F80-49F7-A1C9-E639B9669289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A4AA4C-4F80-49F7-A1C9-E639B9669289}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2746400D-DFE9-412A-B31F-E368FA84A312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2746400D-DFE9-412A-B31F-E368FA84A312}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2746400D-DFE9-412A-B31F-E368FA84A312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2746400D-DFE9-412A-B31F-E368FA84A312}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{90ECE856-6042-4B70-AC2B-46EE9DD1139C} = {576666DD-0AE5-454A-A141-F9CF20AFDDA7}
+		{B5289F55-A25B-451C-8AF9-3E5EE6DEE230} = {B3722A71-BBF1-4F9D-8233-F6C4842DB141}
+		{C8506702-FDD7-477B-9811-0C89FA8F437B} = {6C524230-BCFA-4C10-91DB-952AA5DF079C}
+		{AA2A0B57-C331-4E23-A5B8-2C8727D46173} = {D0C95B8B-FD4D-49F0-9926-3B50AF456808}
+		{17776319-6292-461A-9B99-B1EACF0717F9} = {39D3DBA0-7BA8-41E8-86E6-D7131ED99E2B}
+		{35A4AA4C-4F80-49F7-A1C9-E639B9669289} = {478C8BB3-B5B9-4009-B517-F6CDB30AA3EF}
+		{2746400D-DFE9-412A-B31F-E368FA84A312} = {24701299-C3D7-4598-926D-D5D013467351}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00B637F4-64D4-425F-BA90-713757084DD9}
+	EndGlobalSection
+EndGlobal

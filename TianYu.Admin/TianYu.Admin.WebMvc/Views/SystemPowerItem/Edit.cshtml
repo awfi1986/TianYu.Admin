@@ -1,0 +1,171 @@
+﻿@using TianYu.Admin.Domain.ViewModel.Response
+@model QueryDetailSystemMenuResponseModel
+@{
+    ViewBag.Module = "菜单管理";
+    ViewBag.Title = "修改菜单";
+    Layout = "~/Views/Shared/_Info.cshtml";
+}
+
+@section scripts{
+    <script>
+
+        layui.use(['jquery', 'form'], function () {
+
+            var form = layui.form
+                , $ = layui.jquery;
+
+            //提交表单数据
+            form.on('submit(Save)', function (data) {
+                var params = data.field;
+                if (!params.MenuName) {
+                    layer.msg('菜单名称不能为空', { shift: -1, time: 1000 });
+                    return false;
+                }
+                if (params.Level == 3 && !params.MenuUrl) {
+                    layer.msg('菜单Url不能为空', { shift: -1, time: 1000 });
+                    return false;
+                }
+                
+                //禁用提交按钮
+                toggleSubmitStatus(data.elem);
+                var index = layer.load(1, { time: 60 * 1000 });
+
+                //参数处理
+                $.ajax({
+                    url: '@Url.Action("Update")',
+                    data: params,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.Status == 200) {
+                            res = res.Data;
+                            if (res.Status == 1) {
+                                layer.msg('保存成功', { shift: -1, time: 1000 }, function () {
+                                    //启用提交按钮
+                                    toggleSubmitStatus(data.elem, true);
+                                    layer.close(index);
+
+                                    var index2 = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                                    parent.layer.close(index2); //再执行关闭
+                                    window.parent.location.reload(); //刷新父页面
+                                });
+                            }
+                            else {
+                                //启用提交按钮
+                                toggleSubmitStatus(data.elem, true);
+                                layer.close(index);
+                                layer.msg(res.ErrorMessage);
+                            }
+                        }
+                        else {
+                            //启用提交按钮
+                            toggleSubmitStatus(data.elem, true);
+                            layer.close(index);
+                            layer.msg('请求错误：' + res.ErrorMessage +'，'+ res.Status);
+                        }
+                    }
+                });
+                return false;
+            });
+              
+            form.on("checkbox", function (data) {
+
+                var buttonIds = '';
+                $.each($("input[type=checkbox]:checked"),function(){
+                    buttonIds += $(this).val() + ',';
+                });
+                if (buttonIds != '') buttonIds = buttonIds.substring(0, buttonIds.length - 1);
+                $('#MenuButtonId').val(buttonIds); 
+            });
+
+    });
+    </script>
+}
+
+
+<div class="weadmin-body">
+    <form class="layui-form">
+        @Html.HiddenFor(a => a.Id)
+        <input type="hidden" name="Level" value="@((int)Model.Level)" />
+        <input type="hidden" id="ParentId" name="ParentId" value="@Model.ParentId" />
+        <input type="hidden" id="MenuButtonId" name="MenuButtonId" value="" />
+        @*<div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="we-red">*</span>级别
+                </label>
+                <div class="layui-input-block">
+                    <input type="radio" id="rdoLevelSys" name="Level" lay-filter="rdoLevel" value="1" @(((int)Model.Level == 1) ? "checked" : "") disabled title="系统">
+                    <input type="radio" id="rdoLevelMod" name="Level" lay-filter="rdoLevel" value="2" @(((int)Model.Level == 2) ? "checked" : "") disabled title="模块">
+                    <input type="radio" id="rdoLevelFun" name="Level" lay-filter="rdoLevel" value="3" @(((int)Model.Level == 3) ? "checked" : "") disabled title="功能">
+                    <input type="radio" id="rdoLevelBtn" name="Level" lay-filter="rdoLevel" value="4" @(((int)Model.Level == 4) ? "checked" : "") disabled title="操作">
+                </div>
+            </div>*@
+        @*<div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="we-red"></span>上级
+                </label>
+                <div class="layui-input-block">
+                    @Html.TextBoxFor(x => x.BussionModule, new Dictionary<string, object> { { "class", "layui-input layui-disabled" }, { "placeholder", "菜单名称" } })
+                </div>
+            </div>*@
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>名称
+            </label>
+            <div class="layui-input-block">
+                @Html.TextBoxFor(x => x.MenuName, new Dictionary<string, object> { { "lay-verify", "required" }, { "class", "layui-input" }, { "placeholder", "名称" } })
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red"></span>Url
+            </label>
+            <div class="layui-input-block">
+                @Html.TextBoxFor(x => x.MenuUrl, new Dictionary<string, object> { { "class", "layui-input" }, { "placeholder", "路径" } })
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red"></span>图标
+            </label>
+            <div class="layui-input-block">
+                <div class="layui-input-inline">
+                    @Html.TextBoxFor(x => x.MenuIcon, new Dictionary<string, object> { { "class", "layui-input" }, { "placeholder", "图标" }, { "style", "width:'220'" } })
+                </div>
+                <div class="layui-input-inline">
+                    <a href="https://www.layui.com/doc/element/icon.html" style="display: block;margin-top: 7px;" target="_blank">参考Layui</a>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red"></span>排序
+            </label>
+            <div class="layui-input-block">
+                @Html.TextBoxFor(x => x.MenuSort, new Dictionary<string, object> { { "class", "layui-input" }, { "placeholder", "排序" } })
+            </div>
+        </div>
+        @if (Model.ButtonList != null)
+        {
+            <div class="layui-form-item" pane="">
+                <label class="layui-form-label">
+                    <span class="we-red"></span>操作
+                </label>
+                <div class="layui-input-block">
+                    @foreach (var m in Model.ButtonList)
+                    {
+                        <input type="checkbox" name="SelectedButton" lay-skin="primary" value="@m.Id" id="@m.Id" title="@m.ButtonName" @(m.Checked ? "checked" : "") />
+                    }
+                </div>
+            </div>
+        }
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+            </label>
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="Save" lay-submit="">保存</button>
+            </div>
+        </div>
+    </form>
+</div>

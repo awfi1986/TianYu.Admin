@@ -1,0 +1,58 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>管理后台--登录</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+    @*<link href="/Content/layui/css/layui.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/Content/static/css/font.css">
+        <link rel="stylesheet" href="/Content/static/css/weadmin.css">
+        <script src="/Content/layui/layui.js"></script>
+        <script src="~/Content/static/js/admin.js"></script>*@
+
+    <link rel="stylesheet" href="@ViewBag.FileResourcesDomain/Content/static/css/font.css">
+    <link rel="stylesheet" href="@ViewBag.FileResourcesDomain/Content/static/css/weadmin.css">
+    <script src="@ViewBag.FileResourcesDomain/Content/layui/layui.js"></script>
+    <script src="@ViewBag.FileResourcesDomain/Content/static/js/admin.js"></script>
+</head>
+<body class="login-bg">
+
+    <div class="login">
+        <div class="message">管理后台 1.0-管理登录</div>
+        <div id="darkbannerwrap"></div>
+
+        <form class="layui-form">
+            <input type="hidden" id="redUrl" name="redUrl" value="@ViewBag.redirectUrl" />
+            <input name="u" id="userName" placeholder="用户名" type="text" lay-verify="required" class="layui-input">
+            <hr class="hr15">
+            <input name="p" id="passWord" lay-verify="required" placeholder="密码" type="password" class="layui-input">
+            <hr class="hr15">
+            <input class="loginin" value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+        </form>
+    </div>
+    <script type="text/javascript">
+        if (top.location != self.location) {
+            top.location = window.location.href;
+        }
+
+        layui.extend({
+            admin: '{/}/Content/static/js/admin'
+        });
+
+
+    </script>
+    <!-- 底部结束 -->
+
+</body>
+</html>

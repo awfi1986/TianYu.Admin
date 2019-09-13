@@ -1,0 +1,82 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TianYu.Admin.Domain.ViewModel
+{
+    /// <summary>
+    /// 角色菜单按键权限
+    /// </summary>
+    public class SystemMenuButtonRoleViewModel
+    {
+        ///<summary>
+        /// Id
+        ///</summary>
+        public int Id { get; set; }
+        ///<summary>
+        /// 菜单名称
+        ///</summary>
+        public string MenuName { get; set; }
+        /// <summary>
+        /// 菜单编码
+        /// </summary>
+        public int MenuCode { get; set; }
+        /// <summary>
+        /// 父级编码
+        /// </summary>
+        public int ParendCode { get; set; }
+        ///<summary>
+        /// 菜单图标
+        ///</summary>
+        public string MenuIcon { get; set; }
+        ///<summary>
+        /// 父级ID(-1为顶级)
+        ///</summary>
+        public int ParentId { get; set; }
+        ///<summary>
+        /// 菜单按钮
+        ///</summary>
+        public string MenuButtonId { get; set; }
+        ///<summary>
+        /// 层级
+        ///</summary>
+        public int? Level { get; set; }
+        ///<summary>
+        /// 排序
+        ///</summary>
+        public int MenuSort { get; set; }
+        /// <summary>
+        /// 是否有选中
+        /// </summary>
+        public bool IsChecked { get; set; } = false;
+        /// <summary>
+        /// 菜单按钮
+        /// </summary>
+        public List<SystemButtonViewModel> ButtonList { get; set; }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class SystemButtonViewModel
+    {
+        ///<summary>
+        /// Id
+        ///</summary>
+        public int Id { get; set; }
+        ///<summary>
+        /// 按键名称
+        ///</summary>
+        public string ButtonName { get; set; }
+        ///<summary>
+        /// 按键代码
+        ///</summary>
+        public string ButtonCode { get; set; }
+        /// <summary>
+        /// 是否有选中
+        /// </summary>
+        public bool IsChecked { get; set; } = false;
+    }
+}

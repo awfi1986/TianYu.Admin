@@ -1,0 +1,151 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #> 
+<#@ assembly name="System.Data.dll" #>
+<#@ import namespace="System.Data" #>  
+<#@ import namespace="System.Data.SqlClient" #>  
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#+
+public class ControllerTemplate : CSharpTemplate
+{ 
+    private string _tb_name;
+    private string _tb_desc;    
+    public ControllerTemplate(string tb_name,string tb_desc)
+    {
+        _tb_name = tb_name;
+		_tb_desc = tb_desc; 
+    }
+      
+    public string EntityDesc
+    {
+        get
+        {
+            return _tb_desc;
+        }
+    }
+     
+    public string FileName
+    {
+        get
+        {
+            return string.Format("{0}Controller.cs", _tb_name.Replace("s_", string.Empty));
+        }
+    }
+  
+    public string EntityName
+    {
+        get
+        {
+            return _tb_name.Replace("s_", string.Empty);
+        }
+    }
+     
+	public string SmallEntityName
+    {
+        get
+        {
+		    string name = _tb_name.Replace("s_", string.Empty);
+			return name.Substring(0,1).ToLower()+name.Substring(1); 
+        }
+    }
+    public override string TransformText()
+    {
+        base.TransformText();
+#> 
+using TianYu.Core.Common;
+using TianYu.Admin.Service.IService; 
+using System.Web.Mvc; 
+using TianYu.Core.Common.FilterAttribute.Mvc;
+using TianYu.Admin.Domain.ViewModel.Request;
+
+namespace TianYu.Admin.WebMvc.Controllers
+{
+    /// <summary>
+    /// <#=EntityDesc#>控制器
+    /// </summary>
+    [MvcLoginFilter]
+    public class <#=EntityName#>Controller : BaseController
+    {
+        private I<#=EntityName#>Service _<#=SmallEntityName#>Service = null; 
+        public <#=EntityName#>Controller(I<#=EntityName#>Service <#=SmallEntityName#>Service)
+        {
+            this._<#=SmallEntityName#>Service = <#=SmallEntityName#>Service; 
+        }
+
+
+        /// <summary>
+        /// 列表
+        /// </summary>
+        /// <returns></returns> 
+        public ActionResult Index()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 新增
+        /// </summary>
+        /// <returns></returns>  
+        public ActionResult Add()
+        {  
+            return View();
+        }
+        /// <summary>
+        /// 编辑
+        /// </summary> 
+		/// <param name="requestModel"></param>
+        /// <returns></returns> 
+        public ActionResult Edit(QueryDetail<#=EntityName#>RequestModel requestModel)
+        { 
+            var res = _<#=SmallEntityName#>Service.QueryDetail(requestModel);
+            return View(res.ToJsonString());
+        } 
+
+
+        /// <summary>
+        /// 获取
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        public ActionResult Query(Query<#=EntityName#>RequestModel requestModel)
+        {
+            var res = _<#=SmallEntityName#>Service.Query(requestModel);
+            return Content(res.ToJsonString());
+        } 
+        /// <summary>
+        /// 添加
+        /// </summary>
+		/// <param name="requestModel"></param>
+        /// <returns></returns>
+        public ActionResult Insert(Add<#=EntityName#>RequestModel requestModel)
+        {
+            var ret = _<#=SmallEntityName#>Service.Insert(requestModel);
+            return Content(ret.ToJsonString());
+        }
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        public ActionResult Update(Update<#=EntityName#>RequestModel requestModel)
+        {
+            var ret = _<#=SmallEntityName#>Service.Update(requestModel);
+            return Content(ret.ToJsonString());
+        }
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        public ActionResult Remove(Remove<#=EntityName#>RequestModel requestModel)
+        {
+            var ret = _<#=SmallEntityName#>Service.Remove(requestModel);
+            return Content(ret.ToJsonString());
+        } 
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+    } 
+}
+#>

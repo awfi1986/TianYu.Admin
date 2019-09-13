@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Exceptionless.Mvc</name>
+    </assembly>
+    <members>
+        <member name="M:Exceptionless.ExceptionlessWebExtensions.GetRequestInfo(System.Web.HttpContext,Exceptionless.ExceptionlessConfiguration)">
+            <summary>
+            Get the current request info.
+            </summary>
+            <param name="context">The http context to gather information from.</param>
+            <param name="config">The config.</param>
+        </member>
+        <member name="M:Exceptionless.ExceptionlessWebExtensions.GetRequestInfo(System.Web.HttpContextBase,Exceptionless.ExceptionlessConfiguration)">
+            <summary>
+            Adds the current request info.
+            </summary>
+            <param name="context">The http context to gather information from.</param>
+            <param name="config">The config.</param>
+        </member>
+        <member name="M:Exceptionless.ExceptionlessWebExtensions.AddRequestInfo(Exceptionless.Models.Event,Exceptionless.ExceptionlessClient,System.Web.HttpContext)">
+            <summary>
+            Adds the current request info to the event.
+            </summary>
+            <param name="ev">The event model.</param>
+            <param name="client">The client.</param>
+            <param name="context">The http context to gather information from.</param>
+        </member>
+        <member name="M:Exceptionless.ExceptionlessWebExtensions.AddRequestInfo(Exceptionless.Models.Event,Exceptionless.ExceptionlessClient,System.Web.HttpContextBase)">
+            <summary>
+            Adds the current request info to the event.
+            </summary>
+            <param name="ev">The event model.</param>
+            <param name="client">The client.</param>
+            <param name="context">The http context to gather information from.</param>
+        </member>
+        <member name="M:Exceptionless.ExceptionlessWebExtensions.AddRequestInfo(Exceptionless.EventBuilder)">
+            <summary>
+            Adds the current request info to the event.
+            </summary>
+            <param name="builder">The event builder.</param>
+        </member>
+        <member name="M:Exceptionless.WebLastReferenceIdManager.GetLast">
+            <summary>
+            Gets the last reference id that was submitted to the server.
+            </summary>
+            <returns>The reference id</returns>
+        </member>
+        <member name="M:Exceptionless.WebLastReferenceIdManager.ClearLast">
+            <summary>
+            Clears the last reference id.
+            </summary>
+        </member>
+    </members>
+</doc>

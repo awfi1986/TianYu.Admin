@@ -1,0 +1,95 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #> 
+<#@ assembly name="System.Data.dll" #>
+<#@ import namespace="System.Data" #>  
+<#@ import namespace="System.Data.SqlClient" #>  
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#+
+public class ContextTemplate : CSharpTemplate
+{ 
+    private string _tb_name; 
+	private DataTable _fileTable;
+    public ContextTemplate(string tb_name,DataTable fileTable)
+    {
+        _tb_name = tb_name; 
+		_fileTable = fileTable ;
+    }
+    
+	public DataTable FileTable
+	{
+	    get
+        {
+            return _fileTable;
+        }
+	}
+	   
+    public string FileName
+    {
+        get
+        {
+            return string.Format("{0}Context.cs", _tb_name.Replace("s_", string.Empty));
+        }
+    }
+  
+    public string EntityName
+    {
+        get
+        {
+            return _tb_name;
+        }
+    }
+ 
+    public override string TransformText()
+    {
+        base.TransformText();
+#> 
+using System;
+using System.Data.Entity;
+using System.Collections.Generic;
+using TianYu.Admin.Domain;
+using TianYu.Admin.Domain.Mapping;
+
+namespace TianYu.Admin.Domain
+{
+    public partial class <#=EntityName#>Context : DbContext
+    {
+        static <#=EntityName#>Context()
+        {
+            Database.SetInitializer<<#=EntityName#>Context>(null);
+        }
+        public <#=EntityName#>Context()
+            : base("Name=<#=EntityName#>Context")
+        { }
+
+        public <#=EntityName#>Context(string nameOrConnectionString)
+            : base(nameOrConnectionString)
+        { }
+		 
+		<#+    
+		System.Text.StringBuilder sb = new System.Text.StringBuilder();
+		System.Text.StringBuilder sbMap = new System.Text.StringBuilder();
+            
+        foreach (DataRow dr in FileTable.Rows) 
+        {  
+			var tbName = dr["tb_name"].ToString().Replace("s_", string.Empty); 
+			sb.AppendLine("  		public virtual DbSet<"+tbName+"> "+tbName+"s { get; set; }");
+		    sbMap.AppendLine("			modelBuilder.Configurations.Add(new "+tbName+"Map()); "); 
+        } 
+		WriteLine(sb.ToString());
+        #>
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        { 
+			<#+    
+			 WriteLine(sbMap.ToString()); 
+			#>
+        }
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+    } 
+  
+    } 
+#>

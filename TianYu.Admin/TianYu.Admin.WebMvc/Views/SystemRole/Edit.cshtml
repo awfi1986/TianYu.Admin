@@ -1,0 +1,110 @@
+﻿@model TianYu.Admin.Domain.ViewModel.Response.QueryDetailSystemRoleResponseModel
+
+@{
+    Layout = "~/Views/Shared/_Info.cshtml";
+}
+
+@section scripts{
+    <script>
+
+        layui.use(['jquery', 'form'], function () {
+            var form = layui.form,
+                $ = layui.jquery;
+            //提交表单数据
+            form.on('submit(Save)', function (data) {
+                //禁用提交按钮
+                toggleSubmitStatus(data.elem);
+
+                var param = data.field;
+
+                param.Status = 1;
+                //param.Status = $('#StatusBool').prop('checked') ? 1 : 0;
+                //参数处理
+                var index = layer.load(1, { time: 60 * 1000 });
+                $.ajax({
+                    type: 'post',
+                     url: '@Url.Action("Update")',
+                    data: param,
+                    dataType: 'json',
+                    success: function (res) {
+                        layer.close(index);
+
+                        if (res.Status == 200) {
+                            res = res.Data;
+                            if (res.Status == 1) {
+                                //刷新列表
+                                $(".layui-btn[lay-filter='formSearch']", window.parent.document).click();
+                                layer.msg('保存成功', { time: 500 }, function () {
+                                    //关闭当前弹出层
+                                    var index = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(index);
+                                });
+                            }
+                            else {
+                                //启用提交按钮
+                                toggleSubmitStatus(data.elem, true);
+                                layer.msg(res.ErrorMessage);
+                            }
+                        }
+                        else {
+                            //启用提交按钮
+                            toggleSubmitStatus(data.elem, true);
+                            layer.msg('请求错误：' + res.ErrorMessage + '，' + res.Status);
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+}
+
+<div class="weadmin-body">
+    <form class="layui-form">
+        @*隐藏字段*@
+        @Html.HiddenFor(x => x.Id)
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>角色名称
+            </label>
+            <div class="layui-input-block">
+                @Html.TextBoxFor(x => x.RoleName, new Dictionary<string, object> { { "lay-verify", "required" }, { "class", "layui-input" }, { "placeholder", "角色名称" } })
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                角色编码
+            </label>
+            <div class="layui-input-block">
+                @Html.TextBoxFor(x => x.RoleCode, new Dictionary<string, object> { { "lay-verify", "required" }, { "class", "layui-input" }, { "placeholder", "角色编码" } })
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                描述
+            </label>
+            <div class="layui-input-block">
+                <textarea name="RoleDesc" cols="3" rows="3" placeholder="描述" class="layui-textarea">@Model.RoleDesc</textarea> 
+            </div>
+        </div>
+
+
+        @*<div class="layui-form-item">
+                <label class="layui-form-label">
+                    账号启用状态
+                </label>
+                <div class="layui-input-block">
+                    @Html.CheckBoxFor(x => x.StatusBool, new Dictionary<string, object> { { "lay-skin", "switch" } })
+                </div>
+            </div>*@
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+            </label>
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="Save" lay-submit="">保存</button>
+            </div>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,175 @@
+﻿@using TianYu.Admin.Domain.ViewModel.Response
+@model  QueryDetailSystemStaffResponseModel
+@{
+    Layout = "~/Views/Shared/_Info.cshtml";
+}
+
+<div class="weadmin-body">
+    <form class="layui-form">
+        @*隐藏字段*@
+        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>登录名
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="LoginName" name="LoginName" class="layui-input" placeholder="登录名" lay-verify="required" value="@Model.LoginName"/>登录密码为手机号
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>手机号
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="Mobile" name="Mobile" class="layui-input" placeholder="请输入手机号码" value="@Model.Mobile"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>呢称
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="NickName" name="NickName" class="layui-input" placeholder="呢称" value="@Model.NickName"/>
+            </div>
+        </div>
+        @*<div class="layui-form-item ">
+                <label class="layui-form-label">
+                    <span class="we-red">*</span>密码
+                </label>
+                <div class="layui-input-block">
+                    <input type="password" id="LoginPwd" name="LoginPwd" class="layui-input" placeholder="可重置密码" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="we-red">*</span>确认密码
+                </label>
+                <div class="layui-input-block">
+                    <input type="password" id="ReLoginPwd" name="ReLoginPwd" class="layui-input" placeholder="二次确认密码" />
+                </div>
+            </div>*@
+
+        @*<div class="layui-form-item">
+                <label class="layui-form-label">
+                    用户状态
+                </label>
+                <div class="layui-input-block">
+                    @Html.CheckBoxFor(x => x.StatusBool, new Dictionary<string, object> { { "lay-skin", "switch" } })
+                </div>
+            </div>*@
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="we-red">*</span>所属部门
+            </label>
+            <div class="layui-input-block">
+                @Html.DropDownListFor(x => x.SectionId, ViewBag.Sections as IEnumerable<SelectListItem>)
+            </div>
+        </div>
+        @if (ViewBag.Roles != null)
+        {
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="we-red"></span>角色
+                </label>
+                <div class="layui-input-block">
+
+                    @foreach (var m in ViewBag.Roles)
+                    {
+                        <input type="checkbox" name="SelectedButton" lay-skin="primary" value="@m.Value" title="@m.Text" @(m.Selected?"checked":"") />
+                    }
+                </div>
+            </div>
+        }
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+            </label>
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="Save" lay-submit="">保存</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+@section scripts{
+    <script>
+
+        layui.use(['jquery', 'form'], function () {
+            var form = layui.form,
+                $ = layui.jquery;
+
+            //form.verify({
+            //    pwd: function (value, item) {
+            //        if (value.trim()) {
+            //            //判断两次密码是否一致
+            //            if ($('#RePassword').val() != value) {
+            //                return '两次密码不一致';
+            //            }
+            //        }
+            //    },
+            //    repwd: function (value, item) {
+            //        if (value.trim()) {
+            //            //判断两次密码是否一致
+            //            if ($('#Password').val() != value) {
+            //                return '两次密码不一致';
+            //            }
+            //        }
+            //    },
+            //});
+
+            //提交表单数据
+            form.on('submit(Save)', function (data) {
+                //禁用提交按钮
+                toggleSubmitStatus(data.elem);
+
+                var param = data.field;
+
+                var allCheckBoxs = $("input[type=checkbox]:checked");
+                var checkArry = Array();
+                for (var i = 0; i < allCheckBoxs.length; i++) {
+                    var $this = $(allCheckBoxs[i]);
+                    var id = $this.val();
+                    checkArry[i] = id;
+                }
+                param.RoleId = checkArry;
+                param.SectionId = $('select').val();
+                param.Enabled = 1;  
+                //param.Status = $('#StatusBool').prop('checked') ? 1 : 0;
+                //参数处理
+                var index = layer.load(1, { time: 60 * 1000 });
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("Update")',
+                    data: param,
+                    dataType: 'json',
+                    success: function (res) {
+                        layer.close(index);
+
+                        if (res.Status == 200) {
+                            res = res.Data;
+                            if (res.Status == 1) {
+                                //刷新列表
+                                $(".layui-btn[lay-filter='formSearch']", window.parent.document).click();
+                                layer.msg('保存成功', { time: 500 }, function () {
+                                    //关闭当前弹出层
+                                    var index = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(index);
+                                });
+                            }
+                            else {
+                                //启用提交按钮
+                                toggleSubmitStatus(data.elem, true);
+                                layer.msg(res.ErrorMessage);
+                            }
+                        }
+                        else {
+                            //启用提交按钮
+                            toggleSubmitStatus(data.elem, true);
+                            layer.msg('请求错误：' + res.ErrorMessage + '，' + res.Status);
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+} 

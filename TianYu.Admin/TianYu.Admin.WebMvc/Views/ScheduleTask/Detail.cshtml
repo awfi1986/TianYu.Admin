@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Module = "定时任务列表";
+    ViewBag.Title = "定时任务详情";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="weadmin-body">
+    <div class="layui-card">
+        <div class="layui-card-header">定时任务明细</div>
+        <div class="layui-card-body">
+            <table class="layui-table details-info-table">
+                <colgroup>
+                    <col width="130">
+                    <col>
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th class="layui-bg-gray">任务名称</th>
+                        <td>@Model.TaskName</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">请求参数</th>
+                        <td>@Model.Parameters</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">请求方式</th>
+                        <td>@Model.Method</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">执行方式</th>
+                        <td>@(Model.ExecuteType == 0 ? "循环执行" : "其他")</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">接口地址</th>
+                        <td>@Model.ApiUrl</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">重试次数</th>
+                        <td>@Model.ExceptionNumber</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">间隔时间</th>
+                        <td>@Model.DiffSeconds</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">运行状态</th>
+                        <td>@Model.RunStatusName</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">任务状态</th>
+                        <td>@Model.StatusName</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">最后执行时间</th>
+                        <td>@Model.LastRunTime</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">创建时间</th>
+                        <td>@Model.CreateTime</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

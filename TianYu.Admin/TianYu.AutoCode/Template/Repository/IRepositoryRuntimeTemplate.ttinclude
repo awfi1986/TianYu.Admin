@@ -1,0 +1,66 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #> 
+<#@ assembly name="System.Data.dll" #>
+<#@ import namespace="System.Data" #>  
+<#@ import namespace="System.Data.SqlClient" #>  
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#+
+public class IRepositoryTemplate : CSharpTemplate
+{ 
+    private string _tb_name;
+    private string _tb_desc;    
+    public IRepositoryTemplate(string tb_name,string tb_desc)
+    {
+        _tb_name = tb_name;
+		_tb_desc = tb_desc; 
+    }
+     
+    public string EntityDesc
+    {
+        get
+        {
+            return _tb_desc;
+        }
+    }
+     
+    public string FileName
+    {
+        get
+        {
+            return string.Format("I{0}Repository.cs", _tb_name.Replace("s_", string.Empty));
+        }
+    }
+  
+    public string EntityName
+    {
+        get
+        {
+            return _tb_name.Replace("s_", string.Empty);
+        }
+    }
+  
+    public override string TransformText()
+    {
+        base.TransformText();
+#> 
+using TianYu.Core.Common.BaseEF;
+using TianYu.Admin.Domain;
+
+namespace TianYu.Admin.Repository.IModelRepository
+{ 
+    /// <summary> 
+	/// <#=EntityDesc#>仓储接口类
+	/// </summary> 
+    public partial interface I<#=EntityName#>Repository :IEFBaseRepository<<#=EntityName#>>
+    {
+
+    }
+}
+
+<#+
+        return this.GenerationEnvironment.ToString();
+    } 
+}
+#>

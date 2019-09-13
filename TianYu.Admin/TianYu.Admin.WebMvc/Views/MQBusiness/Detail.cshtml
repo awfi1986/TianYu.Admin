@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Module = "消息队列列表";
+    ViewBag.Title = "消息队列任务详情";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="weadmin-body">
+    <div class="layui-card">
+        <div class="layui-card-header">消息队列任务详情</div>
+        <div class="layui-card-body">
+            <table class="layui-table details-info-table">
+                <colgroup>
+                    <col width="130">
+                    <col>
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th class="layui-bg-gray">任务名称</th>
+                        <td>@Model.BusinessName</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">接口地址</th>
+                        <td>@Model.ApiUrl</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">路由名称</th>
+                        <td>@Model.RoutingKey</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">交换机名称</th>
+                        <td>@Model.Exchange</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">队列名称</th>
+                        <td>@Model.QueueName</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">是否持久化</th>
+                        <td>@(Model.IsProperties == 1 ? "持久化" : "非持久化")</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">消费方式</th>
+                        <td>@Model.MQConsumerMsgStr</td>
+                    </tr>
+                    @if (Model.MqMessageType == 0)
+                    {
+                        <tr>
+                            <th class="layui-bg-gray">时间间隔</th>
+                            <td>@Model.TimeInterval</td>
+                        </tr>
+                    }
+                    <tr>
+                        <th class="layui-bg-gray">异常重试次数</th>
+                        <td>@Model.ExceptionNumber</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">失败消息存储</th>
+                        <td>@Model.MQFailMsgStr</td>
+                    </tr>
+                    <tr>
+                        <th class="layui-bg-gray">任务状态</th>
+                        <td>@Model.StatusStr</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
