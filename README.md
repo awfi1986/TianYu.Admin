@@ -26,7 +26,7 @@
     * MSSql 2012
 * 运行项目
     * 新建一个数据库TianYu_DB (库名自己取)
-    * 执行TianYu_DB.sql文件中的脚本
+    * 执行TianYu_DB.sql(文件在解决方案文件同一目录)文件中的脚本
     * 修改项目web.config数据库连接 用户名：admin 密码：123456
     
 ### 更新记录
