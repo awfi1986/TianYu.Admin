@@ -233,15 +233,8 @@ layui.define(['jquery', 'form', 'layer', 'element'], function (exports) {
         } else {
             var url = $(this).children('a').attr('_href');
             var title = $(this).find('cite').html();
-            //var index = $('.left-nav #nav li').index($(this));
-            var index = $('.weIframe').length;
 
             for (var i = 0; i < $('.weIframe').length; i++) {
-                //if ($('.weIframe').eq(i).attr('tab-id') == index + 1) {
-                //    tab.tabChange(index + 1);
-                //    event.stopPropagation();
-                //    return;
-                //}
                 if ($('.weIframe').eq(i).attr('src') == url) {
                     tab.tabChange($('.weIframe').eq(i).attr('tab-id'));
                     event.stopPropagation();
@@ -249,22 +242,30 @@ layui.define(['jquery', 'form', 'layer', 'element'], function (exports) {
                 }
             };
 
-            tab.tabAdd(title, url, index + 1);
+            var maxIndex = $('.weIframe').length;
+            for (var i = 0; i < $('.weIframe').length; i++) {
+                var index = $('.weIframe').eq(i).attr('tab-id');
+                if (index > maxIndex) {
+                    maxIndex = index;
+                }
+            };
+
+            tab.tabAdd(title, url, maxIndex + 1);
             tab.tabChange(index + 1);
         }
         event.stopPropagation(); //不触发任何前辈元素上的事件处理函数
     });
 
     /*
-	 * @todo tab触发事件：增加、删除、切换
-	 */
+     * @todo tab触发事件：增加、删除、切换
+     */
     var tab = {
         tabAdd: function (title, url, id) {
             //判断当前id的元素是否存在于tab中
-            var li = $("#WeTabTip li[lay-id=" + id + "]").length; 
+            var li = $("#WeTabTip li[lay-id=" + id + "]").length;
             if (li > 0) {
                 //tab已经存在，直接切换到指定Tab项 
-                element.tabChange('wenav_tab', id);  
+                element.tabChange('wenav_tab', id);
             } else {
                 //该id不存在，新增一个Tab项 
                 element.tabAdd('wenav_tab', {
@@ -298,9 +299,9 @@ layui.define(['jquery', 'form', 'layer', 'element'], function (exports) {
     };
 
     /*
-	 * @todo 监听右键事件,绑定右键菜单
-	 * 先取消默认的右键事件，再绑定菜单，触发不同的点击事件
-	 */
+     * @todo 监听右键事件,绑定右键菜单
+     * 先取消默认的右键事件，再绑定菜单，触发不同的点击事件
+     */
     function CustomRightClick(id) {
         //取消右键 
         $('.layui-tab-title li').on('contextmenu', function () {
@@ -361,8 +362,8 @@ layui.define(['jquery', 'form', 'layer', 'element'], function (exports) {
     });
 
     /*
-	 * @todo 重新计算iframe高度
-	 */
+     * @todo 重新计算iframe高度
+     */
     function FrameWH() {
         var h = $(window).height() - 124;
         $("iframe").css("height", h + "px");
@@ -372,18 +373,18 @@ layui.define(['jquery', 'form', 'layer', 'element'], function (exports) {
     });
 
     /*
-	 * @todo 弹出层，弹窗方法
-	 * layui.use 加载layui.define 定义的模块，当外部 js 或 onclick调用 use 内部函数时，需要在 use 中定义 window 函数供外部引用
-	 * http://blog.csdn.net/xcmonline/article/details/75647144 
-	 */
+     * @todo 弹出层，弹窗方法
+     * layui.use 加载layui.define 定义的模块，当外部 js 或 onclick调用 use 内部函数时，需要在 use 中定义 window 函数供外部引用
+     * http://blog.csdn.net/xcmonline/article/details/75647144 
+     */
     /*
-	    参数解释：
-	    title   标题
-	    url     请求的url
-	    id      需要操作的数据id
-	    w       弹出层宽度（缺省调默认值）
-	    h       弹出层高度（缺省调默认值）
-	*/
+        参数解释：
+        title   标题
+        url     请求的url
+        id      需要操作的数据id
+        w       弹出层宽度（缺省调默认值）
+        h       弹出层高度（缺省调默认值）
+    */
     window.WeAdminShow = function (title, url, w, h) {
         if (title == null || title == '') {
             title = false;
@@ -410,31 +411,31 @@ layui.define(['jquery', 'form', 'layer', 'element'], function (exports) {
     }
 
     /**
-	 *@todo tab监听：点击tab项对应的关闭按钮事件
-	 */
+     *@todo tab监听：点击tab项对应的关闭按钮事件
+     */
     $('.layui-tab-close').click(function (event) {
         $('.layui-tab-title li').eq(0).find('i').remove();
     });
     /**
-	 *@todo tab切换监听
-	 * tab切换监听不能写字初始化加载$(function())方法内，否则不执行
-	 */
+     *@todo tab切换监听
+     * tab切换监听不能写字初始化加载$(function())方法内，否则不执行
+     */
     element.on('tab(wenav_tab)', function (data) {
         //console.log(this); //当前Tab标题所在的原始DOM元素
         setStorageCurMenu();
     });
     /*
-	 * @todo 监听layui Tab项的关闭按钮，改变本地存储
-	 */
+     * @todo 监听layui Tab项的关闭按钮，改变本地存储
+     */
     element.on('tabDelete(wenav_tab)', function (data) {
         var layId = $(this).parent('li').attr('lay-id');
         //console.log(layId);
         removeStorageMenu(layId);
     });
     /**
-	 *@todo 本地存储 localStorage
-	 * 为了保持统一，将sessionStorage更换为存储周期更长的localStorage
-	 */
+     *@todo 本地存储 localStorage
+     * 为了保持统一，将sessionStorage更换为存储周期更长的localStorage
+     */
     //本地存储记录所有打开的窗口
     function setStorageMenu(title, url, id) {
         var menu = JSON.parse(sessionStorage.getItem('menu'));
@@ -498,9 +499,9 @@ layui.define(['jquery', 'form', 'layer', 'element'], function (exports) {
     }
 
     /*
-	 *Tab加载后刷新
-	 * 判断是刷新后第一次点击时，刷新frame子页面
-	 * */
+     *Tab加载后刷新
+     * 判断是刷新后第一次点击时，刷新frame子页面
+     * */
     window.reloadTab = function (which) {
         var len = $('.layui-tab-title').children('li').length;
         var layId = $(which).attr('lay-id');
@@ -515,8 +516,8 @@ layui.define(['jquery', 'form', 'layer', 'element'], function (exports) {
         }
     }
     /**
-	 *@todo Frame内部的按钮点击打开其他frame的tab
-	 */
+     *@todo Frame内部的按钮点击打开其他frame的tab
+     */
 
 
     exports('admin', {});

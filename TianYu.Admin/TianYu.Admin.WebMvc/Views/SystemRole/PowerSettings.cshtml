@@ -8,96 +8,92 @@
 @section styles{
     <link href="/Content/layui/lay/extend/treetable.css" rel="stylesheet" />
 }
-<form class="layui-form">
-    <div class="layui-tab" lay-filter="details">
-        <div class="layui-tab-content">
-            <div class="layui-tab-item editUserInfo layui-show orderCenter">
-                <table cellspacing="0" cellpadding="0" border="0" class="layui-table" lay-filter="Pertable">
-                    <thead>
-                        <tr>
-                            <th>
-                                菜单
-                            </th>
-                            <th>
-                                操作权限
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var menu in Model) //系统层级
-                        {
-                            <tr class="tableModule">
-                                <!--菜单名-->
-                                <td style="width: 250px">
-                                    <div class="layui-table-cell">
-                                        @for (var i = 1; i < menu.Level; i++)
-                                        {
-                                            <span class="treeTable-empty"></span>
-                                        }
-                                        <span class="treeTable-icon open">
-                                            @if (menu.Level != 3)
-                                            {
-                                                <i class="layui-icon layui-icon-triangle-d"></i>
-                                            }
-                                            else
+<div class="weadmin-body">
+    <form class="layui-form">
+        <div class="layui-tab" lay-filter="details">
+            <div class="layui-tab-content">
+                <div class="layui-tab-item editUserInfo layui-show orderCenter">
+                    <table cellspacing="0" cellpadding="0" border="0" class="layui-table" lay-filter="Pertable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    菜单
+                                </th>
+                                <th>
+                                    操作权限
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var menu in Model) //系统层级
+                            {
+                                <tr class="tableModule">
+                                    <!--菜单名-->
+                                    <td style="width: 250px">
+                                        <div class="layui-table-cell">
+                                            @for (var i = 1; i < menu.Level; i++)
                                             {
                                                 <span class="treeTable-empty"></span>
                                             }
-                                            &nbsp;@menu.MenuName
-                                        </span>
-                                    </div>
-                                </td>
-                                <td class="selfStyle">
-                                    <!--功能名称-->
-                                    <ul style="float: left;display: block;margin-left:20px;">
-                                        @if (menu.ButtonList != null)
-                                        {
-                                            foreach (var action in menu.ButtonList)
+                                            <span class="treeTable-icon open">
+                                                @if (menu.Level != 3)
+                                                {
+                                                    <i class="layui-icon layui-icon-triangle-d"></i>
+                                                }
+                                                else
+                                                {
+                                                    <span class="treeTable-empty"></span>
+                                                }
+                                                &nbsp;@menu.MenuName
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="selfStyle">
+                                        <!--功能名称-->
+                                        <ul style="float: left;display: block;margin-left:20px;">
+                                            @if (menu.ButtonList != null)
                                             {
-                                                <li style="float: left;">
-                                                    <input type="checkbox" name="SelectedButton" lay-filter="cbo" lay-skin="primary" data-code="@(menu.MenuCode + action.Id)" data-menuid="@menu.Id" data-actionid="@action.Id" title="@action.ButtonName" @(action.IsChecked ? "checked" : "") />
+                                                foreach (var action in menu.ButtonList)
+                                                {
+                                                    <li style="float: left;">
+                                                        <input type="checkbox" name="SelectedButton" lay-filter="cbo" lay-skin="primary" data-code="@(menu.MenuCode + action.Id)" data-menuid="@menu.Id" data-actionid="@action.Id" title="@action.ButtonName" @(action.IsChecked ? "checked" : "") />
+                                                    </li>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <li style="float: left;display:none">
+                                                    <input type="checkbox" name="SelectedButton" lay-skin="primary" data-code="@menu.MenuCode" data-menuid="@menu.Id" data-actionid="0" @(menu.IsChecked ? "checked" : "") />
                                                 </li>
                                             }
-                                        }
-                                        else
-                                        {
-                                            <li style="float: left;display:none">
-                                                <input type="checkbox" name="SelectedButton" lay-skin="primary" data-code="@menu.MenuCode" data-menuid="@menu.Id" data-actionid="0" @(menu.IsChecked ? "checked" : "")/>
-                                            </li>
-                                        }
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="layui-form-item ">
-                <div style="margin-top:20px;" align="center">
-                    <input type="hidden" name="RoleId" id="RoleId" value="@ViewBag.RoleId" />
-                    <button class="layui-btn" lay-filter="Save" id="Saves" lay-submit="">保存</button>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </div>
 
-            @*<div class="layui-btn layui-btn-fluid  layui-btn-primary" style="background-color:rgba(249, 250, 252, 1); height: 50px; line-height: 50px;">
-                    <span class="layui-unselect layui-form-checkbox" lay-skin="primary"><i class="layui-icon layui-icon-ok"></i></span> 全部选择
-                    </span>
-                </div>*@
+                <div class="layui-form-item ">
+                    <div style="margin-top:20px;" align="center">
+                        <input type="hidden" name="RoleId" id="RoleId" value="@ViewBag.RoleId" />
+                        <button class="layui-btn" lay-filter="Save" lay-submit="">保存</button>
+                    </div>
+                </div>
+
+                @*<div class="layui-btn layui-btn-fluid  layui-btn-primary" style="background-color:rgba(249, 250, 252, 1); height: 50px; line-height: 50px;">
+                        <span class="layui-unselect layui-form-checkbox" lay-skin="primary"><i class="layui-icon layui-icon-ok"></i></span> 全部选择
+                        </span>
+                    </div>*@
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
 @section scripts{
     <script>
         layui.use(['jquery', 'form'], function () {
             var form = layui.form
                 , $ = layui.jquery;
-
-            form.on("checkbox(cbo)", function () {
-                var code = parseInt($(this).data('code'));
-                checkedBox(code, $(this).is(":checked"));
-                form.render();
-            });
 
             function checkedBox(code, isChecked) {
 
@@ -116,7 +112,16 @@
                 checkedBox(codeLevel, isChecked);
             }
 
-            $("#Saves").on("click", function () {
+            form.on("checkbox(cbo)", function () {
+                var code = parseInt($(this).data('code'));
+                checkedBox(code, $(this).is(":checked"));
+                form.render();
+            });
+             
+            form.on('submit(Save)', function (data) {
+                //禁用提交按钮
+                toggleSubmitStatus(data.elem);
+
                 var roleId = $("#RoleId").val();
                 var allCheckBoxs = $("input[type=checkbox]:checked");
                 var checkArry = Array();
@@ -131,16 +136,17 @@
                         checkArry[i] = obj;
                     }
                 }
-
+                 
                 $.ajax({
                     url: "SaveRolePowers",
                     type: "post",
                     async: false,
+                    dataType: 'json',
                     data: { RoleId: roleId, list: checkArry },
                     success: function (res) {
-                        res = JSON.parse(res);
                         if (res.Status == 200) {
-                            if (res.Data.Status == 1) {
+                            res = res.Data;
+                            if (res.Status == 1) {
                                 layer.msg('保存成功', { time: 500 }, function () {
                                     //关闭当前弹出层
                                     var index = parent.layer.getFrameIndex(window.name);
@@ -148,16 +154,16 @@
                                 });
                             }
                             else {
-                                layer.msg(res.Data.ErrorMessage);
+                                //启用提交按钮
+                                toggleSubmitStatus(data.elem, true);
+                                layer.msg(res.ErrorMessage);
                             }
                         }
                         else {
+                            //启用提交按钮
+                            toggleSubmitStatus(data.elem, true);
                             layer.msg('请求错误：' + res.ErrorMessage + '，' + res.Status);
                         }
-                    },
-                    error: function (res) {
-                        layer.msg("请求出错");
-                        console.log(res);
                     }
                 });
             })

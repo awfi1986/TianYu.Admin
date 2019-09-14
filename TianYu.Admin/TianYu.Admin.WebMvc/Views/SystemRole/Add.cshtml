@@ -18,17 +18,13 @@
                 var param = data.field;
 
                 param.Enabled = true;
-                //param.Status = $('#StatusBool').prop('checked') ? 1 : 0;
-                //参数处理
-                var index = layer.load(1, { time: 30 * 1000 });
+                //param.Status = $('#StatusBool').prop('checked') ? 1 : 0; 
                 $.ajax({
                     type: 'post',
                      url: '@Url.Action("Insert")',
                     data: param,
                     dataType: 'json',
-                    success: function (res) {
-                        layer.close(index);
-
+                    success: function (res) {  
                         if (res.Status == 200) {
                             res = res.Data;
                             if (res.Status == 1) {

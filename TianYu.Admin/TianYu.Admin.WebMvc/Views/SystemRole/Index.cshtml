@@ -1,8 +1,10 @@
 ﻿
 @{
-    ViewBag.Module = "角色管理";
-    ViewBag.Title = "角色管理";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Module = "角色管理";
+                ViewBag.Title = "角色管理";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="weadmin-body ">
@@ -117,7 +119,7 @@
             });
         };
         //监听事件
-        table.on('toolbar(listTable)', function (obj) { 
+        table.on('toolbar(listTable)', function (obj) {
             switch (obj.event) {
                 case 'Insert':
                     WeAdminShow("新增", "@Url.Action("Add", "SystemRole")", 450, 380);
@@ -141,13 +143,7 @@
                     break;
                 case 'SetPower':
                     WeAdminShow("权限维护", "@Url.Action("PowerSettings")?RoleId=" + data.Id,900);
-                    break;
-                case 'copyedit':
-                    WeAdminShow("拷贝角色", "@Url.Action("CopyRole")?Id=" + data.Id, 400, 350);
-                    break;
-                case 'detail':
-                    WeAdminShow("登录日志", "@Url.Action("Index", "UserLoginLog")?Id=" + data.Id);
-                    break;
+                    break; 
             }
         });
 
@@ -188,5 +184,5 @@
         };
     });
 
-    </script> 
+    </script>
 }
