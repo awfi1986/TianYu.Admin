@@ -19,7 +19,7 @@
 
 ### 使用教程
 * 环境及插件要求
-    * VS2017
+    * IDE VS2017
     * .NET Framework 4.6.1
     * Redis 3.0+
     * RabbitMQ 根据项目情况，如不需要可以不使用
@@ -28,6 +28,8 @@
     * 新建一个数据库TianYu_DB (库名自己取)
     * 执行TianYu_DB.sql(文件在解决方案文件同一目录)文件中的脚本
     * 修改项目web.config数据库连接 用户名：admin 密码：123456
+* 模板生成
+    * 如果未安装T4模板则需要安装下这个插件“T4 Toolbox for Visual Studio 2017”
     
 ### 更新记录
 * 2019-09-14 发布V1.0版本
