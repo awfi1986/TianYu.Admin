@@ -21,7 +21,7 @@
                 <span class="we-red">*</span>手机号
             </label>
             <div class="layui-input-block">
-                <input type="text" id="Mobile" name="Mobile" class="layui-input" placeholder="请输入手机号码" value="@Model.Mobile"/>
+                <input type="text" id="Mobile" name="Mobile" class="layui-input" placeholder="请输入手机号码" value="@Model.Mobile" lay-verify="required" />
             </div>
         </div>
         <div class="layui-form-item">
@@ -29,7 +29,7 @@
                 <span class="we-red">*</span>呢称
             </label>
             <div class="layui-input-block">
-                <input type="text" id="NickName" name="NickName" class="layui-input" placeholder="呢称" value="@Model.NickName"/>
+                <input type="text" id="NickName" name="NickName" class="layui-input" placeholder="呢称" value="@Model.NickName" lay-verify="required" />
             </div>
         </div>
         @*<div class="layui-form-item ">
@@ -69,7 +69,7 @@
         {
             <div class="layui-form-item">
                 <label class="layui-form-label">
-                    <span class="we-red"></span>角色
+                    <span class="we-red">*</span>角色
                 </label>
                 <div class="layui-input-block">
 

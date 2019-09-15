@@ -94,9 +94,9 @@
                         { type: 'numbers', title: '#' }
                         , { field: 'MenuName', width: 300, title: '名称' }
                         , {
-                            field: 'MenuIcon', title: '图标', event: 'addIcon', style: 'cursor: pointer;', width: 100
+                            field: 'MenuIcon', title: '图标', event: 'addIcon', style: 'cursor: pointer;', width: 80
                             , templet: function (d) {
-                                return '<i class="fa fa-' + d.IconCode + '" style="font-size: 20px; color: #1E9FFF;"></i>'
+                                return '<i class="iconfont" style="font-size: 20px; color: #1E9FFF;">' + d.MenuIcon + '</i>'
                             }
                         }
                         , { field: 'MenuUrl', title: '跳转Url' }
@@ -148,7 +148,7 @@
                 switch (obj.event) {
                     case 'del': del(data); break;
                     case 'add': add(data); break;
-                    case 'edit': WeAdminShow("修改菜单", "@Url.Action("Edit")?Id=" + data.Id, '550', '500'); break;
+                    case 'edit': ShowWindow("修改菜单", "@Url.Action("Edit")?Id=" + data.Id, '550', '500'); break;
                 };
             });
 
@@ -194,7 +194,7 @@
                 if (data != null) {
                     url = "@Url.Action("Add")?pId=" + data.Id + "&pCode=" + data.MenuCode + "&pLevel=" + data.Level + "&pName=" + data.MenuName;
                 }
-                WeAdminShow("添加菜单", url, '550', '500');
+                ShowWindow("添加菜单", url, '550', '500');
             };
         });
 

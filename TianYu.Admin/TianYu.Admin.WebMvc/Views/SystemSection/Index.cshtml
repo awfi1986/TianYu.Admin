@@ -120,7 +120,7 @@
                 switch (obj.event) {
                     case 'Insert':
                         var url = "@Url.Action("Add")?pId=" + data.Id + "&pCode=" + data.Code + "&pName=" + data.Name;
-                        WeAdminShow("添加部门", url, 450, 420);
+                        ShowWindow("添加部门", url, 450, 420);
                         break;
                     case 'Remove':
                         layer.confirm('你确定删除 [' + data.Name + '] 吗？如果存在下级部门则一并删除，此操作不能撤销！', { icon: 3, title: '提示' }, function (index) {
@@ -129,7 +129,7 @@
                         });
                         break;
                     case 'Update':
-                        WeAdminShow("编辑", "@Url.Action("Edit")?Id=" + data.Id, 450, 420);
+                        ShowWindow("编辑", "@Url.Action("Edit")?Id=" + data.Id, 450, 420);
                         break;
                 }
             });
@@ -137,7 +137,7 @@
             table.on('toolbar(listTable)', function (obj) {
                 switch (obj.event) {
                     case 'Insert':
-                        WeAdminShow("添加部门", "@Url.Action("Add")?pId=0&pCode=0&pName=顶级", 450, 420);
+                        ShowWindow("添加部门", "@Url.Action("Add")?pId=0&pCode=0&pName=顶级", 450, 420);
                         break;
                     case 'expand':
                         if (expand) {

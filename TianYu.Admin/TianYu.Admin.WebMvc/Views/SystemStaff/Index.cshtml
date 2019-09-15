@@ -95,7 +95,7 @@
               var checkStatus = table.checkStatus(obj.config.id);
               switch (obj.event) {
                   case 'Insert':
-                      WeAdminShow("新增", "@Url.Action("Add")",450,500);
+                      ShowWindow("新增", "@Url.Action("Add")",450,500);
                       break;
 
               };
@@ -112,13 +112,13 @@
                         });
                         break;
                     case 'Update':
-                        WeAdminShow("编辑", "@Url.Action("Edit")?Id=" + data.Id, 450, 500);
+                        ShowWindow("编辑", "@Url.Action("Edit")?Id=" + data.Id, 450, 500);
                         break;
                     case 'Reset':
-                        WeAdminShow("密码重置", "@Url.Action("Again")?Id=" + data.Id, 450, 300);
+                        ShowWindow("密码重置", "@Url.Action("Again")?Id=" + data.Id, 450, 300);
                         break;
                     @*case 'detail':
-                        WeAdminShow("登录日志", "@Url.Action("Index", "UserLoginLog")?Id=" + data.Id) ;
+                        ShowWindow("登录日志", "@Url.Action("Index", "UserLoginLog")?Id=" + data.Id) ;
                         break;*@
                 }
             });

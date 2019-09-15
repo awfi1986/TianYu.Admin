@@ -294,7 +294,7 @@
     <Content Include="Content\static\js\eleDel.js" />
     <Content Include="Content\static\js\extends\tabmenu.js" />
     <Content Include="Content\static\js\province.js" />
-    <Content Include="Content\static\js\SoWayFileUpload.js" />
+    <Content Include="Content\static\js\TianYuFileUpload.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">

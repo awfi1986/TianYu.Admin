@@ -5,7 +5,13 @@
     ViewBag.Title = "添加菜单";
     Layout = "~/Views/Shared/_Info.cshtml";
 }
-
+@section styles{
+    <style>
+        .icon-list { display: none; overflow: auto; overflow-y: scroll; width: 300px; height: 200px; position: absolute; background: #ded2d2; border: 1px; top: 40px; left: 220px; }
+        .icon-list ul { display: inline-block; }
+        .icon-list ul li { display: inline-block; float: left; margin: 3px; cursor: pointer; }
+    </style>
+}
 @section scripts{
     <script>
 
@@ -72,6 +78,15 @@
                 });
                 return false;
             });
+            form.on('submit(SelectIcon)', function () {
+                $('.icon-list').show();
+            });
+            $('.icon-list li').click(function () {
+                var icon = $(this).text();
+                $('#icon').text(icon);
+                $('#MenuIcon').val(icon);
+                $('.icon-list').hide();
+            });
     });
     </script>
 }
@@ -82,6 +97,7 @@
         <input type="hidden" name="Level" value="@ViewBag.pLevel" />
         <input type="hidden" id="ParentId" name="ParentId" value="@ViewBag.pId" />
         <input type="hidden" id="ParentCode" name="ParentCode" value="@ViewBag.pCode" />
+        <input type="hidden" id="MenuIcon" name="MenuIcon" value="" />
         <div class="layui-form-item">
             <label class="layui-form-label">
                 <span class="we-red"></span>上级
@@ -111,11 +127,11 @@
                 <span class="we-red"></span>图标
             </label>
             <div class="layui-input-block">
-                <div class="layui-input-inline">
-                    <input type="text" name="MenuIcon" class="layui-input" placeholder="图标" style="width:200px" />
+                <div class="layui-input-inline" style="width:auto">
+                    <i class="iconfont" style="font-size:20px" id="icon"></i>
                 </div>
                 <div class="layui-input-inline">
-                    <a href="https://www.layui.com/doc/element/icon.html" style="display: block;margin-top: 7px;" target="_blank">参考Layui</a>
+                    <a lay-filter="SelectIcon" lay-submit="" style="margin-left:20px;display: block;margin-top: 7px; cursor:pointer">选择icon</a>
                 </div>
             </div>
         </div>
@@ -152,4 +168,156 @@
     </form>
 </div>
 
+<div class="icon-list">
+    <ul>
+        <li><i class="iconfont">&#59030;</i></li>
+        <li><i class="iconfont">&#59031;</i></li>
+        <li><i class="iconfont">&#59032;</i></li>
+        <li><i class="iconfont">&#59033;</i></li>
+        <li><i class="iconfont">&#59034;</i></li>
+        <li><i class="iconfont">&#59035;</i></li>
+        <li><i class="iconfont">&#59036;</i></li>
+        <li><i class="iconfont">&#59037;</i></li>
+        <li><i class="iconfont">&#59038;</i></li>
+        <li><i class="iconfont">&#59039;</i></li>
+        <li><i class="iconfont">&#59040;</i></li>
+        <li><i class="iconfont">&#59042;</i></li>
+        <li><i class="iconfont">&#59043;</i></li>
+        <li><i class="iconfont">&#59044;</i></li>
+        <li><i class="iconfont">&#59045;</i></li>
+        <li><i class="iconfont">&#59046;</i></li>
+        <li><i class="iconfont">&#59047;</i></li>
+        <li><i class="iconfont">&#59048;</i></li>
+        <li><i class="iconfont">&#59049;</i></li>
+        <li><i class="iconfont">&#59050;</i></li>
+        <li><i class="iconfont">&#59051;</i></li>
+        <li><i class="iconfont">&#59052;</i></li>
+        <li><i class="iconfont">&#59053;</i></li>
+        <li><i class="iconfont">&#59054;</i></li>
+        <li><i class="iconfont">&#59055;</i></li>
+        <li><i class="iconfont">&#59057;</i></li>
+        <li><i class="iconfont">&#59058;</i></li>
+        <li><i class="iconfont">&#59059;</i></li>
+        <li><i class="iconfont">&#59060;</i></li>
+        <li><i class="iconfont">&#59061;</i></li>
+        <li><i class="iconfont">&#59062;</i></li>
+        <li><i class="iconfont">&#59063;</i></li>
+        <li><i class="iconfont">&#59064;</i></li>
+        <li><i class="iconfont">&#59065;</i></li>
+        <li><i class="iconfont">&#59066;</i></li>
+        <li><i class="iconfont">&#59067;</i></li>
+        <li><i class="iconfont">&#59068;</i></li>
+        <li><i class="iconfont">&#59071;</i></li>
+        <li><i class="iconfont">&#59072;</i></li>
+        <li><i class="iconfont">&#59077;</i></li>
+        <li><i class="iconfont">&#59079;</i></li>
+        <li><i class="iconfont">&#59081;</i></li>
+        <li><i class="iconfont">&#59083;</i></li>
+        <li><i class="iconfont">&#59086;</i></li>
+        <li><i class="iconfont">&#59090;</i></li>
+        <li><i class="iconfont">&#59092;</i></li>
+        <li><i class="iconfont">&#59095;</i></li>
+        <li><i class="iconfont">&#59098;</i></li>
+        <li><i class="iconfont">&#59099;</i></li>
+        <li><i class="iconfont">&#59102;</i></li>
+        <li><i class="iconfont">&#59104;</i></li>
+        <li><i class="iconfont">&#59105;</i></li>
+        <li><i class="iconfont">&#59107;</i></li>
+        <li><i class="iconfont">&#59108;</i></li>
+        <li><i class="iconfont">&#59109;</i></li>
+        <li><i class="iconfont">&#59110;</i></li>
+        <li><i class="iconfont">&#59111;</i></li>
+        <li><i class="iconfont">&#59112;</i></li>
+        <li><i class="iconfont">&#59113;</i></li>
+        <li><i class="iconfont">&#59115;</i></li>
+        <li><i class="iconfont">&#59116;</i></li>
+        <li><i class="iconfont">&#59118;</i></li>
+        <li><i class="iconfont">&#59121;</i></li>
+        <li><i class="iconfont">&#59122;</i></li>
+        <li><i class="iconfont">&#59123;</i></li>
+        <li><i class="iconfont">&#59124;</i></li>
+        <li><i class="iconfont">&#59125;</i></li>
+        <li><i class="iconfont">&#59126;</i></li>
+        <li><i class="iconfont">&#59127;</i></li>
+        <li><i class="iconfont">&#59128;</i></li>
+        <li><i class="iconfont">&#59130;</i></li>
+        <li><i class="iconfont">&#59131;</i></li>
+        <li><i class="iconfont">&#59132;</i></li>
+        <li><i class="iconfont">&#59133;</i></li>
+        <li><i class="iconfont">&#59134;</i></li>
+        <li><i class="iconfont">&#59138;</i></li>
+        <li><i class="iconfont">&#59140;</i></li>
+        <li><i class="iconfont">&#59141;</i></li>
+        <li><i class="iconfont">&#59143;</i></li>
+        <li><i class="iconfont">&#59145;</i></li>
+        <li><i class="iconfont">&#59146;</i></li>
+        <li><i class="iconfont">&#59147;</i></li>
+        <li><i class="iconfont">&#59148;</i></li>
+        <li><i class="iconfont">&#59150;</i></li>
+        <li><i class="iconfont">&#59155;</i></li>
+        <li><i class="iconfont">&#59156;</i></li>
+        <li><i class="iconfont">&#59157;</i></li>
+        <li><i class="iconfont">&#59158;</i></li>
+        <li><i class="iconfont">&#59159;</i></li>
+        <li><i class="iconfont">&#59160;</i></li>
+        <li><i class="iconfont">&#59161;</i></li>
+        <li><i class="iconfont">&#59162;</i></li>
+        <li><i class="iconfont">&#59163;</i></li>
+        <li><i class="iconfont">&#59164;</i></li>
+        <li><i class="iconfont">&#59165;</i></li>
+        <li><i class="iconfont">&#59170;</i></li>
+        <li><i class="iconfont">&#59171;</i></li>
+        <li><i class="iconfont">&#59172;</i></li>
+        <li><i class="iconfont">&#59173;</i></li>
+        <li><i class="iconfont">&#59174;</i></li>
+        <li><i class="iconfont">&#59176;</i></li>
+        <li><i class="iconfont">&#59178;</i></li>
+        <li><i class="iconfont">&#59181;</i></li>
+        <li><i class="iconfont">&#59184;</i></li>
+        <li><i class="iconfont">&#59186;</i></li>
+        <li><i class="iconfont">&#59189;</i></li>
+        <li><i class="iconfont">&#59190;</i></li>
+        <li><i class="iconfont">&#59199;</i></li>
+        <li><i class="iconfont">&#59200;</i></li>
+        <li><i class="iconfont">&#59201;</i></li>
+        <li><i class="iconfont">&#59203;</i></li>
+        <li><i class="iconfont">&#59204;</i></li>
+        <li><i class="iconfont">&#59207;</i></li>
+        <li><i class="iconfont">&#59209;</i></li>
+        <li><i class="iconfont">&#59210;</i></li>
+        <li><i class="iconfont">&#59212;</i></li>
+        <li><i class="iconfont">&#59214;</i></li>
+        <li><i class="iconfont">&#59215;</i></li>
+        <li><i class="iconfont">&#59219;</i></li>
+        <li><i class="iconfont">&#59222;</i></li>
+        <li><i class="iconfont">&#59223;</i></li>
+        <li><i class="iconfont">&#59224;</i></li>
+        <li><i class="iconfont">&#59226;</i></li>
+        <li><i class="iconfont">&#59228;</i></li>
+        <li><i class="iconfont">&#59230;</i></li>
+        <li><i class="iconfont">&#59231;</i></li>
+        <li><i class="iconfont">&#59232;</i></li>
+        <li><i class="iconfont">&#59233;</i></li>
+        <li><i class="iconfont">&#59341;</i></li>
+        <li><i class="iconfont">&#59342;</i></li>
+        <li><i class="iconfont">&#59394;</i></li>
+        <li><i class="iconfont">&#59395;</i></li>
+        <li><i class="iconfont">&#59396;</i></li>
+        <li><i class="iconfont">&#59398;</i></li>
+        <li><i class="iconfont">&#59409;</i></li>
+        <li><i class="iconfont">&#59410;</i></li>
+        <li><i class="iconfont">&#59424;</i></li>
+        <li><i class="iconfont">&#59432;</i></li>
+        <li><i class="iconfont">&#59433;</i></li>
+        <li><i class="iconfont">&#59434;</i></li>
+        <li><i class="iconfont">&#59435;</i></li>
+        <li><i class="iconfont">&#59449;</i></li>
+        <li><i class="iconfont">&#59450;</i></li>
+        <li><i class="iconfont">&#59451;</i></li>
+        <li><i class="iconfont">&#59452;</i></li>
+        <li><i class="iconfont">&#59453;</i></li>
+        <li><i class="iconfont">&#59458;</i></li>
+        <li><i class="iconfont">&#59459;</i></li>
+    </ul>
+</div>
 

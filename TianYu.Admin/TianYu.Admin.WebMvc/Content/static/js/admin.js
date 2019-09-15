@@ -251,7 +251,7 @@ layui.define(['jquery', 'form', 'layer', 'element'], function (exports) {
             };
 
             tab.tabAdd(title, url, maxIndex + 1);
-            tab.tabChange(index + 1);
+            tab.tabChange(maxIndex + 1);
         }
         event.stopPropagation(); //不触发任何前辈元素上的事件处理函数
     });
@@ -385,7 +385,7 @@ layui.define(['jquery', 'form', 'layer', 'element'], function (exports) {
         w       弹出层宽度（缺省调默认值）
         h       弹出层高度（缺省调默认值）
     */
-    window.WeAdminShow = function (title, url, w, h) {
+    window.ShowWindow = function (title, url, w, h) {
         if (title == null || title == '') {
             title = false;
         };

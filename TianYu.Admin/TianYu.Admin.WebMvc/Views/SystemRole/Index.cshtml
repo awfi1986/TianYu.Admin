@@ -122,7 +122,7 @@
         table.on('toolbar(listTable)', function (obj) {
             switch (obj.event) {
                 case 'Insert':
-                    WeAdminShow("新增", "@Url.Action("Add", "SystemRole")", 450, 380);
+                    ShowWindow("新增", "@Url.Action("Add", "SystemRole")", 450, 380);
                     break;
 
             };
@@ -139,10 +139,10 @@
                     });
                     break;
                 case 'Update':
-                    WeAdminShow("编辑", "@Url.Action("Edit")?Id=" + data.Id, 450, 380);
+                    ShowWindow("编辑", "@Url.Action("Edit")?Id=" + data.Id, 450, 380);
                     break;
                 case 'SetPower':
-                    WeAdminShow("权限维护", "@Url.Action("PowerSettings")?RoleId=" + data.Id,900);
+                    ShowWindow("权限维护", "@Url.Action("PowerSettings")?RoleId=" + data.Id,900);
                     break; 
             }
         });
