@@ -352,8 +352,6 @@
     <Content Include="Views\SystemStaff\UpdPwd.cshtml" />
     <Content Include="Views\SystemDictionary\Add.cshtml" />
     <Content Include="Views\SystemDictionary\Edit.cshtml" />
-    <Content Include="Views\SystemDictionary\Index - 复制.cshtml" />
-    <Content Include="Views\SystemDictionary\Index - 复制%282%29.cshtml" />
     <None Include="Views\SystemDictionary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
