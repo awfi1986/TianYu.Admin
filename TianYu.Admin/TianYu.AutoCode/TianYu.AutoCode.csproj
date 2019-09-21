@@ -41,41 +41,139 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\DomainModel\AgModel\SystemDictionary.cs" />
-    <Compile Include="Domain\DomainModel\Mapping\SystemDictionaryMap.cs" />
-    <Compile Include="Domain\DomainModel\TianYuSystemPowerContext.cs" />
-    <Compile Include="Domain\ViewModel\Request\SystemDictionaryRequestModel.cs" />
-    <Compile Include="Domain\ViewModel\Response\SystemDictionaryResponseModel.cs" />
-    <Compile Include="Repository\IModelRepository\ISystemDictionaryRepository.cs" />
-    <Compile Include="Repository\ModelRepository\SystemDictionaryRepository.cs" />
-    <Compile Include="Service\IService\ISystemDictionaryService.cs" />
-    <Compile Include="Service\Service\SystemDictionaryService.cs" />
     <Compile Include="Template\Template.cs">
       <DependentUpon>Template.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Controllers\SystemDictionaryController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Template\Template.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Template.cs</LastGenOutput>
       <LastOutputs>
+..\Domain\DomainModel\AgModel\SystemActionButton.cs
 ..\Domain\DomainModel\AgModel\SystemDictionary.cs
+..\Domain\DomainModel\AgModel\SystemMenu.cs
+..\Domain\DomainModel\AgModel\SystemPowerItem.cs
+..\Domain\DomainModel\AgModel\SystemRole.cs
+..\Domain\DomainModel\AgModel\SystemRolePower.cs
+..\Domain\DomainModel\AgModel\SystemRoleRules.cs
+..\Domain\DomainModel\AgModel\SystemSection.cs
+..\Domain\DomainModel\AgModel\SystemStaff.cs
+..\Domain\DomainModel\AgModel\SystemStaffRole.cs
+..\Domain\DomainModel\Mapping\SystemActionButtonMap.cs
 ..\Domain\DomainModel\Mapping\SystemDictionaryMap.cs
+..\Domain\DomainModel\Mapping\SystemMenuMap.cs
+..\Domain\DomainModel\Mapping\SystemPowerItemMap.cs
+..\Domain\DomainModel\Mapping\SystemRoleMap.cs
+..\Domain\DomainModel\Mapping\SystemRolePowerMap.cs
+..\Domain\DomainModel\Mapping\SystemRoleRulesMap.cs
+..\Domain\DomainModel\Mapping\SystemSectionMap.cs
+..\Domain\DomainModel\Mapping\SystemStaffMap.cs
+..\Domain\DomainModel\Mapping\SystemStaffRoleMap.cs
 ..\Domain\DomainModel\TianYuSystemPowerContext.cs
+..\Domain\ViewModel\Request\SystemActionButtonRequestModel.cs
 ..\Domain\ViewModel\Request\SystemDictionaryRequestModel.cs
+..\Domain\ViewModel\Request\SystemMenuRequestModel.cs
+..\Domain\ViewModel\Request\SystemPowerItemRequestModel.cs
+..\Domain\ViewModel\Request\SystemRolePowerRequestModel.cs
+..\Domain\ViewModel\Request\SystemRoleRequestModel.cs
+..\Domain\ViewModel\Request\SystemRoleRulesRequestModel.cs
+..\Domain\ViewModel\Request\SystemSectionRequestModel.cs
+..\Domain\ViewModel\Request\SystemStaffRequestModel.cs
+..\Domain\ViewModel\Request\SystemStaffRoleRequestModel.cs
+..\Domain\ViewModel\Response\SystemActionButtonResponseModel.cs
 ..\Domain\ViewModel\Response\SystemDictionaryResponseModel.cs
+..\Domain\ViewModel\Response\SystemMenuResponseModel.cs
+..\Domain\ViewModel\Response\SystemPowerItemResponseModel.cs
+..\Domain\ViewModel\Response\SystemRolePowerResponseModel.cs
+..\Domain\ViewModel\Response\SystemRoleResponseModel.cs
+..\Domain\ViewModel\Response\SystemRoleRulesResponseModel.cs
+..\Domain\ViewModel\Response\SystemSectionResponseModel.cs
+..\Domain\ViewModel\Response\SystemStaffResponseModel.cs
+..\Domain\ViewModel\Response\SystemStaffRoleResponseModel.cs
+..\Repository\IModelRepository\ISystemActionButtonRepository.cs
 ..\Repository\IModelRepository\ISystemDictionaryRepository.cs
+..\Repository\IModelRepository\ISystemMenuRepository.cs
+..\Repository\IModelRepository\ISystemPowerItemRepository.cs
+..\Repository\IModelRepository\ISystemRolePowerRepository.cs
+..\Repository\IModelRepository\ISystemRoleRepository.cs
+..\Repository\IModelRepository\ISystemRoleRulesRepository.cs
+..\Repository\IModelRepository\ISystemSectionRepository.cs
+..\Repository\IModelRepository\ISystemStaffRepository.cs
+..\Repository\IModelRepository\ISystemStaffRoleRepository.cs
+..\Repository\ModelRepository\SystemActionButtonRepository.cs
 ..\Repository\ModelRepository\SystemDictionaryRepository.cs
+..\Repository\ModelRepository\SystemMenuRepository.cs
+..\Repository\ModelRepository\SystemPowerItemRepository.cs
+..\Repository\ModelRepository\SystemRolePowerRepository.cs
+..\Repository\ModelRepository\SystemRoleRepository.cs
+..\Repository\ModelRepository\SystemRoleRulesRepository.cs
+..\Repository\ModelRepository\SystemSectionRepository.cs
+..\Repository\ModelRepository\SystemStaffRepository.cs
+..\Repository\ModelRepository\SystemStaffRoleRepository.cs
+..\Service\IService\ISystemActionButtonService.cs
 ..\Service\IService\ISystemDictionaryService.cs
+..\Service\IService\ISystemMenuService.cs
+..\Service\IService\ISystemPowerItemService.cs
+..\Service\IService\ISystemRolePowerService.cs
+..\Service\IService\ISystemRoleRulesService.cs
+..\Service\IService\ISystemRoleService.cs
+..\Service\IService\ISystemSectionService.cs
+..\Service\IService\ISystemStaffRoleService.cs
+..\Service\IService\ISystemStaffService.cs
+..\Service\Service\SystemActionButtonService.cs
 ..\Service\Service\SystemDictionaryService.cs
+..\Service\Service\SystemMenuService.cs
+..\Service\Service\SystemPowerItemService.cs
+..\Service\Service\SystemRolePowerService.cs
+..\Service\Service\SystemRoleRulesService.cs
+..\Service\Service\SystemRoleService.cs
+..\Service\Service\SystemSectionService.cs
+..\Service\Service\SystemStaffRoleService.cs
+..\Service\Service\SystemStaffService.cs
+..\UI\Controllers\SystemActionButtonController.cs
 ..\UI\Controllers\SystemDictionaryController.cs
+..\UI\Controllers\SystemMenuController.cs
+..\UI\Controllers\SystemPowerItemController.cs
+..\UI\Controllers\SystemRoleController.cs
+..\UI\Controllers\SystemRolePowerController.cs
+..\UI\Controllers\SystemRoleRulesController.cs
+..\UI\Controllers\SystemSectionController.cs
+..\UI\Controllers\SystemStaffController.cs
+..\UI\Controllers\SystemStaffRoleController.cs
+..\UI\Views\SystemActionButton\Add.cshtml
+..\UI\Views\SystemActionButton\Edit.cshtml
+..\UI\Views\SystemActionButton\Index.cshtml
 ..\UI\Views\SystemDictionary\Add.cshtml
 ..\UI\Views\SystemDictionary\Edit.cshtml
 ..\UI\Views\SystemDictionary\Index.cshtml
+..\UI\Views\SystemMenu\Add.cshtml
+..\UI\Views\SystemMenu\Edit.cshtml
+..\UI\Views\SystemMenu\Index.cshtml
+..\UI\Views\SystemPowerItem\Add.cshtml
+..\UI\Views\SystemPowerItem\Edit.cshtml
+..\UI\Views\SystemPowerItem\Index.cshtml
+..\UI\Views\SystemRole\Add.cshtml
+..\UI\Views\SystemRole\Edit.cshtml
+..\UI\Views\SystemRole\Index.cshtml
+..\UI\Views\SystemRolePower\Add.cshtml
+..\UI\Views\SystemRolePower\Edit.cshtml
+..\UI\Views\SystemRolePower\Index.cshtml
+..\UI\Views\SystemRoleRules\Add.cshtml
+..\UI\Views\SystemRoleRules\Edit.cshtml
+..\UI\Views\SystemRoleRules\Index.cshtml
+..\UI\Views\SystemSection\Add.cshtml
+..\UI\Views\SystemSection\Edit.cshtml
+..\UI\Views\SystemSection\Index.cshtml
+..\UI\Views\SystemStaff\Add.cshtml
+..\UI\Views\SystemStaff\Edit.cshtml
+..\UI\Views\SystemStaff\Index.cshtml
+..\UI\Views\SystemStaffRole\Add.cshtml
+..\UI\Views\SystemStaffRole\Edit.cshtml
+..\UI\Views\SystemStaffRole\Index.cshtml
 .\Template.cs
 </LastOutputs>
     </Content>
@@ -94,9 +192,6 @@
     <None Include="Template\Repository\IRepositoryRuntimeTemplate.ttinclude" />
     <None Include="Template\Service\IServiceRuntimeTemplate.ttinclude" />
     <None Include="Template\Repository\RepositoryRuntimeTemplate.ttinclude" />
-    <None Include="UI\Views\SystemDictionary\Add.cshtml" />
-    <None Include="UI\Views\SystemDictionary\Edit.cshtml" />
-    <None Include="UI\Views\SystemDictionary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
