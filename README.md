@@ -19,7 +19,10 @@
 	* 日志记录（自动记录程序异常）
 	* 模块化开发（每个模块有独立的EF DbContext，可单独指定数据库）
 	* Repository仓储模式（已实现了Entity Framework）
-	* Unit Of Work工作单元模式（为应用层和仓储层的方法自动实现数据库事务） 
+	* Unit Of Work工作单元模式（为应用层和仓储层的方法自动实现数据库事务）
+	* 已集成分布式数据缓存组件Redis  
+	* 已集成消息队列组件RabbitMQ  
+	* 已集成分布式日志收集系统Exceptionless 	
     
 #### 项目结构
 ![](file/QQ图片20190914161942.png "项目结构")
