@@ -1,10 +1,5 @@
-﻿
-@{
-                /**/
-
-                ViewBag.Module = "角色管理";
-                ViewBag.Title = "角色管理";
-                Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="weadmin-body ">
@@ -142,8 +137,8 @@
                     ShowWindow("编辑", "@Url.Action("Edit")?Id=" + data.Id, 450, 380);
                     break;
                 case 'SetPower':
-                    ShowWindow("权限维护", "@Url.Action("PowerSettings")?RoleId=" + data.Id,900);
-                    break; 
+                    ShowWindow("权限设置", "@Url.Action("PowerSettings")?RoleId=" + data.Id,900);
+                    break;
             }
         });
 

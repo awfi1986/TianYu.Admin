@@ -63,6 +63,179 @@ public class IndexPageTemplate : CSharpTemplate
     {
         base.TransformText();
 #> 
+
+@{
+    ViewBag.Module = "<#=EntityDesc#>管理";
+    ViewBag.Title = "<#=EntityDesc#>列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="weadmin-body ">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 we-search">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">查询内容</label>
+                    <div class="layui-input-block">
+                        <div class="layui-inline">
+                            <input name="KeyWord" id="KeyWord" placeholder="查询内容" class="layui-input search-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn" lay-submit="" lay-filter="formSearch"><i class="layui-icon">&#xe615;</i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <table id="listTable" lay-filter="listTable"></table>
+
+</div>
+@section scripts{
+   <script type="text/javascript">
+      layui.use([ 'table', 'jquery', 'form'], function () {
+            var   table = layui.table
+                , $ = layui.jquery
+                , form = layui.form;
+				 
+            //初始化表格数据
+            table.render({
+                elem: '#listTable'
+                , toolbar: '#listToolbar'
+                , limit:10
+                , method: 'POST'
+                , where: { }
+                , url: '@Url.Action("Query")' //数据接口
+                , page: true //开启分页
+                , request: {
+                    pageName: 'pageIndex' //页码的参数名称，默认：page
+                    , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+                }
+                , parseData: function (res) { //res 即为原始返回的数据
+                    var data = {
+                        code: 0, //解析接口状态
+                        msg: '', //解析提示文本
+                        count: 0, //解析数据长度
+                        data: [], //解析数据列表
+                    };
+                    if (res.Status == 200) {
+                        res = res.Data;
+                        if (res.Status == 1) {
+                            data.count = res.Total;
+                            data.data = res.BusinessData;
+                        }
+                        else {
+                            data.code = 1;
+                            data.msg = '业务错误：' + res.ErrorMessage + '，' + res.Status;
+                        }
+                    }
+                    else {
+                        data.code = 1;
+                        data.msg = '请求错误：' + res.ErrorMessage + '，' + res.Status;
+                    }
+
+                    return data;
+                }
+                , cols: [[ //表头
+                    { type: 'numbers', title: '#' }
+                    , { type: 'checkbox' }
+        <#+
+        foreach (DataRow dr in FileTable.Rows) 
+        {    
+		    if(dr["主键"].ToString()!="1")
+			{ 
+				WriteLine("        , { field: '"+dr["字段名"]+"', title: '"+dr["字段说明"]+"', width: 120, align: 'center' }"); 
+			} 
+        }  
+        #>
+                    , { fixed: 'right', title: '操作', toolbar: '#rowToolbar', minWidth: 180, align: 'center' }
+                ]]
+            });
+
+            //按条件搜索数据
+            form.on('submit(formSearch)', function (data) {
+                reloadTable(data.field);
+                return false;
+            });
+            /**
+             * 重新加载表格
+             * @@param data 条件
+             */
+          var reloadTable = function (data) {
+              if (!data) { data = []; }
+              table.reload('listTable', {
+                  where: data
+                  , page: {
+                      curr: 1 //重新从第 1 页开始
+                  }
+              });
+          };
+          //监听事件
+          table.on('toolbar(listTable)', function (obj) {
+              var checkStatus = table.checkStatus(obj.config.id);
+              switch (obj.event) {
+                  case 'Insert':
+                      ShowWindow("新增", "@Url.Action("Add")",450,500);
+                      break;
+
+              };
+          });
+
+            //监听行工具事件
+            table.on('tool(listTable)', function (obj) {
+               var data = obj.data;
+                switch (obj.event) {
+                    case 'Remove':
+                        layer.confirm('确定要删除当前选中的数据?', { icon: 3, title: '提示' }, function (index) {
+                            batchDelete(data.Id);
+                            layer.close(index);
+                        });
+                        break;
+                    case 'Update':
+                        ShowWindow("编辑", "@Url.Action("Edit")?Id=" + data.Id, 450, 500);
+                        break; 
+                }
+            });
+
+            /*
+             * 批量删除数据
+             * @@param ids 数据Id集合
+             */
+            var batchDelete = function (ids) {
+                var index = layer.load(2, { time: 60 * 1000 });
+                $.ajax({
+                    type: 'post',
+                    dataType: 'json',
+                    url: '@Url.Action("Remove")',
+                    data: { Id: ids},
+                    success: function (res) {
+                        layer.close(index);
+                        if (res.Status == 200) {
+                            res = res.Data;
+                            if (res.Status == 1) {
+                                layer.msg("删除成功");
+                                reloadTable();//重新加载表格数据
+                            }
+                            else {
+                                layer.msg(res.ErrorMessage);
+                            }
+                        }
+                        else {
+                            layer.msg('请求错误：' + res.ErrorMessage + '，' + res.Status);
+                        }
+                    },
+                    error: function (res) {
+                        layer.close(index);
+                        layer.msg("请求出错");
+                        console.log(res);
+                    } 
+                });
+            };
+
+        });
+
+   </script> 
+}
  
 <#+
         return this.GenerationEnvironment.ToString();

@@ -265,7 +265,8 @@ namespace TianYu.Admin.Service.Service
                              MenuName = dd.MenuName,
                              MenuSort = dd.MenuSort,
                              MenuUrl = dd.MenuUrl,
-                             ParentId = dd.ParentId
+                             ParentId = dd.ParentId,
+                             PageTitle = dd.PageTitle
                          }).Distinct();
 
             var list = query.ToList();
@@ -326,7 +327,10 @@ namespace TianYu.Admin.Service.Service
 
                 var rolePoweItems = _systemRoleRulesRepository.Find(x => x.RoleId == roleId).ToList();
 
-                menuList.ForEach(m =>
+                var sortMenuList = new List<SystemMenuButtonRoleViewModel>();
+                MenuSort(menuList, -1, sortMenuList);
+
+                sortMenuList.ForEach(m =>
                 {
                     if (!m.MenuButtonId.IsNullOrWhiteSpace())
                     {
@@ -338,13 +342,30 @@ namespace TianYu.Admin.Service.Service
                         });
                     }
                     else
-                    { 
-                        m.IsChecked = !rolePoweItems.Where(x => x.MenuId == m.Id).FirstOrDefault().IsNull(); 
+                    {
+                        m.IsChecked = !rolePoweItems.Where(x => x.MenuId == m.Id).FirstOrDefault().IsNull();
                     }
                 });
+
+                return sortMenuList;
             }
 
-            return menuList;
+            return null;
+        }
+
+        private void MenuSort(IEnumerable<SystemMenuButtonRoleViewModel> model, int parentId, List<SystemMenuButtonRoleViewModel> model2)
+        {
+            var list = model.Where(x => x.ParentId == parentId).OrderBy(x => x.MenuSort).ToList();
+
+            if (list != null && list.Count > 0)
+            { 
+                foreach (var m in list)
+                { 
+                    model2.Add(m);
+
+                    MenuSort(model, m.Id, model2);
+                }
+            }
         }
     }
 }

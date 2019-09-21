@@ -51,7 +51,7 @@ namespace TianYu.Admin.Service.Service
                 res.ErrorMessage = "菜单层级不能为空";
                 return res;
             }
-            var menuCode = 0;
+            var menuCode = 1001;
 
             var query = _systemMenuRepository.Find(x => x.ParentCode == requestModel.ParentCode);
 
@@ -59,18 +59,33 @@ namespace TianYu.Admin.Service.Service
             {
                 var maxCode = query.Max(x => x.MenuCode);
 
-                //如果不是第一级
-                if (requestModel.ParentCode != 0)
-                {
-                    maxCode = requestModel.ParentCode * 100 + 1;
-                }
-                maxCode += 1;
-
-                menuCode = maxCode;
+                menuCode = maxCode + 1;
             }
             else
             {
                 menuCode = requestModel.ParentCode * 100 + 1;
+            }
+            //菜单导行
+            var pageTitle = "";
+            if (!requestModel.MenuUrl.IsNullOrWhiteSpace() && requestModel.Level != 1)
+            { 
+                var len = requestModel.Level - 2;
+                var code = new int[len + 1];
+                code[len] = requestModel.ParentCode;
+
+                var num = 1;
+                for (var i = 0; i < len; i++)
+                {
+                    num = num * 100;
+                    code[i] = requestModel.ParentCode / num;
+                }
+
+                var queryMenuName = _systemMenuRepository.Find(x => code.Contains(x.MenuCode)).OrderBy(x => x.Level).Select(x => x.MenuName).ToList();
+
+                if (queryMenuName.Any())
+                {
+                    pageTitle = string.Join("-", queryMenuName) + "-" + requestModel.MenuName;
+                }
             }
 
             var model = new SystemMenu()
@@ -82,6 +97,7 @@ namespace TianYu.Admin.Service.Service
                 MenuName = requestModel.MenuName,
                 MenuSort = requestModel.MenuSort,
                 MenuUrl = requestModel.MenuUrl,
+                PageTitle = pageTitle,
                 ParentId = requestModel.ParentId,
                 ParentCode = requestModel.ParentCode,
                 MenuButtonId = requestModel.MenuButtonId,
@@ -133,7 +149,7 @@ namespace TianYu.Admin.Service.Service
             {
                 res.ErrorMessage = "菜单名称不能为空";
                 return res;
-            } 
+            }
             if (requestModel.Level <= 0)
             {
                 res.ErrorMessage = "菜单层级不能为空";

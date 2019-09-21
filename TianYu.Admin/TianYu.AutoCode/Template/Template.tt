@@ -36,7 +36,7 @@
     SqlConnection conn = new SqlConnection(connectionString);
     conn.Open();
     
-    string queryTableSql = @"SELECT a.name as tb_name, b.value as tb_desc FROM sys.objects a LEFT JOIN [sys].[extended_properties] b ON a.object_id = b.major_id AND b.minor_id = 0 WHERE a.type = 'U' and a.name='s_SystemPowerItem'";
+    string queryTableSql = @"SELECT a.name as tb_name, b.value as tb_desc FROM sys.objects a LEFT JOIN [sys].[extended_properties] b ON a.object_id = b.major_id AND b.minor_id = 0 WHERE a.type = 'U' and a.name='s_SystemDictionary'";
     string queryColumnSql = @"
 			SELECT  
 			字段序号   = a.colorder,
@@ -97,9 +97,7 @@
 		var entity4= new RepositoryTemplate(tb_name,tb_desc);
 		string filePath4= Path.Combine(currentPath,"../Repository/ModelRepository", entity4.FileName);
 		entity4.RenderToFile(filePath4); 
-
-
-
+		  
 
 		//实例化IService模板
 		var entity5= new IServiceTemplate(tb_name,tb_desc);

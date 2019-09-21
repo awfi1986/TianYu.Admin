@@ -1,7 +1,6 @@
 ﻿@using TianYu.Admin.Domain.ViewModel
 @model List<SystemMenuButtonRoleViewModel>
-@{
-    ViewBag.Title = "权限设置";
+@{ 
     Layout = "~/Views/Shared/_Info.cshtml";
 }
 
@@ -25,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var menu in Model) //系统层级
+                            @foreach (var menu in Model)  
                             {
                                 <tr class="tableModule">
                                     <!--菜单名-->

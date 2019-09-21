@@ -1,6 +1,4 @@
-﻿@{
-    ViewBag.Module = "员工管理";
-    ViewBag.Title = "员工列表";
+﻿@{ 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script>
@@ -116,10 +114,7 @@
                         break;
                     case 'Reset':
                         ShowWindow("密码重置", "@Url.Action("Again")?Id=" + data.Id, 450, 300);
-                        break;
-                    @*case 'detail':
-                        ShowWindow("登录日志", "@Url.Action("Index", "UserLoginLog")?Id=" + data.Id) ;
-                        break;*@
+                        break; 
                 }
             });
 

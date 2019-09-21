@@ -52,5 +52,9 @@ namespace TianYu.Admin.Domain.ViewModel
         /// 按键代码
         ///</summary>
         public string ButtonCode { get; set; }
+        /// <summary>
+        /// 页索引
+        /// </summary>
+        public string PageTitle { get; set; }
     }
 }

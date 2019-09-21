@@ -116,7 +116,10 @@ namespace TianYu.Admin.Domain.ViewModel.Request
     /// </summary>
     public class Query<#=EntityName#>RequestModel : ApiBasePageRequestModel
     {
-
+	    /// <summary>
+        /// 查询关键字
+        /// </summary>
+        public string KeyWord { get; set; }
     }
     /// <summary>
     /// 查询<#=EntityDesc#>详情请求模型

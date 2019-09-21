@@ -98,7 +98,7 @@ namespace TianYu.Admin.WebMvc.Controllers
         public ActionResult Edit(QueryDetail<#=EntityName#>RequestModel requestModel)
         { 
             var res = _<#=SmallEntityName#>Service.QueryDetail(requestModel);
-            return View(res.ToJsonString());
+            return View(res.BusinessData)
         } 
 
 

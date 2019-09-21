@@ -165,6 +165,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SystemDictionaryController.cs" />
     <Compile Include="Controllers\SystemMenuController.cs" />
     <Compile Include="Controllers\SystemStaffController.cs" />
     <Compile Include="Controllers\SystemRoleController.cs" />
@@ -349,6 +350,11 @@
     <Content Include="Views\SystemMenu\Edit.cshtml" />
     <Content Include="Views\SystemMenu\Index.cshtml" />
     <Content Include="Views\SystemStaff\UpdPwd.cshtml" />
+    <Content Include="Views\SystemDictionary\Add.cshtml" />
+    <Content Include="Views\SystemDictionary\Edit.cshtml" />
+    <Content Include="Views\SystemDictionary\Index - 复制.cshtml" />
+    <Content Include="Views\SystemDictionary\Index - 复制%282%29.cshtml" />
+    <None Include="Views\SystemDictionary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TianYu.Admin.Domain\TianYu.Admin.Domain.csproj">

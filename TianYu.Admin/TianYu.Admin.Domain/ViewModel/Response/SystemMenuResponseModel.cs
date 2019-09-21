@@ -74,6 +74,10 @@ namespace TianYu.Admin.Domain.ViewModel.Response
         /// 父级编码
         ///</summary>
         public int? ParentCode { get; set; }
+        /// <summary>
+        /// 页索引
+        /// </summary>
+        public string PageTitle { get; set; }
     }
     /// <summary>
     /// 菜单列表查询响应模型

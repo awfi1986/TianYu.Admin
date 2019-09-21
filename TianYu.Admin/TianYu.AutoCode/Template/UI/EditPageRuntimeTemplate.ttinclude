@@ -63,7 +63,95 @@ public class EditPageTemplate : CSharpTemplate
     {
         base.TransformText();
 #> 
- 
+@using TianYu.Admin.Domain.ViewModel.Response
+@model QueryDetail<#=EntityName#>ResponseModel
+@{
+    Layout = "~/Views/Shared/_Info.cshtml";
+}
+
+<div class="weadmin-body">
+    <form class="layui-form">
+        @*隐藏字段*@
+        <input type="hidden" name="Id" value="@Model.Id" />
+         
+		<#+
+        foreach (DataRow dr in FileTable.Rows) 
+        {    
+		    if(dr["主键"].ToString()!="1")
+			{ 
+				WriteLine("        <div class='layui-form-item'>");
+				WriteLine("            <label class='layui-form-label'>");
+				WriteLine("                <span class='we-red'>*</span>"+dr["字段说明"]);
+				WriteLine("            </label>");
+				WriteLine("            <div class='layui-input-block'>");
+				WriteLine("                <input type='text' name='"+dr["字段名"]+"' lay-verify='required' class='layui-input' placeholder='"+dr["字段说明"]+"' value='@Model."+dr["字段名"]+"' />");
+				WriteLine("            </div>");
+				WriteLine("        </div>"); 
+			} 
+        }  
+        #>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+            </label>
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="Save" lay-submit="">保存</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+@section scripts{
+    <script>
+
+        layui.use(['jquery', 'form'], function () {
+            var form = layui.form,
+                $ = layui.jquery;
+
+            //提交表单数据
+            form.on('submit(Save)', function (data) {
+                //禁用提交按钮
+                toggleSubmitStatus(data.elem);
+
+                var param = data.field; 
+                 
+                $.ajax({
+                    type: 'post',
+                     url: '@Url.Action("Update")',
+                    data: param,
+                    dataType: 'json',
+                    success: function (res) {
+
+                        if (res.Status == 200) {
+                            res = res.Data;
+                            if (res.Status == 1) {
+                                //刷新列表
+                                $(".layui-btn[lay-filter='formSearch']", window.parent.document).click();
+                                layer.msg('保存成功', {time:500},function () {
+                                    //关闭当前弹出层
+                                    var index = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(index);
+                                }); 
+                            }
+                            else {
+                                //启用提交按钮
+                                toggleSubmitStatus(data.elem, true);
+                                layer.msg(res.ErrorMessage);
+                            }
+                        }
+                        else {
+                            //启用提交按钮
+                            toggleSubmitStatus(data.elem, true);
+                            layer.msg('请求错误：' + res.ErrorMessage + '，' + res.Status);
+                        }
+                    }
+                });
+                return false;
+            });
+
+        });
+    </script>
+}
 <#+
         return this.GenerationEnvironment.ToString();
     } 

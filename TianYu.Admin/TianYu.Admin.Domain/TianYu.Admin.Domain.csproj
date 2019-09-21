@@ -61,14 +61,15 @@
     <Compile Include="BaseModel\IAggregateRoot.cs" />
     <Compile Include="BaseModel\IEntity.cs" />
     <Compile Include="DomainModel\AgModel\SystemActionButton.cs" />
+    <Compile Include="DomainModel\AgModel\SystemDictionary.cs" />
     <Compile Include="DomainModel\AgModel\SystemMenu.cs" />
     <Compile Include="DomainModel\AgModel\SystemRoleRules.cs" />
     <Compile Include="DomainModel\AgModel\SystemStaff.cs" />
     <Compile Include="DomainModel\AgModel\SystemStaffRole.cs" />
     <Compile Include="DomainModel\AgModel\SystemRole.cs" />
     <Compile Include="DomainModel\AgModel\SystemSection.cs" />
-    <Compile Include="DomainModel\AgModel\UserPowerItem.cs" />
     <Compile Include="DomainModel\Mapping\SystemActionButtonMap.cs" />
+    <Compile Include="DomainModel\Mapping\SystemDictionaryMap.cs" />
     <Compile Include="DomainModel\Mapping\SystemMenuMap.cs" />
     <Compile Include="DomainModel\Mapping\SystemRoleRulesMap.cs" />
     <Compile Include="DomainModel\Mapping\SystemStaffMap.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BaseRequest.cs" />
     <Compile Include="ViewModel\Request\SystemActionButtonRequestModel.cs" />
+    <Compile Include="ViewModel\Request\SystemDictionaryRequestModel.cs" />
     <Compile Include="ViewModel\Request\SystemMenuRequestModel.cs" />
     <Compile Include="ViewModel\Request\SystemRoleRequestModel.cs" />
     <Compile Include="ViewModel\Request\SystemRoleRulesRequestModel.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="ViewModel\Request\SystemStaffRequestModel.cs" />
     <Compile Include="ViewModel\Request\SystemStaffRoleRequestModel.cs" />
     <Compile Include="ViewModel\Response\SystemActionButtonResponseModel.cs" />
+    <Compile Include="ViewModel\Response\SystemDictionaryResponseModel.cs" />
     <Compile Include="ViewModel\Response\SystemMenuResponseModel.cs" />
     <Compile Include="ViewModel\Response\SystemRoleResponseModel.cs" />
     <Compile Include="ViewModel\Response\SystemRoleRulesResponseModel.cs" />

@@ -181,6 +181,26 @@ namespace TianYu.Admin.WebMvc
                     if (menuEntity != null)
                     {
                         ViewBag.UserActions = GetLoginAccountButtonRole(menuEntity.Id);
+
+                        if (!menuEntity.MenuUrl.IsNullOrWhiteSpace())
+                        { 
+                            if (!menuEntity.PageTitle.IsNullOrWhiteSpace())
+                            {
+                                var pageTitle = menuEntity.PageTitle.Split('-');
+
+                                for (int i = 0; i < pageTitle.Length; i++)
+                                {
+                                    if (i != pageTitle.Length - 1)
+                                    {
+                                        ViewBag.PageTitle += $"<a>{pageTitle[i]}</a>";
+                                    }
+                                    else
+                                    {
+                                        ViewBag.PageTitle += $"<a><cite>{pageTitle[i]}</cite></a>";
+                                    } 
+                                }
+                            }
+                        }
                     }
                 }
             }

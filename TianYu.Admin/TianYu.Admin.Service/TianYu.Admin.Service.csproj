@@ -63,6 +63,7 @@
     <Compile Include="BaseType\BaseService.cs" />
     <Compile Include="IService\IBaseService.cs" />
     <Compile Include="IService\ISystemActionButtonService.cs" />
+    <Compile Include="IService\ISystemDictionaryService.cs" />
     <Compile Include="IService\ISystemMenuService.cs" />
     <Compile Include="IService\ISystemRoleRulesService.cs" />
     <Compile Include="IService\ISystemSectionService.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="IService\ISystemRoleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\SystemActionButtonService.cs" />
+    <Compile Include="Service\SystemDictionaryService.cs" />
     <Compile Include="Service\SystemMenuService.cs" />
     <Compile Include="Service\SystemRoleRulesService.cs" />
     <Compile Include="Service\SystemSectionService.cs" />

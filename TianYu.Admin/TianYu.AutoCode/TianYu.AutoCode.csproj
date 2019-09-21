@@ -41,31 +41,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\DomainModel\AgModel\SystemDictionary.cs" />
+    <Compile Include="Domain\DomainModel\Mapping\SystemDictionaryMap.cs" />
+    <Compile Include="Domain\DomainModel\TianYuSystemPowerContext.cs" />
+    <Compile Include="Domain\ViewModel\Request\SystemDictionaryRequestModel.cs" />
+    <Compile Include="Domain\ViewModel\Response\SystemDictionaryResponseModel.cs" />
+    <Compile Include="Repository\IModelRepository\ISystemDictionaryRepository.cs" />
+    <Compile Include="Repository\ModelRepository\SystemDictionaryRepository.cs" />
+    <Compile Include="Service\IService\ISystemDictionaryService.cs" />
+    <Compile Include="Service\Service\SystemDictionaryService.cs" />
     <Compile Include="Template\Template.cs">
       <DependentUpon>Template.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Controllers\SystemDictionaryController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Template\Template.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Template.cs</LastGenOutput>
       <LastOutputs>
-..\Domain\DomainModel\AgModel\SystemPowerItem.cs
-..\Domain\DomainModel\Mapping\SystemPowerItemMap.cs
+..\Domain\DomainModel\AgModel\SystemDictionary.cs
+..\Domain\DomainModel\Mapping\SystemDictionaryMap.cs
 ..\Domain\DomainModel\TianYuSystemPowerContext.cs
-..\Domain\ViewModel\Request\SystemPowerItemRequestModel.cs
-..\Domain\ViewModel\Response\SystemPowerItemResponseModel.cs
-..\Repository\IModelRepository\ISystemPowerItemRepository.cs
-..\Repository\ModelRepository\SystemPowerItemRepository.cs
-..\Service\IService\ISystemPowerItemService.cs
-..\Service\Service\SystemPowerItemService.cs
-..\UI\Controllers\SystemPowerItemController.cs
-..\UI\Views\SystemPowerItem\Add.cshtml
-..\UI\Views\SystemPowerItem\Edit.cshtml
-..\UI\Views\SystemPowerItem\Index.cshtml
+..\Domain\ViewModel\Request\SystemDictionaryRequestModel.cs
+..\Domain\ViewModel\Response\SystemDictionaryResponseModel.cs
+..\Repository\IModelRepository\ISystemDictionaryRepository.cs
+..\Repository\ModelRepository\SystemDictionaryRepository.cs
+..\Service\IService\ISystemDictionaryService.cs
+..\Service\Service\SystemDictionaryService.cs
+..\UI\Controllers\SystemDictionaryController.cs
+..\UI\Views\SystemDictionary\Add.cshtml
+..\UI\Views\SystemDictionary\Edit.cshtml
+..\UI\Views\SystemDictionary\Index.cshtml
 .\Template.cs
 </LastOutputs>
     </Content>
@@ -84,6 +94,9 @@
     <None Include="Template\Repository\IRepositoryRuntimeTemplate.ttinclude" />
     <None Include="Template\Service\IServiceRuntimeTemplate.ttinclude" />
     <None Include="Template\Repository\RepositoryRuntimeTemplate.ttinclude" />
+    <None Include="UI\Views\SystemDictionary\Add.cshtml" />
+    <None Include="UI\Views\SystemDictionary\Edit.cshtml" />
+    <None Include="UI\Views\SystemDictionary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

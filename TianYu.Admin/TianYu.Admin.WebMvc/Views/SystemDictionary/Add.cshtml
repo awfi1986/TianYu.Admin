@@ -1,0 +1,129 @@
+﻿@{
+    Layout = "~/Views/Shared/_Info.cshtml";
+}
+
+<div class="weadmin-body">
+    <form class="layui-form">
+        @*隐藏字段*@
+        <input type="hidden" name="ParentId" value="@ViewBag.ParentId" />
+
+        @if (ViewBag.ParentId == 0)
+        {
+            <div class='layui-form-item'>
+                <label class='layui-form-label'>
+                    <span class='we-red'>*</span>字典名称
+                </label>
+                <div class='layui-input-block'>
+                    <input type='text' name='Name' lay-verify='required' class='layui-input' placeholder='字典名称' />
+                </div>
+            </div>
+            <div class='layui-form-item'>
+                <label class='layui-form-label'>
+                    <span class='we-red'>*</span>字典编码
+                </label>
+                <div class='layui-input-block'>
+                    <input type='text' name='Value' lay-verify='required' class='layui-input' placeholder='字典编码' />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class='layui-form-item'>
+                <label class='layui-form-label'>
+                    <span class='we-red'>*</span>字典值名称
+                </label>
+                <div class='layui-input-block'>
+                    <input type='text' name='Name' lay-verify='required' class='layui-input' placeholder='字典值名称' />
+                </div>
+            </div>
+            <div class='layui-form-item'>
+                <label class='layui-form-label'>
+                    <span class='we-red'>*</span>字典值
+                </label>
+                <div class='layui-input-block'>
+                    <input type='text' name='Value' lay-verify='required' class='layui-input' placeholder='字典值' />
+                </div>
+            </div>
+        }
+
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>
+                排序
+            </label>
+            <div class='layui-input-block'>
+                <input type='number' name='Sort' class='layui-input' placeholder='排序' />
+            </div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>
+                描述
+            </label>
+            <div class='layui-input-block'>
+                <textarea name="Remark" class="layui-textarea" placeholder="描述" rows="3" cols="3"></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+            </label>
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="Save" lay-submit="">保存</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+@section scripts{
+    <script>
+
+        layui.use(['jquery', 'form'], function () {
+            var form = layui.form,
+                $ = layui.jquery;
+
+            form.on('select', function () {
+                $(this).val();
+            });
+
+            //提交表单数据
+            form.on('submit(Save)', function (data) {
+                //禁用提交按钮
+                toggleSubmitStatus(data.elem);
+
+                var param = data.field; 
+
+                $.ajax({
+                    type: 'post',
+                     url: '@Url.Action("Insert")',
+                    data: param,
+                    dataType: 'json',
+                    success: function (res) { 
+                        if (res.Status == 200) {
+                            res = res.Data;
+                            if (res.Status == 1) {
+                                //刷新列表
+                                $(".layui-btn[lay-filter='formSearch']", window.parent.document).click();
+                                layer.msg('保存成功', { time: 500 }, function () {
+                                    //关闭当前弹出层
+                                    var index = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(index);
+                                });
+                            }
+                            else {
+                                //启用提交按钮
+                                toggleSubmitStatus(data.elem, true);
+                                layer.msg(res.ErrorMessage);
+                            }
+                        }
+                        else {
+                            //启用提交按钮
+                            toggleSubmitStatus(data.elem, true);
+                            layer.msg('请求错误：' + res.ErrorMessage + '，' + res.Status);
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+}
+

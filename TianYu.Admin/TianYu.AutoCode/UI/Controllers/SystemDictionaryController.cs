@@ -13,15 +13,15 @@ using TianYu.Admin.Domain.ViewModel.Request;
 namespace TianYu.Admin.WebMvc.Controllers
 {
     /// <summary>
-    /// 权限项控制器
+    /// 数据字典控制器
     /// </summary>
     [MvcLoginFilter]
-    public class SystemPowerItemController : BaseController
+    public class SystemDictionaryController : BaseController
     {
-        private ISystemPowerItemService _systemPowerItemService = null; 
-        public SystemPowerItemController(ISystemPowerItemService systemPowerItemService)
+        private ISystemDictionaryService _systemDictionaryService = null; 
+        public SystemDictionaryController(ISystemDictionaryService systemDictionaryService)
         {
-            this._systemPowerItemService = systemPowerItemService; 
+            this._systemDictionaryService = systemDictionaryService; 
         }
 
 
@@ -46,10 +46,10 @@ namespace TianYu.Admin.WebMvc.Controllers
         /// </summary> 
 		/// <param name="requestModel"></param>
         /// <returns></returns> 
-        public ActionResult Edit(QueryDetailSystemPowerItemRequestModel requestModel)
+        public ActionResult Edit(QueryDetailSystemDictionaryRequestModel requestModel)
         { 
-            var res = _systemPowerItemService.QueryDetail(requestModel);
-            return View(res.ToJsonString());
+            var res = _systemDictionaryService.QueryDetail(requestModel);
+            return View(res.BusinessData)
         } 
 
 
@@ -58,9 +58,9 @@ namespace TianYu.Admin.WebMvc.Controllers
         /// </summary>
         /// <param name="requestModel"></param>
         /// <returns></returns>
-        public ActionResult Query(QuerySystemPowerItemRequestModel requestModel)
+        public ActionResult Query(QuerySystemDictionaryRequestModel requestModel)
         {
-            var res = _systemPowerItemService.Query(requestModel);
+            var res = _systemDictionaryService.Query(requestModel);
             return Content(res.ToJsonString());
         } 
         /// <summary>
@@ -68,9 +68,9 @@ namespace TianYu.Admin.WebMvc.Controllers
         /// </summary>
 		/// <param name="requestModel"></param>
         /// <returns></returns>
-        public ActionResult Insert(AddSystemPowerItemRequestModel requestModel)
+        public ActionResult Insert(AddSystemDictionaryRequestModel requestModel)
         {
-            var ret = _systemPowerItemService.Insert(requestModel);
+            var ret = _systemDictionaryService.Insert(requestModel);
             return Content(ret.ToJsonString());
         }
         /// <summary>
@@ -78,9 +78,9 @@ namespace TianYu.Admin.WebMvc.Controllers
         /// </summary>
         /// <param name="requestModel"></param>
         /// <returns></returns>
-        public ActionResult Update(UpdateSystemPowerItemRequestModel requestModel)
+        public ActionResult Update(UpdateSystemDictionaryRequestModel requestModel)
         {
-            var ret = _systemPowerItemService.Update(requestModel);
+            var ret = _systemDictionaryService.Update(requestModel);
             return Content(ret.ToJsonString());
         }
         /// <summary>
@@ -88,9 +88,9 @@ namespace TianYu.Admin.WebMvc.Controllers
         /// </summary>
         /// <param name="requestModel"></param>
         /// <returns></returns>
-        public ActionResult Remove(RemoveSystemPowerItemRequestModel requestModel)
+        public ActionResult Remove(RemoveSystemDictionaryRequestModel requestModel)
         {
-            var ret = _systemPowerItemService.Remove(requestModel);
+            var ret = _systemDictionaryService.Remove(requestModel);
             return Content(ret.ToJsonString());
         } 
     }

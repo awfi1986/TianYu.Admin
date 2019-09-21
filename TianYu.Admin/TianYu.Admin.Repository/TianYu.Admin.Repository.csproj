@@ -58,10 +58,12 @@
     <Compile Include="BaseRepository\EFRepository.cs" />
     <Compile Include="DbFactory\DbContextFactory.cs" />
     <Compile Include="IModelRepository\ISystemActionButtonRepository.cs" />
+    <Compile Include="IModelRepository\ISystemDictionaryRepository.cs" />
     <Compile Include="IModelRepository\ISystemMenuRepository.cs" />
     <Compile Include="IModelRepository\ISystemRoleRulesRepository.cs" />
     <Compile Include="IModelRepository\ISystemSectionRepository.cs" />
     <Compile Include="ModelRepository\SystemActionButtonRepository.cs" />
+    <Compile Include="ModelRepository\SystemDictionaryRepository.cs" />
     <Compile Include="ModelRepository\SystemMenuRepository.cs" />
     <Compile Include="ModelRepository\SystemRoleRulesRepository.cs" />
     <Compile Include="ModelRepository\SystemSectionRepository.cs" />

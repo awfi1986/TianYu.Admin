@@ -1,0 +1,254 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="weadmin-body ">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 we-search">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">查询内容</label>
+                    <div class="layui-input-block">
+                        <div class="layui-inline">
+                            <input name="KeyWord" id="KeyWord" placeholder="查询内容" class="layui-input search-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn" lay-submit="" lay-filter="formSearch"><i class="layui-icon">&#xe615;</i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-xs5">
+            <table id="listTable" lay-filter="listTable"></table>
+        </div>
+        <div class="layui-col-xs7">
+            <table id="listTable2" lay-filter="listTable2"></table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+      layui.use([ 'table', 'jquery', 'form'], function () {
+            var  table = layui.table
+                , $ = layui.jquery
+              , form = layui.form;
+
+            var parentId = 0;
+            //初始化表格数据
+            table.render({
+                elem: '#listTable'
+                , toolbar: '#listToolbar'
+                , limit:10
+                , method: 'POST'
+                , where: { ParentId :0 }
+                , url: '@Url.Action("Query")' //数据接口
+                , page: true //开启分页
+                , request: {
+                    pageName: 'pageIndex' //页码的参数名称，默认：page
+                    , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+                }
+                , parseData: function (res) { //res 即为原始返回的数据
+                    var data = {
+                        code: 0, //解析接口状态
+                        msg: '', //解析提示文本
+                        count: 0, //解析数据长度
+                        data: [], //解析数据列表
+                    };
+                    if (res.Status == 200) {
+                        res = res.Data;
+                        if (res.Status == 1) {
+                            data.count = res.Total;
+                            data.data = res.BusinessData;
+
+                            var params = {};
+                            params.ParentId = data.data[0].Id;
+                            parentId = data.data[0].Id;
+                            reloadTable2(params);
+                        }
+                        else {
+                            data.code = 1;
+                            data.msg = '业务错误：' + res.ErrorMessage + '，' + res.Status;
+                        }
+                    }
+                    else {
+                        data.code = 1;
+                        data.msg = '请求错误：' + res.ErrorMessage + '，' + res.Status;
+                    }
+
+                    return data;
+                }
+                , cols: [[ //表头
+                    { type: 'numbers', title: '#' }
+                    , { field: 'Name', title: '字典名称', width: 120, align: 'center' }
+                    , { field: 'Value', title: '字典编码', width: 120, align: 'center' }
+                    , { fixed: 'right', title: '操作', toolbar: '#rowToolbar', minWidth: 100, align: 'center' }
+                ]]
+            });
+
+            //初始化表格数据
+            table.render({
+                elem: '#listTable2'
+                , toolbar: '#listToolbar'
+                , limit:100000
+                , method: 'POST'
+                , where: { }
+                , url: '@Url.Action("Query")' //数据接口
+                , page: false //开启分页
+                , parseData: function (res) { //res 即为原始返回的数据
+                    var data = {
+                        code: 0, //解析接口状态
+                        msg: '', //解析提示文本
+                        count: 0, //解析数据长度
+                        data: [], //解析数据列表
+                    };
+                    if (res.Status == 200) {
+                        res = res.Data;
+                        if (res.Status == 1) {
+                            data.count = res.Total;
+                            data.data = res.BusinessData;
+                        }
+                        else {
+                            data.code = 1;
+                            data.msg = '业务错误：' + res.ErrorMessage + '，' + res.Status;
+                        }
+                    }
+                    else {
+                        data.code = 1;
+                        data.msg = '请求错误：' + res.ErrorMessage + '，' + res.Status;
+                    }
+
+                    return data;
+                }
+                , cols: [[ //表头
+                    { type: 'numbers', title: '#' }
+                    , { type: 'checkbox' }
+                    , { field: 'Name', title: '字典值名称', width: 120, align: 'center' }
+                    , { field: 'Value', title: '字典值', width: 120, align: 'center' }
+                    , { field: 'Sort', title: '排序', width: 100, align: 'center' }
+                    , { field: 'Remark', title: '字典值描述', width: 180, align: 'center' }
+                    , { fixed: 'right', title: '操作', toolbar: '#rowToolbar', minWidth: 100, align: 'center' }
+                ]]
+            });
+
+            //按条件搜索数据
+            form.on('submit(formSearch)', function (data) {
+                reloadTable(data.field);
+                return false;
+            });
+            /**
+             * 重新加载表格
+             * @@param data 条件
+             */
+            var reloadTable = function (data) {
+                if (!data) { data = []; }
+                data.ParentId = 0;
+                table.reload('listTable', {
+                   where: data
+                   , page: {
+                      curr: 1 //重新从第 1 页开始
+                   }
+                });
+            };
+          var reloadTable2 = function (data) {
+              if (!data) { data = []; }
+              table.reload('listTable2', {
+                  where: data
+              });
+          };
+          table.on('row(listTable)', function (obj) {
+              var params = {};
+              params.ParentId = obj.data.Id;
+              parentId = obj.data.Id;
+              reloadTable2(params);
+          });
+          //监听事件
+          table.on('toolbar(listTable)', function (obj) {
+              switch (obj.event) {
+                  case 'Insert':
+                      var url = "@Url.Action("Add")?parentId=0";
+                      ShowWindow("添加字典", url, 450, 420);
+                      break;
+
+              };
+          });
+          table.on('toolbar(listTable2)', function (obj) {
+              var data = obj.data;
+              switch (obj.event) {
+                  case 'Insert':
+                      var url = "@Url.Action("Add")?parentId=" + parentId ;
+                      ShowWindow("添加字典值", url, 450, 420);
+                      break;
+
+              };
+          });
+            //监听行工具事件
+            table.on('tool(listTable)', function (obj) {
+                var data = obj.data;
+                switch (obj.event) {
+                    case 'Remove':
+                        layer.confirm('你确定删除 [' + data.Name + '] 吗？此操作不能撤销！', { icon: 3, title: '提示' }, function (index) {
+                            batchDelete(data.Id);
+                            layer.close(index);
+                        });
+                        break;
+                    case 'Update':
+                        ShowWindow("编辑", "@Url.Action("Edit")?Id=" + data.Id, 450, 420);
+                        break;
+                }
+            });
+           table.on('tool(listTable2)', function (obj) {
+                var data = obj.data;
+                switch (obj.event) {
+                    case 'Remove':
+                        layer.confirm('你确定删除 [' + data.Name + '] 吗？此操作不能撤销！', { icon: 3, title: '提示' }, function (index) {
+                            batchDelete(data.Id);
+                            layer.close(index);
+                        });
+                        break;
+                    case 'Update':
+                        ShowWindow("编辑", "@Url.Action("Edit")?Id=" + data.Id, 450, 420);
+                        break;
+                }
+            });
+            /*
+             * 批量删除数据
+             * @@param ids 数据Id集合
+             */
+            var batchDelete = function (ids) {
+                var index = layer.load(2, { time: 60 * 1000 });
+                $.ajax({
+                    type: 'post',
+                    dataType: 'json',
+                    url: '@Url.Action("Remove")',
+                    data: { Id: ids},
+                    success: function (res) {
+                        layer.close(index);
+                        if (res.Status == 200) {
+                            res = res.Data;
+                            if (res.Status == 1) {
+                                layer.msg("删除成功");
+                                reloadTable();//重新加载表格数据
+                            }
+                            else {
+                                layer.msg(res.ErrorMessage);
+                            }
+                        }
+                        else {
+                            layer.msg('请求错误：' + res.ErrorMessage + '，' + res.Status);
+                        }
+                    },
+                    error: function (res) {
+                        layer.close(index);
+                        layer.msg("请求出错");
+                        console.log(res);
+                    }
+                });
+            };
+
+        });
+         
+    </script>
+}
+
