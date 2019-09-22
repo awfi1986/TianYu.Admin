@@ -10,7 +10,7 @@
 * 服务端技术：
 	* ASP.NET MVC 5、Web API 2、C# 7.0
 	* DDD领域驱动设计 （Entities、Repositories、Domain Services、Application Services、DTOs等）
-	* Castle windsor （依赖注入容器）
+	* AutoFac （依赖注入容器）
 	* Entity Framework 6 
 	* Log4Net \ Exceptionless（日志记录）
 	* AutoMapper（实现Dto类与实体类的双向自动转换）
@@ -53,10 +53,7 @@
     * 模板使用方法自行百度吧
     
 #### 更新记录
-* 2019-09-21 更新 
-1.新增字典管理功能
-2.优化页面面包屑功能
-3.修改一些已知bug
+* 2019-09-21 更新 1.新增字典管理功能 2.优化页面面包屑功能 3.修改一些已知bug
 * 2019-09-14 发布V1.0版本
 
 #### 效果预览
