@@ -68,7 +68,7 @@ namespace TianYu.Admin.Service.Service
             //菜单导行
             var pageTitle = "";
             if (!requestModel.MenuUrl.IsNullOrWhiteSpace() && requestModel.Level != 1)
-            { 
+            {
                 var len = requestModel.Level - 2;
                 var code = new int[len + 1];
                 code[len] = requestModel.ParentCode;
@@ -267,6 +267,8 @@ namespace TianYu.Admin.Service.Service
             var parentMenu = _systemMenuRepository.FirstOrDefault(x => x.Id == entity.ParentId);
             if (parentMenu != null)
                 entity.ParentName = parentMenu.MenuName;
+            else if (entity.ParentId == -1)
+                entity.ParentName = "顶级";
 
             if (!entity.MenuUrl.IsNullOrWhiteSpace())
             {

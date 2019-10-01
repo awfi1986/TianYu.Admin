@@ -353,6 +353,7 @@
     <Content Include="Views\SystemDictionary\Add.cshtml" />
     <Content Include="Views\SystemDictionary\Edit.cshtml" />
     <None Include="Views\SystemDictionary\Index.cshtml" />
+    <Content Include="Views\SystemMenu\IconList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TianYu.Admin.Domain\TianYu.Admin.Domain.csproj">

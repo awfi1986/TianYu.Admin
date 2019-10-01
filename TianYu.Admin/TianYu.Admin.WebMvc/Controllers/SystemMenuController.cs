@@ -48,7 +48,10 @@ namespace TianYu.Admin.WebMvc.Controllers
             var res = _systemMenuService.QueryDetail(requestModel);
             return View(res.BusinessData);
         }
-
+        public ActionResult IconList()
+        {
+            return View();
+        }
 
         public ActionResult Query(QuerySystemMenuRequestModel requestModel)
         {

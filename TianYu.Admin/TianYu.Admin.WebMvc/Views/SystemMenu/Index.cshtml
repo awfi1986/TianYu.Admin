@@ -188,7 +188,7 @@
             //添加菜单
             var add = function (data) {
 
-                var url = "@Url.Action("Add")?pId=-1&pCode=&pLevel=0&pName=一级";
+                var url = "@Url.Action("Add")?pId=-1&pCode=&pLevel=0&pName=顶级";
                 if (data != null) {
                     url = "@Url.Action("Add")?pId=" + data.Id + "&pCode=" + data.MenuCode + "&pLevel=" + data.Level + "&pName=" + data.MenuName;
                 }
