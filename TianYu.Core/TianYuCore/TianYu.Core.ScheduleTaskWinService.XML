@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TianYu.Core.ScheduleTaskWinService</name>
+    </assembly>
+    <members>
+        <member name="M:TianYu.Core.ScheduleTaskWinService.Code.DataCenterHelper.GetScheduleTasks(System.Int32)">
+            <summary>
+            获取定时任务配置
+            </summary>
+            <param name="status">0=禁用，1=启用</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.ScheduleTaskWinService.Code.DataCenterHelper.ToScheduleTaskConfigModel(System.Data.DataRow)">
+            <summary>
+            数据行转化为实体
+            </summary>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.ScheduleTaskWinService.Code.DataCenterHelper.UpdateRunStatus(TianYu.Core.ScheduleTaskWinService.Code.TaskRunOptions,System.Int32)">
+            <summary>
+            更新运行状态
+            </summary>
+            <param name="runStatus"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel">
+            <summary>
+            定时任务配置
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel.Id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel.TaskName">
+            <summary>
+            任务名称
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel.ApiUrl">
+            <summary>
+            接口地址
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel.Parameters">
+            <summary>
+            请求参数
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel.Method">
+            <summary>
+            请求谓词
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel.ExecuteType">
+            <summary>
+            执行类型
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel.ExceptionNumber">
+            <summary>
+            异常重试次数（重试间隔计算方式：（执行次数-1）*默认间隔时间）
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel.DiffSeconds">
+            <summary>
+            间隔时间
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel.RunStatus">
+            <summary>
+            运行状态
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel.Status">
+            <summary>
+            任务状态
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel.LastRunTime">
+            <summary>
+            最后运行时间
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.ScheduleTaskWinService.Code.TaskRunOptions">
+            <summary>
+            任务运行状态
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.ScheduleTaskWinService.Code.TaskRunOptions.WaitRun">
+            <summary>
+            待运行
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.ScheduleTaskWinService.Code.TaskRunOptions.Runing">
+            <summary>
+            运行中
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.ScheduleTaskWinService.Code.TaskRunOptions.WaitRuning">
+            <summary>
+            等待运行
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.ScheduleTaskWinService.Code.TaskRunOptions.ExcetionEnd">
+            <summary>
+            异常结束
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.ScheduleTaskWinService.Code.TaskRunOptions.Complete">
+            <summary>
+            任务完成
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.ScheduleTaskWinService.Code.TaskThreadSettings">
+            <summary>
+            运行任务线程关系
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.TaskThreadSettings.ThreadName">
+            <summary>
+            运行线程名
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.TaskThreadSettings.ThreadId">
+            <summary>
+            运行线程ID
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.TaskThreadSettings.TaskId">
+            <summary>
+            运行任务id
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.TaskThreadSettings.RunTread">
+            <summary>
+            运行线程
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.TaskThreadSettings.TaskModel">
+            <summary>
+            任务对象
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.TaskWorker.TaskList">
+            <summary>
+            定时任务配置信息
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.ScheduleTaskWinService.Code.TaskWorker.ThreadList">
+            <summary>
+            定时任务线程配置信息
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.ScheduleTaskWinService.Code.TaskWorker.Init">
+            <summary>
+            初始化任务
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.ScheduleTaskWinService.Code.TaskWorker.RunFactory(TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel)">
+            <summary>
+            任务处理工厂
+            </summary>
+            <param name="taskModel"></param>
+        </member>
+        <member name="M:TianYu.Core.ScheduleTaskWinService.Code.TaskWorker.InitWorkerThread(TianYu.Core.ScheduleTaskWinService.Code.ScheduleTaskConfigModel)">
+            <summary>
+            初始化执行任务线程
+            </summary>
+            <param name="task">执行任务接口</param>
+            <param name="taskModel">任务配置</param>
+        </member>
+        <member name="M:TianYu.Core.ScheduleTaskWinService.Code.TaskWorker.Run">
+            <summary>
+            运行任务
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.ScheduleTaskWinService.Code.TaskWorker.Stop">
+            <summary>
+            停止任务
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.ScheduleTaskWinService.ProjectInstaller.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.ScheduleTaskWinService.ProjectInstaller.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TianYu.Core.ScheduleTaskWinService.ProjectInstaller.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.ScheduleTaskWinService.ScheduleService.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.ScheduleTaskWinService.ScheduleService.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TianYu.Core.ScheduleTaskWinService.ScheduleService.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.ScheduleTaskWinService.Program.Main">
+            <summary>
+            应用程序的主入口点。
+            </summary>
+        </member>
+    </members>
+</doc>

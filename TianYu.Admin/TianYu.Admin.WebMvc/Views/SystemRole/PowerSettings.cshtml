@@ -114,7 +114,7 @@
             form.on("checkbox(cbo)", function () {
                 var code = parseInt($(this).data('code'));
                 checkedBox(code, $(this).is(":checked"));
-                form.render();
+                form.render(); 
             });
              
             form.on('submit(Save)', function (data) {
@@ -135,7 +135,7 @@
                         checkArry[i] = obj;
                     }
                 }
-                 
+
                 $.ajax({
                     url: "SaveRolePowers",
                     type: "post",

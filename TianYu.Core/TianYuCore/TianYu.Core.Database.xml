@@ -1,0 +1,532 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TianYu.Core.Database</name>
+    </assembly>
+    <members>
+        <member name="T:TianYu.Core.Common.BaseEF.EFBaseRepository`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseEF.EFBaseRepository`1.UnitOfWork">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.#ctor(TianYu.Core.Common.UnitOfWork.IEFUnitOfWork)">
+            <summary>
+            
+            </summary>
+            <param name="unitOfWork"></param>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseEF.EFBaseRepository`1.TianYu#Core#Common#BaseEF#IEFBaseRepository{TEntity}#Entities">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.GetByKey(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Find(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="express"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Insert(`0)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Insert(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Delete(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Delete(`0)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Delete(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="express"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Update(`0,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <param name="fields"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Update(System.Collections.Generic.IEnumerable{`0},System.String[])">
+            <summary>
+            更新实体记录
+            </summary>
+            <param name="entity"> 实体对象集合 </param>
+            <param name="fields"> 修改字段名集合</param>
+            <returns> 操作影响的行数 </returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.SaveChanges">
+            <summary>
+            保存修改
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.SaveChangesAsync">
+            <summary>
+            异步保存修改
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Set">
+            <summary>
+            获取当前DbSet
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Find(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},TianYu.Core.Common.BaseEF.IOrderByBuilder{`0}[])">
+            <summary>
+            根据过滤条件，获取记录
+            </summary>
+            <param name="whereLambda">过滤条件</param>
+            <param name="orderLambda">排序条件</param>
+            <returns>IQueryable查询对象</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.FirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据过滤条件，获取单个实体
+            </summary>
+            <param name="whereLambda">过滤条件</param>
+            <returns>IQueryable查询对象</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.FirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},TianYu.Core.Common.BaseEF.IOrderByBuilder{`0}[])">
+            <summary>
+            根据过滤条件，获取单个实体
+            </summary>
+            <param name="whereLambda">过滤条件</param>
+            <param name="orderLambda">排序条件</param>
+            <returns>实体</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Any(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据过滤条件，判断是否存在数据
+            </summary>
+            <param name="whereLambda">过滤条件</param>
+            <returns>IQueryable查询对象</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据过滤条件，获取数量
+            </summary>
+            <param name="whereLambda">过滤条件</param>
+            <returns>IQueryable查询对象</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.BatchUpdate(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,`0}})">
+            <summary>
+            批量更新数据，实现按需要只更新部分更新
+            <para>如：Update(u =>u.Id==1,u =>new User{Name="ok"});</para>
+            </summary>
+            <param name="whereLambda">条件表达式：u =>u.Id==1</param>
+            <param name="updateLambda">更新表达式：u =>new User{Name="ok"}</param>
+            <returns>是否添加成功：true是，false否</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.BatchDelete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            批量删除数据
+            </summary>
+            <param name="whereLambda"></param>
+            <returns>是否添加成功：true是，false否</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Find(System.Int32@,System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},TianYu.Core.Common.BaseEF.IOrderByBuilder{`0}[])">
+            <summary>
+            获取分页数据
+            </summary>
+            <param name="totalCount"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize">页数大小</param>
+            <param name="whereLambda"></param>
+            <param name="orderLambda">排序方式：new OrderByBuilder TEntity string (a => a.UserName[,true])，true=倒序，默认false正序</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.Find``1(System.Int32@,System.Int32,System.Int32,System.Linq.IQueryable{``0})">
+            <summary>
+            获取分页数据
+            </summary>
+            <param name="totalCount"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize">页数大小</param>
+            <param name="query">linq表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.SqlQuery``1(System.String,System.Object[])">
+            <summary>
+            执行SQL返回相应实体类集合数据
+            </summary>
+            <param name="SqlCommandText">SQL语句</param>
+            <param name="paramValues">参数</param>
+            <returns>实体类集合数据</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.SqlQuery(System.String,System.Object[])">
+            <summary>
+            执行SQL返回相应实体类集合数据
+            </summary>
+            <param name="SqlCommandText">SQL语句</param>
+            <param name="paramValues">参数</param>
+            <returns>实体类集合数据</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.SqlExecute(System.String,System.Object[])">
+            <summary>
+            执行SQL返回影响行数
+            </summary>
+            <param name="SqlCommandText">SQL语句</param>
+            <param name="paramValues">参数</param>
+            <returns>实体类集合数据</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.SqlQueryToDataSet(System.String,System.Object[])">
+            <summary>
+            执行SQL返回DataSet
+            </summary>
+            <param name="SqlCommandText">SQL语句</param>
+            <param name="paramValues">SQL参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.EFBaseRepository`1.BulkInsertCopyAll(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            使用SqlBulkCopy批量拷贝数据（一般使用在大量数据写入，例如：一次写入1000条）
+            </summary>
+            <param name="entitys"></param>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseEF.EFUnitOfWork.context">
+            <summary>
+            通过工作单元向外暴露的EF上下文对象
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseEF.IEFBaseRepository`1">
+            <summary>
+            仓储接口，定义公共的泛型GRUD
+            </summary>
+            <typeparam name="TEntity">泛型聚合根，因为在DDD里面仓储只能对聚合根做操作</typeparam>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Entities">
+            <summary>
+            获取 当前实体的查询数据集
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Find(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据lamada表达式查询集合
+            </summary>
+            <param name="express">lamada表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Insert(`0)">
+            <summary>
+            插入实体记录
+            </summary>
+            <param name="entity">实体对象</param>
+            <returns>返回影响行数</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Insert(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+                批量插入实体记录集合
+            </summary>
+            <param name="entities"> 实体记录集合 </param>
+            <returns> 操作影响的行数 </returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Delete(System.Object)">
+            <summary>
+                删除指定编号的记录
+            </summary>
+            <param name="id"> 实体记录编号 </param>
+            <returns> 操作影响的行数 </returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Delete(`0)">
+            <summary>
+                删除实体记录
+            </summary>
+            <param name="entity"> 实体对象 </param>
+            <returns> 操作影响的行数 </returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Delete(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+                删除实体记录集合
+            </summary>
+            <param name="entities"> 实体记录集合 </param>
+            <returns> 操作影响的行数 </returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+                根据lamada表达式删除对象
+            </summary>
+            <param name="selector"> lamada表达式 </param>
+            <returns> 操作影响的行数 </returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Update(`0,System.String[])">
+            <summary>
+                更新实体记录
+            </summary>
+            <param name="entity"> 实体对象 </param>
+            <param name="fields"> 修改字段名集合</param>
+            <returns> 操作影响的行数 </returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Update(System.Collections.Generic.IEnumerable{`0},System.String[])">
+            <summary>
+                更新实体记录
+            </summary>
+            <param name="entity"> 实体对象集合 </param>
+            <param name="fields"> 修改字段名集合</param>
+            <returns> 操作影响的行数 </returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.GetByKey(System.Object)">
+            <summary>
+                查找指定主键的实体记录
+            </summary>
+            <param name="key"> 指定主键 </param>
+            <returns> 符合编号的记录，不存在返回null </returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.SaveChanges">
+            <summary>
+            保存修改
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.SaveChangesAsync">
+            <summary>
+            异步保存修改
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Find(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},TianYu.Core.Common.BaseEF.IOrderByBuilder{`0}[])">
+            <summary>
+            根据过滤条件，获取记录
+            </summary>
+            <param name="whereLambda">过滤条件</param>
+            <param name="orderLambda">排序条件</param>
+            <returns>IQueryable查询对象</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.FirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据过滤条件，获取单个实体
+            </summary>
+            <param name="whereLambda">过滤条件</param>
+            <returns>实体</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.FirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},TianYu.Core.Common.BaseEF.IOrderByBuilder{`0}[])">
+            <summary>
+            根据过滤条件，获取单个实体
+            </summary>
+            <param name="whereLambda">过滤条件</param>
+            <param name="orderLambda">排序条件</param>
+            <returns>实体</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Any(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据过滤条件，判断是否存在数据
+            </summary>
+            <param name="whereLambda">过滤条件</param>
+            <returns>实体</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据过滤条件，获取数量
+            </summary>
+            <param name="whereLambda">过滤条件</param>
+            <returns>实体</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.BatchUpdate(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,`0}})">
+            <summary>
+            批量更新数据，实现按需要只更新部分更新
+            <para>如：Update(u =>u.Id==1,u =>new User{Name="ok"});</para>
+            </summary>
+            <param name="whereLambda">条件表达式：u =>u.Id==1</param>
+            <param name="updateLambda">更新表达式：u =>new User{Name="ok"}</param>
+            <returns>是否添加成功：true是，false否</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.BatchDelete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            批量删除数据
+            </summary>
+            <param name="whereLambda"></param>
+            <returns>是否添加成功：true是，false否</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Find(System.Int32@,System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},TianYu.Core.Common.BaseEF.IOrderByBuilder{`0}[])">
+            <summary>
+            获取分页数据
+            </summary>
+            <param name="totalCount"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize">页数大小</param>
+            <param name="whereLambda"></param>
+            <param name="orderLambda">排序方式：new OrderByBuilder(a => a.UserName[,true])，true=倒序，默认false正序</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.Find``1(System.Int32@,System.Int32,System.Int32,System.Linq.IQueryable{``0})">
+            <summary>
+            获取分页数据
+            </summary>
+            <param name="totalCount"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize">页数大小</param>
+            <param name="query">linq表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.SqlQuery``1(System.String,System.Object[])">
+            <summary>
+            执行SQL返回相应实体类集合数据
+            </summary>
+            <param name="SqlCommandText">SQL语句</param>
+            <param name="paramValues">参数</param>
+            <returns>实体类集合数据</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.SqlQuery(System.String,System.Object[])">
+            <summary>
+            执行SQL返回相应实体类集合数据
+            </summary>
+            <param name="SqlCommandText">SQL语句</param>
+            <param name="paramValues">参数</param>
+            <returns>实体类集合数据</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.SqlExecute(System.String,System.Object[])">
+            <summary>
+            执行SQL返回影响行数
+            </summary>
+            <param name="SqlCommandText">SQL语句</param>
+            <param name="paramValues">参数</param>
+            <returns>实体类集合数据</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.SqlQueryToDataSet(System.String,System.Object[])">
+            <summary>
+            执行SQL返回DataSet
+            </summary>
+            <param name="SqlCommandText">SQL语句</param>
+            <param name="paramValues">SQL参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.IEFBaseRepository`1.BulkInsertCopyAll(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            使用SqlBulkCopy批量拷贝数据（一般使用在大量数据写入，例如：一次写入1000条）
+            </summary>
+            <param name="entitys"></param>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseEF.OrderByExpression">
+            <summary>
+            排序扩展
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.OrderByExpression.OrderBy``1(System.Linq.IQueryable{``0},TianYu.Core.Common.BaseEF.IOrderByBuilder{``0}[])">
+            <summary>
+            多字段排序扩展方法
+            </summary>
+            <param name="query"></param>
+            <param name="orderByExpressions">高级排序参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseEF.PredicateBuilder">
+            <summary>
+            扩展高级动态拼接Lambda
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.PredicateBuilder.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            自定义扩展并且关系拼接Lambda
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="expr1"></param>
+            <param name="expr2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BaseEF.PredicateBuilder.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            自定义扩展或者关系拼接Lambda
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="expr1"></param>
+            <param name="expr2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.UnitOfWork.BaseAggregateRoot">
+            <summary>
+            聚合根的抽象实现类，定义聚合根的公共属性和行为
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.UnitOfWork.IBaseAggregateRoot">
+            <summary>
+            聚合根接口，用作泛型约束，约束领域实体为聚合根，表示实现了该接口的为聚合根实例，由于聚合根也是领域实体的一种，所以也要实现IEntity接口
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.UnitOfWork.IEFUnitOfWork">
+            <summary>
+            表示EF的工作单元接口，因为DbContext是EF的对象
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.UnitOfWork.IEntity">
+            <summary>
+            用作约束，表示继承次接口的为领域对象
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.UnitOfWork.IUnitOfWork">
+            <summary>
+            工作单元基类接口
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.UnitOfWork.IUnitOfWorkRepositoryContext">
+            <summary>
+            仓储上下文工作单元接口，使用这个的一般情况是多个仓储之间存在事务性的操作，用于标记聚合根的增删改状态
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.UnitOfWork.IUnitOfWorkRepositoryContext.RegisterNew``1(``0)">
+            <summary>
+            将集合根的状态标记为新建,但EF上下文未提交
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="obj"></param>
+        </member>
+        <member name="M:TianYu.Core.Common.UnitOfWork.IUnitOfWorkRepositoryContext.RegisterModified``1(``0,System.String[])">
+            <summary>
+            将聚合根的状态标记为修改，但EF上下文此时并未提交
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="obj"></param>
+            <param name="fields"></param>
+        </member>
+        <member name="M:TianYu.Core.Common.UnitOfWork.IUnitOfWorkRepositoryContext.RegisterDeleted``1(``0)">
+            <summary>
+            将聚合根的状态标记为删除，但EF上下文此时并未提交
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="obj"></param>
+        </member>
+    </members>
+</doc>

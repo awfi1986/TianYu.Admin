@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TianYu.Core.Log</name>
+    </assembly>
+    <members>
+        <member name="T:TianYu.Core.Log.FilterAttribute.IgnoreLogAttribute">
+            <summary>
+            忽略日志记录
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Log.ILog.LogError(System.String,System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="source">來源</param>
+            <param name="message">消息</param>
+            <param name="args">如果是用Log4Net的話不用傳</param>
+        </member>
+        <member name="M:TianYu.Core.Log.ILog.LogDebug(System.String,System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="source">來源</param>
+            <param name="message">消息</param>
+            <param name="args">如果是用Log4Net的話不用傳</param>
+        </member>
+        <member name="M:TianYu.Core.Log.ILog.LogInfo(System.String,System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="source">來源</param>
+            <param name="message">消息</param>
+            <param name="args">如果是用Log4Net的話不用傳</param>
+        </member>
+        <member name="M:TianYu.Core.Log.ILog.LogWarn(System.String,System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="source">來源</param>
+            <param name="message">消息</param>
+            <param name="args">如果是用Log4Net的話不用傳</param>
+        </member>
+        <member name="T:TianYu.Core.Log.LogHelper">
+            <summary>
+            日志帮助类
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Log.LogHelper.LogError(System.String,System.String,System.String[])">
+            <summary>
+            错误日志
+            </summary>
+            <param name="source"></param>
+            <param name="message"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:TianYu.Core.Log.LogHelper.LogDebug(System.String,System.String,System.String[])">
+            <summary>
+            调试日志
+            </summary>
+            <param name="source"></param>
+            <param name="message"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:TianYu.Core.Log.LogHelper.LogInfo(System.String,System.String,System.String[])">
+            <summary>
+            信息日志
+            </summary>
+            <param name="source"></param>
+            <param name="message"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:TianYu.Core.Log.LogHelper.LogWarn(System.String,System.String,System.String[])">
+            <summary>
+            警告日志
+            </summary>
+            <param name="source"></param>
+            <param name="message"></param>
+            <param name="args"></param>
+        </member>
+    </members>
+</doc>

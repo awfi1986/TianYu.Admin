@@ -1,0 +1,488 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TianYu.Core.Queue</name>
+    </assembly>
+    <members>
+        <member name="M:TianYu.Core.Queue.IConsumer.Subscribe``1(System.Action{``0})">
+            <summary>
+            接收消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="handler">消费处理</param>
+        </member>
+        <member name="M:TianYu.Core.Queue.IConsumer.Subscribe``1(System.String,System.Boolean,System.Action{``0},System.Boolean)">
+            <summary>
+            接收消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queue">队列名称</param>
+            <param name="isProperties"></param>
+            <param name="handler">消费处理</param>
+            <param name="isDeadLetter"></param>
+        </member>
+        <member name="M:TianYu.Core.Queue.IConsumer.Subscribe(System.String,System.String,System.String,System.Boolean,System.Action{System.String,TianYu.Core.Queue.RabbitMQ.MqDirectKey},System.Boolean)">
+            <summary>
+            接收消息
+            </summary>
+            <param name="exchange">交换机</param>
+            <param name="queue">队列名称</param>
+            <param name="routingKey">路由</param>
+            <param name="isProperties">是否持久化</param>
+            <param name="handler">消费处理</param>
+            <param name="isDeadLetter"></param>
+        </member>
+        <member name="M:TianYu.Core.Queue.IConsumer.Pull``1(System.Action{``0})">
+            <summary>
+            获取消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="handler">消费处理</param>
+        </member>
+        <member name="M:TianYu.Core.Queue.IConsumer.Pull(System.String,System.String,System.String,System.Action{System.String,TianYu.Core.Queue.RabbitMQ.MqDirectKey})">
+            <summary>
+            获取消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="exchange"></param>
+            <param name="queue"></param>
+            <param name="routingKey"></param>
+            <param name="handler">消费处理</param>
+        </member>
+        <member name="M:TianYu.Core.Queue.IProducer.Publish``1(``0)">
+            <summary>
+            发布消息
+            </summary>
+            <param name="command">指令</param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Queue.MqModel.IMqModel">
+            <summary>
+            MQ消息实体约束接口
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Queue.MqModel.OrderCompleteMqModel">
+            <summary>
+            订单完成成功MQ消息
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderCompleteMqModel.OrderCode">
+            <summary>
+            订单号
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderCompleteMqModel.TranNo">
+            <summary>
+            第三方单号
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderCompleteMqModel.PayStatus">
+            <summary>
+            支付状态
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderCompleteMqModel.ShopId">
+            <summary>
+            商家id
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderCompleteMqModel.StoreId">
+            <summary>
+            店铺id
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderCompleteMqModel.UserId">
+            <summary>
+            消费者id
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderCompleteMqModel.IsVisitor">
+            <summary>
+            是否游客
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderCompleteMqModel.MqTime">
+            <summary>
+            MQ消息创建时间
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Queue.MqModel.OrderSuccessMqModel">
+            <summary>
+            订单支付成功MQ消息
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderSuccessMqModel.OrderCode">
+            <summary>
+            订单号
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderSuccessMqModel.TranNo">
+            <summary>
+            第三方单号
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderSuccessMqModel.PayStatus">
+            <summary>
+            支付状态
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderSuccessMqModel.ShopId">
+            <summary>
+            商家id
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderSuccessMqModel.StoreId">
+            <summary>
+            店铺id
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderSuccessMqModel.UserId">
+            <summary>
+            消费者id
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderSuccessMqModel.IsVisitor">
+            <summary>
+            是否游客
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.OrderSuccessMqModel.MqTime">
+            <summary>
+            MQ消息创建时间
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Queue.MqModel.ShopStoreSummaryMqModel">
+            <summary>
+            商家店铺统计MQ消息
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.ShopStoreSummaryMqModel.ShopId">
+            <summary>
+            商家Id
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.ShopStoreSummaryMqModel.StoreId">
+            <summary>
+            店铺Id
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.ShopStoreSummaryMqModel.TotalMoney">
+            <summary>
+            总余额
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.ShopStoreSummaryMqModel.AvailableMoney">
+            <summary>
+            可用余额
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.ShopStoreSummaryMqModel.FreezeBalance">
+            <summary>
+            锁定金额
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.ShopStoreSummaryMqModel.WithdrawalMoney">
+            <summary>
+            提现金额
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.ShopStoreSummaryMqModel.SweepQrIncome">
+            <summary>
+            扫码收入
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.ShopStoreSummaryMqModel.ShareProfitIncome">
+            <summary>
+            分润收入
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.ShopStoreSummaryMqModel.AcsBalance">
+            <summary>
+            中金金额
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.ShopStoreSummaryMqModel.OnlineShopIncome">
+            <summary>
+            线上商城收入
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.MqModel.ShopStoreSummaryMqModel.LockFansCount">
+            <summary>
+            锁粉数量
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Queue.QueueFactory`1">
+            <summary>
+            MQ工厂
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:TianYu.Core.Queue.QueueFactory`1.Create">
+            <summary>
+            创建MQ实例
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitBase.InitRabbitServerConfig">
+            <summary>
+            初始化配置
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitBase.InitConnectionFactory">
+            <summary>
+            初始化MQ链接创建工厂
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitBase.GetServerConfigItems(System.String)">
+            <summary>
+            解析MQ配置字符串
+            </summary>
+            <param name="serverConfig"></param>
+        </member>
+        <member name="P:TianYu.Core.Queue.RabbitMQ.MqDirectKey.ExchangeName">
+            <summary>
+            交换机名称
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.RabbitMQ.MqDirectKey.QueueName">
+            <summary>
+            队列名称
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.RabbitMQ.MqDirectKey.RoutingKey">
+            <summary>
+            路由key
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Queue.RabbitMQ.RabbitMqMessageAttribute">
+            <summary>
+            自定义的RabbitMq队列信息实体特性
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqMessageAttribute.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="queueName"></param>
+        </member>
+        <member name="P:TianYu.Core.Queue.RabbitMQ.RabbitMqMessageAttribute.ExchangeName">
+            <summary>
+            交换机名称
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.RabbitMQ.RabbitMqMessageAttribute.QueueName">
+            <summary>
+            队列名称
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.RabbitMQ.RabbitMqMessageAttribute.RoutingKey">
+            <summary>
+            路由key
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.RabbitMQ.RabbitMqMessageAttribute.IsProperties">
+            <summary>
+            是否持久化
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Queue.RabbitMQ.RabbitMqServerItem">
+            <summary>
+            MQ服务器配置
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.RabbitMQ.RabbitMqServerItem.HostName">
+            <summary>
+            RabbitMQ服务器名称或IP地址
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.RabbitMQ.RabbitMqServerItem.UserName">
+            <summary>
+            RabbitMQ服务用户名
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.RabbitMQ.RabbitMqServerItem.Password">
+            <summary>
+            RabbitMQ服务登录密码
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.RabbitMQ.RabbitMqServerItem.HeartBeat">
+            <summary>
+            心跳时间
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.RabbitMQ.RabbitMqServerItem.AutomaticRecoveryEnabled">
+            <summary>
+            自动重连
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Queue.RabbitMQ.RabbitMqServerItem.NetworkRecoveryInterval">
+            <summary>
+            重连时间
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Queue.RabbitMQ.DeadLetterQueue">
+            <summary>
+            死信队列实体
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Queue.RabbitMQ.ExchangeType">
+            <summary>
+            交换器类型
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Queue.RabbitMQ.RabbitMqService">
+            <summary>
+            RabbitMQ.Client原生封装类
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.ExchangeDeclare(RabbitMQ.Client.IModel,System.String,System.String,System.Boolean,System.Boolean,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            交换器声明
+            </summary>
+            <param name="iModel"></param>
+            <param name="exchange">交换器</param>
+            <param name="type">交换器类型：
+            1、Direct Exchange – 处理路由键。需要将一个队列绑定到交换机上，要求该消息与一个特定的路由键完全
+            匹配。这是一个完整的匹配。如果一个队列绑定到该交换机上要求路由键 “dog”，则只有被标记为“dog”的
+            消息才被转发，不会转发dog.puppy，也不会转发dog.guard，只会转发dog
+            2、Fanout Exchange – 不处理路由键。你只需要简单的将队列绑定到交换机上。一个发送到交换机的消息都
+            会被转发到与该交换机绑定的所有队列上。很像子网广播，每台子网内的主机都获得了一份复制的消息。Fanout
+            交换机转发消息是最快的。
+            3、Topic Exchange – 将路由键和某模式进行匹配。此时队列需要绑定要一个模式上。符号“#”匹配一个或多
+            个词，符号“*”匹配不多不少一个词。因此“audit.#”能够匹配到“audit.irs.corporate”，但是“audit.*”
+            只会匹配到“audit.irs”。</param>
+            <param name="durable">持久化</param>
+            <param name="autoDelete">自动删除</param>
+            <param name="arguments">参数</param>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.QueueDeclare(RabbitMQ.Client.IModel,System.String,System.Boolean,System.Boolean,System.Boolean,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            队列声明
+            </summary>
+            <param name="channel"></param>
+            <param name="queue">队列</param>
+            <param name="durable">持久化</param>
+            <param name="exclusive">排他队列，如果一个队列被声明为排他队列，该队列仅对首次声明它的连接可见，
+            并在连接断开时自动删除。这里需要注意三点：其一，排他队列是基于连接可见的，同一连接的不同信道是可
+            以同时访问同一个连接创建的排他队列的。其二，“首次”，如果一个连接已经声明了一个排他队列，其他连
+            接是不允许建立同名的排他队列的，这个与普通队列不同。其三，即使该队列是持久化的，一旦连接关闭或者
+            客户端退出，该排他队列都会被自动删除的。这种队列适用于只限于一个客户端发送读取消息的应用场景。</param>
+            <param name="autoDelete">自动删除</param>
+            <param name="arguments">参数</param>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.GetModel(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            获取Model
+            </summary>
+            <param name="exchange">交换机名称</param>
+            <param name="queue">队列名称</param>
+            <param name="routingKey"></param>
+            <param name="isProperties">是否持久化</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.GetModel(System.String,System.Boolean)">
+            <summary>
+            获取Model
+            </summary>
+            <param name="queue">队列名称</param>
+            <param name="isProperties"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.Publish``1(``0)">
+            <summary>
+            发布消息
+            </summary>
+            <param name="command">指令</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.Publish(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            发布消息
+            </summary>
+            <param name="routingKey">路由键</param>
+            <param name="body">队列信息</param>
+            <param name="exchange">交换机名称</param>
+            <param name="queue">队列名</param>
+            <param name="isProperties">是否持久化</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.PublishToDead``1(System.String,System.String,System.Exception)">
+            <summary>
+            发布消息到死信队列
+            </summary>
+            <param name="body">死信信息</param>
+            <param name="ex">异常</param>
+            <param name="queue">死信队列名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.Subscribe``1(System.Action{``0})">
+            <summary>
+            接收消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="handler">消费处理</param>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.Subscribe``1(System.String,System.Boolean,System.Action{``0},System.Boolean)">
+            <summary>
+            接收消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queue">队列名称</param>
+            <param name="isProperties"></param>
+            <param name="handler">消费处理</param>
+            <param name="isDeadLetter"></param>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.MergeRoutingInfo(System.String,System.String,System.String)">
+            <summary>
+            将MQ消息交换组成key
+            </summary>
+            <param name="exchange"></param>
+            <param name="queueName"></param>
+            <param name="routingKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.Subscribe(System.String,System.String,System.String,System.Boolean,System.Action{System.String,TianYu.Core.Queue.RabbitMQ.MqDirectKey},System.Boolean)">
+            <summary>
+            接收消息
+            </summary>
+            <param name="exchange">交换机</param>
+            <param name="queue">队列名称</param>
+            <param name="routingKey">路由</param>
+            <param name="isProperties">是否持久化</param>
+            <param name="handler">消费处理</param>
+            <param name="isDeadLetter"></param>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.Pull``1(System.Action{``0})">
+            <summary>
+            获取消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="handler">消费处理</param>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.Pull``1(System.String,System.String,System.String,System.Action{``0})">
+            <summary>
+            获取消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="exchange"></param>
+            <param name="queue"></param>
+            <param name="routingKey"></param>
+            <param name="handler">消费处理</param>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.Pull(System.String,System.String,System.String,System.Action{System.String,TianYu.Core.Queue.RabbitMQ.MqDirectKey})">
+            <summary>
+            获取消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="exchange"></param>
+            <param name="queue"></param>
+            <param name="routingKey"></param>
+            <param name="handler">消费处理</param>
+        </member>
+        <member name="M:TianYu.Core.Queue.RabbitMQ.RabbitMqService.Dispose">
+            <summary>
+            执行与释放或重置非托管资源关联的应用程序定义的任务。
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,2421 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TianYu.Core.Common</name>
+    </assembly>
+    <members>
+        <member name="T:TianYu.Core.Common.BaseViewModel.SystemLoginUserInfo">
+            <summary>
+            系统登录用户信息
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.SystemLoginUserInfo.Id">
+            <summary>
+             Id
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.SystemLoginUserInfo.LoginName">
+            <summary>
+             登录名称
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.SystemLoginUserInfo.Mobile">
+            <summary>
+             手机
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.SystemLoginUserInfo.Tel">
+            <summary>
+             电话
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.SystemLoginUserInfo.Eamil">
+            <summary>
+             邮箱
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.SystemLoginUserInfo.NickName">
+            <summary>
+             呢称
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.SystemLoginUserInfo.Status">
+            <summary>
+             状态：0有效，1禁用
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.SystemLoginUserInfo.SectionId">
+            <summary>
+             所属部门
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.ApiBaseRequestModel">
+            <summary>
+            接口请求参数基类
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.ApiBaseRequestModel.Timestamp">
+            <summary>
+            请求时间戳
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.ApiBaseRequestModel.Noncestr">
+            <summary>
+            请求随机字符串
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.ApiBaseRequestModel.Signature">
+            <summary>
+            请求签名
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.ApiBasePageRequestModel">
+            <summary>
+            分页基本请求参数模型
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.ApiBasePageRequestModel.PageIndex">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.ApiBasePageRequestModel.PageSize">
+            <summary>
+            页码大小
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.ApiBasePageKeywordRequestModel">
+            <summary>
+            分页关键字基本请求参数模型
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.ApiBasePageKeywordRequestModel.Keyword">
+            <summary>
+            搜索关键字
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.ApiBaseStringIdRequestModel">
+            <summary>
+            字符串Id基本请求参数模型
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.ApiBaseStringIdRequestModel.Id">
+            <summary>
+            字符串Id
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.ApiBaseIntIdRequestModel">
+            <summary>
+            整形Id基本请求参数模型
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.ApiBaseIntIdRequestModel.Id">
+            <summary>
+            整形Id
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.ApiAuthorizeRequestModel">
+            <summary>
+            Api授权请求参数实体
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.ApiAuthorizeRequestModel.AppId">
+            <summary>
+            应用号
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.ApiAuthorizeRequestModel.DeviceNo">
+            <summary>
+            请求设备号（设备唯一标识符uuid）
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.ApiAuthorizeRequestModel.ClientType">
+            <summary>
+            客户端类型(必须与AppId一致)
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.OutputBaseModel">
+            <summary>
+            输出数据基础视图对象
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.TaskBaseResponse">
+            <summary>
+            task任务响应视图
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.TaskBaseResponse.Status">
+            <summary>
+            HTTP 状态码（200 表示业务执行成功，其他为失败）
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.TaskBaseResponse.ErrorMessage">
+            <summary>
+            当发生错误时，表示错误消息。没有错误时，为NULL或""
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.FileUploadInputModel.ExtensionPath">
+            <summary>
+            扩展目录(不指定则按默认路径存储)
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.FileUploadViewModel">
+            <summary>
+            文件上传响应业务视图
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.FileUploadViewModel.UploadResult">
+            <summary>
+            文件上传处理结果
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.FileUploadItemViewModel">
+            <summary>
+            文件上传项
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.FileUploadItemViewModel.FileSize">
+            <summary>
+            文件大小：以字节为单位
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.FileUploadItemViewModel.SourceFileName">
+            <summary>
+            源文件名
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.FileUploadItemViewModel.ServerFilePath">
+            <summary>
+            服务器存储相对路径地址
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.FileUploadItemViewModel.FileUrl">
+            <summary>
+            网络访问路径
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.FileUploadItemViewModel.IsSuccess">
+            <summary>
+            处理是否成功
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.BaseResponse`1">
+            <summary>
+            Http请求消息响应对象
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.BaseResponse`1.Status">
+            <summary>
+            HTTP 状态码
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.BaseResponse`1.Data">
+            <summary>
+            数据内容
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.BaseResponse`1.ErrorMessage">
+            <summary>
+            当发生错误时，表示错误消息。没有错误时，为NULL或""
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.BaseResponse">
+            <summary>
+            Http请求消息响应对象
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.BusinessBaseViewModel`1">
+            <summary>
+            业务处理响应基础实体
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.BusinessBaseViewModel`1.Status">
+            <summary>
+            业务状态
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.BusinessBaseViewModel`1.BusinessData">
+            <summary>
+            业务数据
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.BusinessBaseViewModel`1.ErrorMessage">
+            <summary>
+            业务错误消息
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BaseViewModel.BusinessPagedBaseViewModel`1">
+            <summary>
+            业务处理响应基础实体
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:TianYu.Core.Common.BaseViewModel.BusinessPagedBaseViewModel`1.Total">
+            <summary>
+            数据总行数
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.ApplocationAuthorModel.AppId">
+            <summary>
+            AppId
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.ApplocationAuthorModel.AppSecret">
+            <summary>
+            App密钥
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.ApplocationAuthorModel.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.ApplocationAuthorModel.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.ApplocationAuthorModel.ClientType">
+            <summary>
+            客户端类型（商家ios，商家微信，商家小调程序……）
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.AuthorizeCode.AuthenticationDataHelper.RefreshCache(System.String)">
+            <summary>
+            刷新缓存
+            </summary>
+            <param name="token"></param>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.AuthorizeCode.AuthenticationDataHelper.GetApplocationAuthorModel(System.String)">
+            <summary>
+            获取授权配置对象
+            </summary>
+            <param name="appId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.FilterAttribute.AuthorizeCode.AuthenticationTicketDetailsModel">
+            <summary>
+            接口访问票据表
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.AuthenticationTicketDetailsModel.TicketId">
+            <summary>
+            票据编号
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.AuthenticationTicketDetailsModel.Ticket">
+            <summary>
+            票据
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.AuthenticationTicketDetailsModel.TicketAppID">
+            <summary>
+            授权公玥
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.AuthenticationTicketDetailsModel.TicketSecond">
+            <summary>
+            票据有效期
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.AuthenticationTicketDetailsModel.LastRefreshDate">
+            <summary>
+            票据刷新时间
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.AuthenticationTicketDetailsModel.DeviceNo">
+            <summary>
+            访问设备唯一编号
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.AuthenticationTicketDetailsModel.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.AuthenticationTicketDetailsModel.ClientType">
+            <summary>
+            客户端类型（android，ios，wechat，winservice）
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.AuthenticationTicketDetailsModel.AppSecret">
+            <summary>
+            App密钥
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.AuthorizeCode.LoginSessionDataHelper.GetSessionInfoModel(System.String)">
+            <summary>
+            从db中获取session
+            </summary>
+            <param name="sessionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.AuthorizeCode.LoginSessionDataHelper.SaveSessionInfo(TianYu.Core.Common.FilterAttribute.AuthorizeCode.LoginSessionInfoModel)">
+            <summary>
+            保存session，若存在则更新session
+            </summary>
+            <param name="model"></param>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.AuthorizeCode.LoginSessionDataHelper.Delete(System.String)">
+            <summary>
+            删除session
+            </summary>
+            <param name="sessinId"></param>
+        </member>
+        <member name="T:TianYu.Core.Common.FilterAttribute.AuthorizeCode.LoginSessionInfoModel">
+            <summary>
+            登录会话session信息
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.LoginSessionInfoModel.SessinId">
+            <summary>
+            SessinId
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.LoginSessionInfoModel.DeviceNo">
+            <summary>
+            设备号
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.LoginSessionInfoModel.LoginTime">
+            <summary>
+            登录时间
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.LoginSessionInfoModel.LashRefresh">
+            <summary>
+            最后刷新时间
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.LoginSessionInfoModel.Expired">
+            <summary>
+            有效期（分钟）
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.FilterAttribute.AuthorizeCode.LoginSessionInfoModel.Status">
+            <summary>
+            状态（0=无效，1=有效）
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.FilterAttribute.Api.AuthorizeFilterAttribute">
+            <summary>
+            处理请求鉴权
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.Api.AuthorizeFilterAttribute.ValidateTicket(System.String,TianYu.Core.Common.FilterAttribute.AuthorizeCode.AuthenticationTicketDetailsModel@)">
+            <summary>
+            验证Token（并刷新）
+            </summary>
+            <param name="ticket"></param>
+            <param name="ticketModel">票据实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.Api.AuthorizeFilterAttribute.ValidateInnerService(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            验证内部接口访问权限
+            </summary>
+            <param name="actionContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.Api.AuthorizeFilterAttribute.SkipValidateAuthorize(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            跳过授权验证
+            </summary>
+            <param name="actionContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.FilterAttribute.Api.IgnoreAuthorizeAttribute">
+            <summary>
+            不验证请求鉴权
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.FilterAttribute.Api.IgnoreLoginAttribute">
+            <summary>
+            忽略登录验证特性
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.FilterAttribute.Api.IgnoreResultFormatAttribute">
+            <summary>
+            不格式化响应结果
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.FilterAttribute.Api.IgnoreSignatureAttribute">
+            <summary>
+            不验证请求参数签名
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.FilterAttribute.Api.InnerServiceAttribute">
+            <summary>
+            内部服务API接口，仅提供给在白名单中的IP服务器使用
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.FilterAttribute.Api.ValidateLoginAttribute">
+            <summary>
+            验证登录特性
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.Api.ValidateLoginAttribute.OnActionExecuting(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            重写执行之前方法
+            </summary>
+            <param name="actionContext"></param>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.Api.ValidateLoginAttribute.ValidateLogin(System.String,System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            验证登录
+            </summary>
+            <param name="sessionid">登录会话Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.Api.ValidateLoginAttribute.SkipValidateLogin(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            跳过登录验证
+            </summary>
+            <param name="actionContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.FilterAttribute.Api.ValidateSignatureAttribute">
+            <summary>
+            验证签名
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.Api.ValidateSignatureAttribute.OnActionExecuting(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+                在调用操作方法之前发生。
+            </summary>
+            <param name="actionContext">操作上下文。</param>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.Api.ValidateSignatureAttribute.ValidateSignature(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            验证签名
+            </summary>
+            <param name="ticket"></param>
+            <param name="dictionary"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.Api.ValidateSignatureAttribute.ValidateInnerService(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            验证内部接口访问权限
+            </summary>
+            <param name="actionContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.Api.ValidateSignatureAttribute.SkipValidateSignature(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            跳过签名验证
+            </summary>
+            <param name="actionContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.FilterAttribute.Mvc.MvcIgnoreLoginAttribute">
+            <summary>
+            忽略登录验证
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.FilterAttribute.Mvc.MvcIgnorePowerAttribute">
+            <summary>
+            忽略权限验证
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.FilterAttribute.Mvc.MvcPowerFilterAttribute.IsPowerAction(System.String,TianYu.Core.Common.BaseViewModel.SystemLoginUserInfo)">
+            <summary>
+            是否具备使用权限
+            </summary>
+            <param name="actionUrl">action地址</param>
+            <param name="userGroupView"></param>
+            <returns></returns>
+        </member>
+        <member name="F:TianYu.Core.Common.AccuracyType.JustGiveUp">
+            <summary>
+            只舍不入
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.AccuracyType.OnlyEnter">
+            <summary>
+            只入不舍
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.AccuracyType.Rounding">
+            <summary>
+            四舍五入
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.AuthClientType">
+            <summary>
+            授权客户端类型
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.AuthClientType.Android">
+            <summary>
+            安卓
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.AuthClientType.Ios">
+            <summary>
+            苹果
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.AuthClientType.Wechat">
+            <summary>
+            微信
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.AuthClientType.SamllApp">
+            <summary>
+            小程序
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.DefaultImageVlaueType">
+            <summary>
+            默认图片枚举类型
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.DefaultImageVlaueType.None">
+            <summary>
+            不使用默认图片
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.DefaultImageVlaueType.DefaultImage">
+            <summary>
+            使用默认图片（地址：Default/Icon/default_img.png）
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.DefaultImageVlaueType.VisitorHeadImg">
+            <summary>
+            游客头像默认图片（地址：Default/Icon/default_head.png）
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.DefaultImageVlaueType.GoodsImage">
+            <summary>
+            商品默认图片（地址：Default/Icon/default_img.png）
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.DefaultImageVlaueType.StoreImage">
+            <summary>
+            门店默认图片（地址：Default/Icon/default_shop.png）
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.YesOrNo">
+            <summary>
+            是与否
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.YesOrNo.Yes">
+            <summary>
+            是
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.YesOrNo.No">
+            <summary>
+            否
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.AutoMapperExt.MapTo``1(System.Object)">
+            <summary>
+             类型映射
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.AutoMapperExt.MapToList``1(System.Collections.IEnumerable)">
+            <summary>
+            集合列表类型映射
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.AutoMapperExt.MapToList``2(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            集合列表类型映射
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.AutoMapperExt.MapTo``2(``0,``1)">
+            <summary>
+            类型映射
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.AutoMapperExt.DataReaderMapTo``1(System.Data.IDataReader)">
+            <summary>
+            DataReader映射
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.AutoMapperExt.MapToDic(System.Object)">
+            <summary>
+             类型映射字段
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.ConfigHelper">
+            <summary>
+            配置文件帮助类
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.ConfigHelper.GetAppsettingValue(System.String,System.String)">
+            <summary>
+            获取配置文件AppSettings值
+            </summary>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="P:TianYu.Core.Common.ConfigHelper.SaveFilePath">
+            <summary>
+            保存文件目录名称（如：uploadFiles/），配置文件中键名请使用：SaveFilePath
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.CookieHelper">
+            <summary>
+             Cookie 操作帮助类
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.CookieHelper.AddCookie(System.String,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            添加cookie
+            </summary>
+            <param name="name">键</param>
+            <param name="value">值</param>
+            <param name="minutes">过期时间（默认30分钟）</param>
+            <param name="domain">cookie 根域</param>
+            <param name="path">cookie路径</param>
+        </member>
+        <member name="M:TianYu.Core.Common.CookieHelper.GetCookieValue(System.String,System.String)">
+            <summary>
+            获取cookie值
+            </summary>
+            <param name="name"></param>
+            <param name="defaultValue">默认值</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.CookieHelper.RemoveCookie(System.String)">
+            <summary>
+            清除cookie
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.CookieHelper.AppendCookieTime(System.String,System.Int32)">
+            <summary>
+            追加cookie时间
+            </summary>
+            <param name="name"></param>
+            <param name="hours">小时数</param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.OperationOptions">
+            <summary>
+            常用操作动作枚举
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.OperationOptions.Select">
+            <summary>
+            查询操作
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.OperationOptions.Add">
+            <summary>
+            添加操作
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.OperationOptions.Edit">
+            <summary>
+            编辑操作
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.OperationOptions.Detail">
+            <summary>
+            详情操作
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.OperationOptions.Del">
+            <summary>
+            删除操作
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.OperationOptions.BatchDel">
+            <summary>
+            批量删除操作
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.OperationOptions.Auditing">
+            <summary>
+            审核操作
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.DecimalExtension">
+            <summary>
+            数据精度转化
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.DecimalExtension.ToAccuracy(System.Decimal,TianYu.Core.Common.AccuracyType,System.Int32)">
+            <summary>
+            小数精度计算
+            </summary>
+            <param name="input"></param>
+            <param name="accuracyType"></param>
+            <param name="decimals"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.DecimalExtension.ToAccuracy(System.Nullable{System.Decimal},TianYu.Core.Common.AccuracyType,System.Int32)">
+            <summary>
+            小数精度计算
+            </summary>
+            <param name="input"></param>
+            <param name="accuracyType"></param>
+            <param name="decimals"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.EnumerableExtension.MyDistinct``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            自定义Distinct扩展方法
+            </summary>
+            <typeparam name="T">要去重的对象类</typeparam>
+            <typeparam name="C">自定义去重的字段类型</typeparam>
+            <param name="source">要去重的对象</param>
+            <param name="getfield">获取自定义去重字段的委托</param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.Compare`2">
+            <summary>
+            list去重扩展方法
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="C"></typeparam>
+        </member>
+        <member name="T:TianYu.Core.Common.HtmlExtensions">
+            <summary>
+            MVC-HTML扩展类
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.HtmlExtensions.RadioButtonListFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.Generic.IEnumerable{System.Web.Mvc.SelectListItem},System.Object,System.String)">
+            <summary>
+            Radio列表
+            </summary>
+            <param name="htmlHelper">辅助类</param>
+            <param name="selectList">集合</param>
+            <param name="expression">模型字段</param>
+            <param name="htmlAttributes">html标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HtmlExtensions.RadioButtonListFor``2(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.Generic.IEnumerable{System.Web.Mvc.SelectListItem},System.String)">
+            <summary>
+            Radio列表
+            </summary>
+            <param name="htmlHelper">辅助类</param>
+            <param name="expression">模型字段</param>
+            <param name="selectList">集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HtmlExtensions.RadioButtonList(System.Web.Mvc.HtmlHelper,System.String,System.Collections.Generic.IEnumerable{System.Web.Mvc.SelectListItem},System.Object,System.String)">
+            <summary>
+            Radio列表
+            </summary>
+            <param name="htmlHelper">辅助类</param>
+            <param name="name">字段名称</param>
+            <param name="selectList">集合</param>
+            <param name="htmlAttributes">html标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HtmlExtensions.CheckBoxList(System.Web.Mvc.HtmlHelper,System.String,System.Collections.Generic.IEnumerable{System.Web.Mvc.SelectListItem})">
+            <summary>
+            CheckBox列表
+            </summary>
+            <param name="helper">辅助类</param>
+            <param name="name">字段名称</param>
+            <param name="selectList">集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HtmlExtensions.CheckBoxList(System.Web.Mvc.HtmlHelper,System.String,System.Collections.Generic.IEnumerable{System.Web.Mvc.SelectListItem},System.Object)">
+            <summary>
+            CheckBox列表
+            </summary>
+            <param name="helper">辅助类</param>
+            <param name="name">字段名称</param>
+            <param name="selectList">集合</param>
+            <param name="htmlAttributes">html标签</param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.SystemMenuAttribute">
+            <summary>
+            收集系统各功能
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.SystemMenuAttribute.SystemCode">
+            <summary>
+            系统编码
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.SystemMenuAttribute.SystemName">
+            <summary>
+            系统名称
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.SystemMenuAttribute.ModuleName">
+            <summary>
+            模块名称
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.SystemMenuAttribute.MenuName">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.SystemMenuAttribute.ActionName">
+            <summary>
+            功能名称
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.HaversineFormula">
+            <summary>
+            Haversine Formula 计算经纬度之间的距离
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.HaversineFormula.Distance(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            给定的 经度1，纬度1；经度2，纬度2. 计算2个经纬度之间的距离。
+            </summary>
+            <param name="lat1">纬度1</param>
+            <param name="lon1">经度1</param>
+            <param name="lat2">纬度2</param>
+            <param name="lon2">经度2</param>
+            <returns>距离（米）</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HaversineFormula.ConvertDegreesToRadians(System.Double)">
+            <summary>
+            将角度换算为弧度。
+            </summary>
+            <param name="degrees">角度</param>
+            <returns>弧度</returns>
+        </member>
+        <member name="T:TianYu.Core.Common.HttpHelper">
+            <summary>
+            Http连接操作帮助类
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.GetHtml(TianYu.Core.Common.HttpItem)">
+            <summary>
+            根据相传入的数据，得到相应页面数据
+            </summary>
+            <param name="item">参数类对象</param>
+            <returns>返回HttpResult类型</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.GetData(TianYu.Core.Common.HttpItem,TianYu.Core.Common.HttpResult)">
+            <summary>
+            获取数据的并解析的方法
+            </summary>
+            <param name="item"></param>
+            <param name="result"></param>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.SetEncoding(TianYu.Core.Common.HttpItem,TianYu.Core.Common.HttpResult,System.Byte[])">
+            <summary>
+            设置编码
+            </summary>
+            <param name="item">HttpItem</param>
+            <param name="result">HttpResult</param>
+            <param name="ResponseByte">byte[]</param>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.GetByte">
+            <summary>
+            提取网页Byte
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.SetRequest(TianYu.Core.Common.HttpItem)">
+             <summary>
+             为请求准备参数
+             </summary>
+            <param name="item">参数列表</param>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.SetCer(TianYu.Core.Common.HttpItem)">
+            <summary>
+            设置证书
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.SetCerList(TianYu.Core.Common.HttpItem)">
+            <summary>
+            设置多个证书
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.SetCookie(TianYu.Core.Common.HttpItem)">
+            <summary>
+            设置Cookie
+            </summary>
+            <param name="item">Http参数</param>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.SetPostData(TianYu.Core.Common.HttpItem)">
+            <summary>
+            设置Post数据
+            </summary>
+            <param name="item">Http参数</param>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.SetProxy(TianYu.Core.Common.HttpItem)">
+            <summary>
+            设置代理
+            </summary>
+            <param name="item">参数对象</param>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.CheckValidationResult(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            回调验证证书问题
+            </summary>
+            <param name="sender">流对象</param>
+            <param name="certificate">证书</param>
+            <param name="chain">X509Chain</param>
+            <param name="errors">SslPolicyErrors</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.BindIPEndPointCallback(System.Net.ServicePoint,System.Net.IPEndPoint,System.Int32)">
+            <summary>
+            通过设置这个属性，可以在发出连接的时候绑定客户端发出连接所使用的IP地址。 
+            </summary>
+            <param name="servicePoint"></param>
+            <param name="remoteEndPoint"></param>
+            <param name="retryCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.HttpPost(System.String,System.Object,System.String)">
+            <summary>
+            Post方式访问网址
+            <para>json方式提交</para>
+            </summary>
+            <param name="url"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.HttpPost``1(System.String,System.Object)">
+            <summary>
+            Post方式访问网址
+            <para>json方式提交</para>
+            </summary>
+            <typeparam name="T">返回类型</typeparam>
+            <param name="url"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.HttpGet(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            get方式访问网址
+            </summary>
+            <param name="url"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.HttpGet``1(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            get方式访问网址
+            </summary>
+            <param name="url"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.HttpPost(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Post方式访问网址
+            </summary>
+            <param name="url"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.HttpPost``1(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Post方式访问网址
+            </summary>
+            <param name="url"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.HttpHelper.HttpPostFile(System.String,System.Object,System.Web.HttpPostedFile,System.String)">
+            <summary>
+            Post方式上传文件
+            </summary>
+            <param name="url"></param>
+            <param name="param"></param>
+            <param name="postedFile">文件</param>
+            <param name="postdataFileName">接收参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.HttpItem">
+            <summary>
+            Http请求参考类
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.URL">
+            <summary>
+            请求URL必须填写
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.Method">
+            <summary>
+            请求方式默认为GET方式,当为POST方式时必须设置Postdata的值
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.Timeout">
+            <summary>
+            默认请求超时时间
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.ReadWriteTimeout">
+            <summary>
+            默认写入Post数据超时间
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.Host">
+            <summary>
+            设置Host的标头信息
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.KeepAlive">
+            <summary>
+             获取或设置一个值，该值指示是否与 Internet 资源建立持久性连接默认为true。
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.Accept">
+            <summary>
+            请求标头值 默认为text/html, application/xhtml+xml, */*
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.ContentType">
+            <summary>
+            请求返回类型默认 text/html
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.UserAgent">
+            <summary>
+            客户端访问信息默认Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.Encoding">
+            <summary>
+            返回数据编码默认为NUll,可以自动识别,一般为utf-8,gbk,gb2312
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.PostDataType">
+            <summary>
+            Post的数据类型
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.Postdata">
+            <summary>
+            Post请求时要发送的字符串Post数据
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.PostdataByte">
+            <summary>
+            Post请求时要发送的Byte类型的Post数据
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.PostdataFile">
+            <summary>
+            Post请求时要发送的File类型的Post数据
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.PostdataFileName">
+            <summary>
+            接收对象文件名
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.CookieCollection">
+            <summary>
+            Cookie对象集合
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.CookieContainer">
+            <summary>
+            Cookie容器对象
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.Cookie">
+            <summary>
+            请求时的Cookie
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.Referer">
+            <summary>
+            来源地址，上次访问地址
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.CerPath">
+            <summary>
+            证书绝对路径
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.WebProxy">
+            <summary>
+            设置代理对象，不想使用IE默认配置就设置为Null，而且不要设置ProxyIp
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.IsToLower">
+            <summary>
+            是否设置为全文小写，默认为不转化
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.Allowautoredirect">
+            <summary>
+            支持跳转页面，查询结果将是跳转后的页面，默认是不跳转
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.Connectionlimit">
+            <summary>
+            最大连接数
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.ProxyUserName">
+            <summary>
+            代理Proxy 服务器用户名
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.ProxyPwd">
+            <summary>
+            代理 服务器密码
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.ProxyIp">
+            <summary>
+            代理 服务IP,如果要使用IE代理就设置为ieproxy
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.ResultType">
+            <summary>
+            设置返回类型String和Byte
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.Header">
+            <summary>
+            header对象
+            </summary>
+        </member>
+        <!-- 对于成员“P:TianYu.Core.Common.HttpItem.ProtocolVersion”忽略有格式错误的 XML 注释 -->
+        <member name="P:TianYu.Core.Common.HttpItem.Expect100Continue">
+            <summary>
+             获取或设置一个 System.Boolean 值，该值确定是否使用 100-Continue 行为。如果 POST 请求需要 100-Continue 响应，则为 true；否则为 false。默认值为 true。
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.ClentCertificates">
+            <summary>
+            设置509证书集合
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.PostEncoding">
+            <summary>
+            设置或获取Post参数编码,默认的为Default编码
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.ResultCookieType">
+            <summary>
+            Cookie返回类型,默认的是只返回字符串类型
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.ICredentials">
+            <summary>
+            获取或设置请求的身份验证信息。
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.MaximumAutomaticRedirections">
+            <summary>
+            设置请求将跟随的重定向的最大数目
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.IfModifiedSince">
+            <summary>
+            获取和设置IfModifiedSince，默认为当前日期和时间
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpItem.IPEndPoint">
+             <summary>
+             设置本地的出口ip和端口
+             </summary>]
+             <example>
+            item.IPEndPoint = new IPEndPoint(IPAddress.Parse("192.168.1.1"),80);
+             </example>
+        </member>
+        <member name="T:TianYu.Core.Common.HttpResult">
+            <summary>
+            Http返回参数类
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpResult.Cookie">
+            <summary>
+            Http请求返回的Cookie
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpResult.CookieCollection">
+            <summary>
+            Cookie对象集合
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpResult.Html">
+            <summary>
+            返回的String类型数据 只有ResultType.String时才返回数据，其它情况为空
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpResult.ResultByte">
+            <summary>
+            返回的Byte数组 只有ResultType.Byte时才返回数据，其它情况为空
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpResult.Header">
+            <summary>
+            header对象
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpResult.StatusDescription">
+            <summary>
+            返回状态说明
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpResult.StatusCode">
+            <summary>
+            返回状态码,默认为OK
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpResult.ResponseUri">
+            <summary>
+            最后访问的URl
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.Common.HttpResult.RedirectUrl">
+            <summary>
+            获取重定向的URl
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.HttpResultType">
+            <summary>
+            返回类型
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.HttpResultType.String">
+            <summary>
+            表示只返回字符串 只有Html有数据
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.HttpResultType.Byte">
+            <summary>
+            表示返回字符串和字节流 ResultByte和Html都有数据返回
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.PostDataType">
+            <summary>
+            Post的数据格式默认为string
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.PostDataType.String">
+            <summary>
+            字符串类型，这时编码Encoding可不设置
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.PostDataType.Byte">
+            <summary>
+            Byte类型，需要设置PostdataByte参数的值编码Encoding可设置为空
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.PostDataType.FilePath">
+            <summary>
+            传文件，Postdata必须设置为文件的绝对路径，必须设置Encoding的值
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.PostDataType.FileUpload">
+            <summary>
+            上传文件，HttpPostedFileBase类型
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.ResultCookieType">
+            <summary>
+            Cookie返回类型
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResultCookieType.String">
+            <summary>
+            只返回字符串类型的Cookie
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResultCookieType.CookieCollection">
+            <summary>
+            CookieCollection格式的Cookie集合同时也返回String类型的cookie
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.BarCodeHelper">
+            <summary>
+            条形码帮助类
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.BarCodeHelper.Encoder(System.String)">
+            <summary>
+            生成条形码
+            </summary>
+            <param name="content">内容</param>
+            <returns>位图</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.BarCodeHelper.Encoder(System.String,System.Int32,System.Int32)">
+            <summary>
+            生成条形码
+            </summary>
+            <param name="content">内容</param>
+            <param name="width">宽度</param>
+            <param name="height">高度</param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.NSoupHelper">
+            <summary>
+            NSoup操作帮助类
+            <para>已集成：</para>
+            <para>1、根据HTML内容，获取所有imgUrl</para>
+            <para>2、根据HTML内容，获取所有img标签</para>
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.NSoupHelper.GetImageUrlList(System.String,System.Boolean)">
+            <summary>
+            根据HTML内容，获取所有img标签Url
+            </summary>
+            <param name="content">HTML内容</param>
+            <param name="isUri">是否补充URL</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.NSoupHelper.GetImageTagList(System.String)">
+            <summary>
+            根据HTML内容，获取所有img标签
+            </summary>
+            <param name="content">HTML内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.QrCodeHelper">
+            <summary>
+            二维码帮助类
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.QrCodeHelper.MergeLogo(System.Drawing.Bitmap,System.Drawing.Bitmap,System.Int32[])">
+            <summary>
+            合并Logo图片
+            </summary>
+            <param name="img">原图</param>
+            <param name="logo">logo</param>
+            <param name="rectangle">矩形</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.QrCodeHelper.Encoder(System.String,System.String,System.String)">
+            <summary>
+            生成二维码
+            </summary>
+            <param name="content">二维码内容</param>
+            <param name="saveFileName">二维码保存路径</param>
+            <param name="logoImgPath">logo图片路径</param>
+            <returns>位图</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.QrCodeHelper.Encoder(System.String,System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            生成二维码
+            </summary>
+            <param name="content">二维码内容</param>
+            <param name="width">宽度</param>
+            <param name="height">高度</param>
+            <param name="saveFileName">二维码保存路径</param>
+            <param name="logoImgPath">logo图片路径</param>
+            <returns>位图</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.QrCodeHelper.EncoderShareImg(System.Int32,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            红包分享图片
+            </summary>
+            <param name="Type">类型（1=APP，2=小程序）</param>
+            <param name="QrContent">二维码内容</param>
+            <param name="BackImg">背景图</param>
+            <param name="SaveFilePath">保存地址</param>
+            <param name="UserName">用户名</param>
+            <param name="UserImg">用户头像</param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.Security.AuthenticationHelper">
+            <summary>
+            授权验证帮助类
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.AuthenticationHelper.GetAuthenticationCode(System.Collections.Generic.Dictionary{System.String,System.Object},System.String)">
+            <summary>
+            计算签名
+            </summary>
+            <param name="dictionary">参数字典</param>
+            <param name="key">私玥</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.AuthenticationHelper.GetAuthenticationCode(System.String,System.String)">
+            <summary>
+            计算签名
+            </summary>
+            <param name="parms">参数字符串</param>
+            <param name="key">私玥</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.AuthenticationHelper.GetEncryptTicket(System.String,System.String,System.String,System.String)">
+            <summary>
+            加密票据
+            </summary>
+            <param name="appId"></param>
+            <param name="clientType"></param>
+            <param name="deviceNo"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.AuthenticationHelper.GetDecryptTicket(System.String)">
+            <summary>
+            解密票据
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.AuthenticationHelper.GetUserToken(System.String,System.String,System.String,System.String)">
+            <summary>
+            计算用户token
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="password">密码</param>
+            <param name="deviceNo">设备号</param>
+            <param name="ticket">票据</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.AuthenticationHelper.GetDecryptUserToken(System.String)">
+            <summary>
+            接续用户登录token
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.AuthenticationHelper.SkipValidateAuthorize(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            跳过授权验证
+            </summary>
+            <param name="actionContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.AuthenticationHelper.SkipValidateSignature(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            跳过签名验证
+            </summary>
+            <param name="actionContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.AuthenticationHelper.ValidateSignature(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            验证签名
+            </summary>
+            <param name="key"></param>
+            <param name="paramsDictionary"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.AuthenticationHelper.CheckTimeStamp(System.String)">
+            <summary>
+            检查时间戳是否有效
+            </summary>
+            <param name="ts"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.AuthenticationHelper.BuildToken(TianYu.Core.Common.BaseViewModel.ApiAuthorizeRequestModel)">
+            <summary>
+            生成票据
+            </summary>
+            <param name="bodyModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.Security.DESEncrypt">
+            <summary>
+            DES加密/解密类。
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.DESEncrypt.Encrypt(System.String)">
+            <summary>
+            加密
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.DESEncrypt.Encrypt(System.String,System.String)">
+            <summary> 
+            加密数据 
+            </summary> 
+            <param name="text"></param> 
+            <param name="sKey"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:TianYu.Core.Common.Security.DESEncrypt.Md5To32Lens(System.String)">
+            <summary>
+            MD5加密
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.DESEncrypt.Decrypt(System.String)">
+            <summary>
+            解密
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Security.DESEncrypt.Decrypt(System.String,System.String)">
+            <summary> 
+            解密数据 
+            </summary> 
+            <param name="text"></param> 
+            <param name="sKey"></param> 
+            <returns></returns> 
+        </member>
+        <member name="T:TianYu.Core.Common.Security.IgnoreAuthenticationAttribute">
+            <summary>
+            忽略票据检验
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.Security.IgnoreValidateSignatureAttribute">
+            <summary>
+            忽略签名检验
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.ResponseStatus">
+            <summary>
+            响应状态码
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.None">
+            <summary>
+            未赋值状态码
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.Fail">
+            <summary>
+            业务处理失败
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.Success">
+            <summary>
+            业务处理成功
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.ParameterError">
+            <summary>
+            请求参数错误
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.ParameterLengthError">
+            <summary>
+            请求参数大于最大长度限制
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.AuthenticationTicketError">
+            <summary>
+            请求票据错误
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.AuthenticationTicketTimeOut">
+            <summary>
+            请求票据超时
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.UnSignatureParamsError">
+            <summary>
+            缺少Signature请求参数
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.UnTimeSpanFromatError">
+            <summary>
+            请求时间戳格式错误
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.UnTimeSpanError">
+            <summary>
+            请求签名时间戳超时
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.UnTimeSpanParamsError">
+            <summary>
+            缺少TimeSpan请求参数
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.UnSessionIdParamsError">
+            <summary>
+            缺少登录会话Id参数
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.SessionIdError">
+            <summary>
+            登录会话Id无效
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.SessionIdOtherLogin">
+            <summary>
+            登录会话Id在其他设备登录
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.UnAuthorityRightsError">
+            <summary>
+            服务端拒绝访问：你没有权限进行操作
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.UnAuthorityError">
+            <summary>
+            服务端拒绝访问：你没有权限访问
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.UnSignatureError">
+            <summary>
+            请求签名不正确
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.BusinessError">
+            <summary>
+            业务处理异常
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.SystemError">
+            <summary>
+            接口异常
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.LoginPwdError">
+            <summary>
+            登录密码错误
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.UserIsNotExists">
+            <summary>
+            用户不存在
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.NeedResetPwd">
+            <summary>
+            需要重置密码
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.ResponseStatus.NeedSettingPwd">
+            <summary>
+            需要设置密码
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.AttributeExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.AttributeExtension.GetEnumDescription(System.Object)">
+            <summary>
+            获取对象的DescriptionAttribute特性的Description说明
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.AttributeExtension.GetAttribute``1(System.Object)">
+            <summary>
+            获取对象的特性
+            </summary>
+            <typeparam name="T">特性类型</typeparam>
+            <param name="obj">要查找的对象</param>
+            <returns>返回 特性类型 实例</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.AttributeExtension.GetAttribute``1(System.Type)">
+            <summary>
+            获取对象的特性
+            </summary>
+            <typeparam name="T">特性类型</typeparam>
+            <param name="type">要查找的对象</param>
+            <returns>返回 特性类型 实例</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.ByteExtension.DeserializeUtf8(System.Byte[])">
+            <summary>
+            将字节数组 由UTF-8编码 转化为 字符串
+            </summary>
+            <param name="buff">字节数组</param>
+            <returns>字符串</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.ObjectExtension.IsNull(System.Object)">
+            <summary>
+            指示指定的对象是 null
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.ObjectExtension.ToDecimal(System.Object,System.Decimal)">
+            <summary>
+            转化decimal
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.ObjectExtension.ToDouble(System.Object,System.Double)">
+            <summary>
+            转化double
+            </summary>
+            <param name="obj"></param>
+            <param name="defaultValue">默认值</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.ObjectExtension.ToInt(System.Object)">
+            <summary>
+            转化int
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.ObjectExtension.ToInt(System.Object,System.Int32)">
+            <summary>
+            转化int
+            </summary>
+            <param name="obj"></param>
+            <param name="defaultValue">转化失败默认值</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.ObjectExtension.ToDateTime(System.Object)">
+            <summary>
+            转化时间
+            </summary>
+            <param name="obj"></param> 
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.ObjectExtension.ToDateTime(System.Object,System.DateTime)">
+            <summary>
+            转化时间
+            </summary>
+            <param name="obj"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.ObjectExtension.ToTimeSpan(System.DateTime)">
+            <summary>
+            将时间转化为时间戳表示形式
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.ObjectExtension.ToBoolean(System.Object)">
+            <summary>
+            转化bool
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.ObjectExtension.ToFriendlyString(System.Object,System.String,System.String)">
+            <summary>
+            转为友好字符显示
+            </summary>
+            <param name="obj"></param>
+            <param name="friendly">友好字符（默认--）</param>
+            <param name="format">格式化（用于日期、金额等）</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.StringExtension.SerializeUtf8(System.String)">
+            <summary>
+            将字符串转化为 UTF-8 字节数组
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.StringExtension.IsNullOrWhiteSpace(System.String)">
+            <summary>
+            指示指定的字符串是 null、空还是仅由空白字符组成。
+            </summary>
+            <param name="context"> 要测试的字符串。</param>
+            <returns>如果 true 参数为 value 或 null，或者如果 System.String.Empty 仅由空白字符组成，则为 value。</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.StringExtension.IsNullOrEmpty(System.String)">
+            <summary>
+            指示指定的字符串是 null 还是 System.String.Empty 字符串。
+            </summary>
+            <param name="value"> 要测试的字符串。</param>
+            <returns>如果 true 参数为 value 或 null，或者如果 System.String.Empty 仅由空白字符组成，则为 value。</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.StringExtension.ToBase64(System.String)">
+            <summary>
+            base64编码
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.StringExtension.FormBase64(System.String)">
+            <summary>
+            base64 解码
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.StringExtension.ToMd5(System.String)">
+            <summary>
+            MD5加密
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.StringExtension.ToSignature(System.String,System.String)">
+            <summary>
+            获取签名
+            </summary>
+            <param name="input"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.StringExtension.ToSignature(System.Collections.Generic.Dictionary{System.String,System.Object},System.String)">
+            <summary>
+            获取签名
+            </summary>
+            <param name="input"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.StringExtension.ToImageUrl(System.String,TianYu.Core.Common.DefaultImageVlaueType)">
+            <summary>
+            将服务器图片相对路径转化为HTTP路径
+            </summary>
+            <param name="input"></param>
+            <param name="defaultImageType">默认图片类型，默认使用默认图</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.StringExtension.ToRelationString(System.String,System.String,System.Int32)">
+            <summary>
+            转为关联显示
+            </summary>
+            <param name="str">第一字符串</param>
+            <param name="substr">子字符串</param>
+            <param name="format">0=英文括号()，1=中文括号（），2=中文中括号【】</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.StringExtension.ToHideMobile(System.String)">
+            <summary>
+            获取带*手机号
+            </summary>
+            <param name="mobile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.StringExtension.ToShortImageUrl(System.String,System.String)">
+            <summary>
+            将网络图片路径转化为服务器相对路径（将下载网络图片并保存到文件服务器）
+            </summary>
+            <param name="input"></param>
+            <param name="fileExt">保存文件扩展名（如：.jpg）</param>
+            <returns></returns>
+        </member>
+        <member name="T:TianYu.Core.Common.Extension.ValidateExtension">
+            <summary>
+            验证扩展
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.IsEmail(System.String)">
+            <summary>
+            是否为邮箱名
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.IsMobile(System.String)">
+            <summary>
+            是否为手机号
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.IsPhone(System.String)">
+            <summary>
+            是否为固话号
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.IsIP(System.String)">
+            <summary>
+            是否为IP
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.IsIdCard(System.String)">
+            <summary>
+            是否是身份证号
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.CheckIDCard18(System.String)">
+            <summary>
+            是否为18位身份证号
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.CheckIDCard15(System.String)">
+            <summary>
+            是否为15位身份证号
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.IsDate(System.String)">
+            <summary>
+            是否为日期
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.IsNumeric(System.String)">
+            <summary>
+            是否是数值(包括整数和小数)
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.IsZipCode(System.String)">
+            <summary>
+            是否为邮政编码
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.IsImgFileName(System.String)">
+            <summary>
+            是否是图片文件名
+            </summary>
+            <returns> </returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.InIP(System.String,System.String)">
+            <summary>
+            判断一个ip是否在另一个ip内
+            </summary>
+            <param name="sourceIP">检测ip</param>
+            <param name="targetIP">匹配ip</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.InIPList(System.String,System.String[])">
+            <summary>
+            判断一个ip是否在另一个ip内
+            </summary>
+            <param name="sourceIP">检测ip</param>
+            <param name="targetIPList">匹配ip列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.InIPList(System.String,System.String)">
+            <summary>
+            判断一个ip是否在另一个ip内
+            </summary>
+            <param name="sourceIP">检测ip</param>
+            <param name="targetIPStr">匹配ip</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.BetweenPeriod(System.String[],System.String@)">
+            <summary>
+            判断当前时间是否在指定的时间段内
+            </summary>
+            <param name="periodList">指定时间段</param>
+            <param name="liePeriod">所处时间段</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.BetweenPeriod(System.String,System.String@)">
+            <summary>
+            判断当前时间是否在指定的时间段内
+            </summary>
+            <param name="periodStr">指定时间段</param>
+            <param name="liePeriod">所处时间段</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.BetweenPeriod(System.String)">
+            <summary>
+            判断当前时间是否在指定的时间段内
+            </summary>
+            <param name="periodList">指定时间段</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.IsNumericArray(System.String[])">
+            <summary>
+            是否是数值(包括整数和小数)
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.IsNumericRule(System.String,System.Char)">
+            <summary>
+            是否是数值(包括整数和小数)
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Extension.ValidateExtension.IsNumericRule(System.String)">
+            <summary>
+            是否是数值(包括整数和小数)
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.AutofacRegister.RegisterAutoFac(System.String,System.Web.Http.HttpConfiguration)">
+            <summary>
+            autoFac 依赖注入
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.JsonExtensions">
+            <summary>
+            Json扩展方法类
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.JsonExtensions.ToJsonObject``1(System.String)">
+            <summary>
+            将当前Json字符串转为T类对象
+            </summary>
+            <typeparam name="T">类对象</typeparam>
+            <param name="Json">Json字符串</param>
+            <returns>T类对象</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.JsonExtensions.ToJsonObject(System.String)">
+            <summary>
+            将当前Json字符串转为Json对象
+            </summary>
+            <param name="Json">Json字符串</param>
+            <returns>Json对象</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.JsonExtensions.ToJsonString(System.Object)">
+            <summary>
+            将对象转为Json字符串
+            </summary>
+            <param name="obj">对象</param>
+            <returns>Json字符串</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.JsonExtensions.ToJsonString(System.Object,System.String)">
+            <summary>
+            将对象转为Json字符串
+            </summary>
+            <param name="obj">对象</param>
+            <param name="datetimeformats">日期格式化（如：yyyy-MM-dd HH:mm:ss）</param>
+            <returns>Json字符串</returns>
+        </member>
+        <member name="T:TianYu.Core.Common.JsonHelper">
+            <summary>
+            Json操作帮助类
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.JsonHelper.SerializeObject(System.Object)">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">对象</param>
+            <returns>Json字符串</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.JsonHelper.SerializeObject(System.Object,Newtonsoft.Json.JsonConverter[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">对象</param>
+            <param name="converter"></param>
+            <returns>Json字符串</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.JsonHelper.DeserializeObject(System.String)">
+            <summary>
+            将Json字符串反序列化成Json对象
+            </summary>
+            <param name="json">Json字符串</param>
+            <returns>Json对象</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.JsonHelper.DeserializeObject``1(System.String)">
+            <summary>
+            将Json字符串反序列化成T对象
+            </summary>
+            <param name="json">Json字符串</param>
+            <returns>T对象</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.JsonHelper.DeserializeObject``1(System.String,Newtonsoft.Json.JsonConverter[])">
+            <summary>
+            将Json字符串反序列化成T对象
+            </summary>
+            <param name="json">Json字符串</param>
+            <param name="converter"></param>
+            <returns>T对象</returns>
+        </member>
+        <member name="T:TianYu.Core.Common.TianYuConsts">
+            <summary>
+            系统公用常量
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.SystemLoginCookieName">
+            <summary>
+            系统后台cookie
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.SystemManagerModuleName">
+            <summary>
+            系统后台模块
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.SystemManagerLogoutDomain">
+            <summary>
+            系统后台登录登出域名
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.SystemManagerApiUrl">
+            <summary>
+            系统权限接口地址
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.ApiIpWhiteList">
+            <summary>
+            系统接口API白名单
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.ApiAuthorizeDatabase">
+            <summary>
+            系统接口API授权DB链接串
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.DefaultDomainName">
+            <summary>
+            根域名
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.SystemFileUploadRootPath">
+            <summary>
+            文件上传保存根目录配置项
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.SystemFileUploadRootUrl">
+            <summary>
+            file 服务器文件根目录
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.SystemFileUploadExtName">
+            <summary>
+            允许上传文件的扩展名
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.FileServerUrl">
+            <summary>
+            文件服务器地址
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.Decimals">
+            <summary>
+            小数位数
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.WebApiCurrentUserGroup">
+            <summary>
+            api当前用户组对象键名
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.WebApiSessionId">
+            <summary>
+            api登录会话Id键名
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.ApiVersionKey">
+            <summary>
+            API版本号键名
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.TianYuConsts.GetSessionIdCacheKey(System.String)">
+            <summary>
+            登录会话缓存键，用于存取登录用户信息
+            </summary>
+            <param name="sessionid">登录会话Id</param>
+        </member>
+        <member name="M:TianYu.Core.Common.TianYuConsts.GetLoginUserMenuCacheKey(System.String)">
+            <summary>
+            登录用户菜单缓存key
+            </summary>
+            <param name="sessionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.TianYuConsts.GetLoginUserButtonCacheKey(System.String)">
+            <summary>
+            登录用户按钮缓存key
+            </summary>
+            <param name="sessionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.TianYuConsts.GetLoginUserInfoCacheKey(System.String)">
+            <summary>
+            登录用户信息缓存key
+            </summary>
+            <param name="sessionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.TianYuConsts.GetTicketCacheKey(System.String)">
+            <summary>
+            接口ticket 配置 缓存键，用于存取接口ticket信息
+            </summary>
+            <param name="token">登录会话Id</param>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.LogoImagePath">
+            <summary>
+            默认logo图片路径配置项
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.Common.TianYuConsts.RedShareBackImg">
+            <summary>
+            红包分享背景图
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.Common.Utils">
+            <summary>
+            公共方法
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.NewGuid">
+            <summary>
+            获取一个带时序的GUID
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.GetDistance(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            获取两个经纬度之间的距离（单位：米）
+            </summary>
+            <param name="longitude1">经度1</param>
+            <param name="latitude1">纬度1</param>
+            <param name="longitude2">经度2</param>
+            <param name="latitude2">纬度2</param>
+            <returns>两经纬度之间距离（单位：米）</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.GetDistance(System.String,System.String,System.String,System.String)">
+            <summary>
+            获取两个经纬度之间的距离（单位：米）
+            </summary>
+            <param name="longitude1">经度1</param>
+            <param name="latitude1">纬度1</param>
+            <param name="longitude2">经度2</param>
+            <param name="latitude2">纬度2</param>
+            <returns>两经纬度之间距离（单位：米）</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.UrlEncode(System.String)">
+            <summary>
+            URL字符编码
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.UrlDecode(System.String)">
+            <summary>
+            URL字符解码
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.GetHostAddress">
+            <summary>
+            获取客户端IP地址
+            </summary>
+            <returns>若失败则返回回送地址</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.IsIP(System.String)">
+            <summary>
+            检查IP地址格式
+            </summary>
+            <param name="ip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.GetFlowOrderCode(System.String,System.String,System.Int32)">
+            <summary>
+            生成随机单据号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.GetRamdonCode(System.Int32)">
+            <summary>
+            生成短信验证码(随机生成6位数字)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.DateStringToFormat(System.String,System.String,System.String)">
+            <summary>
+            日期字符串转换格式
+            </summary>
+            <param name="date">日期字符串</param>
+            <param name="format">当前格式</param>
+            <param name="newformat">待转格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.MiniAppsAESDecrypt(System.String,System.String,System.String)">
+            <summary>
+            小程序数据解密
+            </summary>
+            <param name="encryptedData">加密数据</param>
+            <param name="key">密钥</param>
+            <param name="iv">偏移值</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.CreateRandomCode(System.String[],System.Int32,System.Boolean)">
+            <summary>
+            生成验证码
+            </summary>
+            <param name="CharArray">字符串集</param>
+            <param name="n">位数</param>
+            <param name="IsNumber">是否纯数字</param>
+            <returns>验证码字符串</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.CreateRandomCode(System.Int32,System.Boolean)">
+            <summary>
+            生成验证码
+            </summary>
+            <param name="n">位数</param>
+            <param name="IsNumber">是否仅数字</param>
+            <returns>验证码字符串</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.DrawRandomCode(System.String)">
+            <summary>
+            绘画验证码图片
+            </summary>
+            <param name="chkCode">验证码</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.GetClientIp">
+            <summary>
+            获取客户端IP地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.GetRequestAppVersion">
+            <summary>
+            获取app请求接口版本号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.GetServerIp">
+            <summary>
+            获取服务器IP地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.DateTimeToUtc(System.DateTime)">
+            <summary>
+            DateTime转Utc
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.GetTimeStamp">
+            <summary>
+            获取时间戳
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.Utils.Sha1Encrypt(System.String,System.Text.Encoding)">
+            <summary>
+            对字符串SHA1加密
+            </summary>
+            <param name="source">源字符串</param>
+            <param name="encoding">编码类型</param>
+            <returns>加密后的十六进制字符串</returns>
+        </member>
+        <member name="M:TianYu.Core.Common.XmlHelper.AppendChild(System.String,System.String,System.Xml.XmlNode)">
+            <summary>
+            追加节点
+            </summary>
+            <param name="filePath">XML文档绝对路径</param>
+            <param name="xPath">范例: @"Skill/First/SkillItem"</param>
+            <param name="xmlNode">XmlNode节点</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.XmlHelper.AppendChild(System.String,System.String,System.String,System.String)">
+            <summary>
+            从XML文档中读取节点追加到另一个XML文档中
+            </summary>
+            <param name="filePath">需要读取的XML文档绝对路径</param>
+            <param name="xPath">范例: @"Skill/First/SkillItem"</param>
+            <param name="toFilePath">被追加节点的XML文档绝对路径</param>
+            <param name="toXPath">范例: @"Skill/First/SkillItem"</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.XmlHelper.UpdateNodeInnerText(System.String,System.String,System.String)">
+            <summary>
+            修改节点的InnerText的值
+            </summary>
+            <param name="filePath">XML文件绝对路径</param>
+            <param name="xPath">范例: @"Skill/First/SkillItem"</param>
+            <param name="value">节点的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.XmlHelper.LoadXmlDoc(System.String)">
+            <summary>
+            读取XML文档
+            </summary>
+            <param name="filePath">XML文件绝对路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.XmlHelper.ReadNodes(System.String,System.String)">
+            <summary>
+            读取XML的所有子节点
+            </summary>
+            <param name="filePath">XML文件绝对路径</param>
+            <param name="xPath">范例: @"Skill/First/SkillItem"</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.XmlHelper.ReadNodeValue(System.String,System.String)">
+            <summary>
+            读取XML的指定节点值
+            </summary>
+            <param name="xml">XML字符串</param>
+            <param name="node">节点</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.Common.XmlHelper.Deserialize``1(System.String)">
+            <summary>
+            将xml 字符串反序列化为对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

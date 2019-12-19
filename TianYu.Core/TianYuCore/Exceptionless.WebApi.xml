@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Exceptionless.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:Exceptionless.ExceptionlessWebApiExtensions.RegisterWebApi(Exceptionless.ExceptionlessClient,System.Web.Http.HttpConfiguration)">
+            <summary>
+            Reads configuration settings, configures various plugins and wires up to platform specific exception handlers.
+            </summary>
+            <param name="client">The ExceptionlessClient.</param>
+            <param name="config">The HttpConfiguration instance.</param>
+        </member>
+        <member name="M:Exceptionless.ExceptionlessWebApiExtensions.UnregisterWebApi(Exceptionless.ExceptionlessClient)">
+            <summary>
+            Unregisters platform specific exception handlers.
+            </summary>
+            <param name="client">The ExceptionlessClient.</param>
+        </member>
+        <member name="M:Exceptionless.ExceptionlessWebApiExtensions.GetRequestInfo(System.Web.Http.Controllers.HttpActionContext,Exceptionless.ExceptionlessConfiguration)">
+            <summary>
+            Adds the current request info.
+            </summary>
+            <param name="context">The http action context to gather information from.</param>
+            <param name="config">The config.</param>
+        </member>
+        <member name="M:Exceptionless.ExceptionlessWebApiExtensions.AddHttpRequestInfo(Exceptionless.Models.Event,System.Web.Http.Controllers.HttpActionContext,Exceptionless.ExceptionlessConfiguration)">
+            <summary>
+            Adds the current request info as extended data to the event.
+            </summary>
+            <param name="ev">The event model.</param>
+            <param name="context">The http action context to gather information from.</param>
+            <param name="config">The config.</param>
+        </member>
+    </members>
+</doc>

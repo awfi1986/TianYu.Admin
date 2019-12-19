@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TianYu.Core.MQSubscribeWinService</name>
+    </assembly>
+    <members>
+        <member name="M:TianYu.Core.MQSubscribeWinService.Code.DataCenterHelper.GetMQBusinessConfigs(System.Int32)">
+            <summary>
+            获取配置
+            </summary>
+            <param name="status">0=禁用，1=启用</param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.Code.DataCenterHelper.ToMQBusinessConfigModel(System.Data.DataRow)">
+            <summary>
+            数据行转化为实体
+            </summary>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.Code.DataCenterHelper.WriteToList(System.Collections.Generic.IList{TianYu.Core.MQSubscribeWinService.Code.FailMqMessageModel})">
+            <summary>
+            将处理失败的数据记录到db
+            </summary>
+            <param name="runStatus"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageHandler.Run">
+            <summary>
+            运行一次MQ错误消息处理业务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageHandler.ResetStatus">
+            <summary>
+            重置处理中的状态为待处理
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageStatus.Wait">
+            <summary>
+            待处理
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageStatus.Handlering">
+            <summary>
+            处理中
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageStatus.HandlerFail">
+            <summary>
+            处理失败
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageStatus.Success">
+            <summary>
+            处理成功
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageModel">
+            <summary>
+            失败消息模型
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageModel.Code">
+            <summary>
+            失败消息编码
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageModel.MessageContext">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageModel.ApiUrl">
+            <summary>
+            业务处理地址
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageModel.RetryNumber">
+            <summary>
+            重试次数
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageModel.Status">
+            <summary>
+            状态(0=待处理，1=重新处理中，2=重新处理失败，3=重新处理成功)
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageModel.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.FailMqMessageModel.UpdateTime">
+            <summary>
+            修改时间
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel">
+            <summary>
+            MQ业务处理配置
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel.Id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel.BusinessName">
+            <summary>
+            业务名称
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel.ApiUrl">
+            <summary>
+            接口地址
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel.RoutingKey">
+            <summary>
+            MQ路由
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel.Exchange">
+            <summary>
+            MQ交换机
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel.QueueName">
+            <summary>
+            MQ队列
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel.ExceptionNumber">
+            <summary>
+            异常重试次数（重试间隔计算方式：（执行次数-1）*默认间隔时间）
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel.MqMessageType">
+            <summary>
+            消息获取方式(0=pull,1=Subscribe)
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel.TimeInterval">
+            <summary>
+            时间间隔(单位毫秒，仅当消息获取方式为pull时有效)
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel.IsSaveFailMessage">
+            <summary>
+            失败消息存储
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel.IsProperties">
+            <summary>
+            MQ 消息是否持久化
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel.Status">
+            <summary>
+            任务状态
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MQBusinessConfigModel.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MqConsumerItemKey.RoutingKey">
+            <summary>
+            MQ路由
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MqConsumerItemKey.Exchange">
+            <summary>
+            MQ交换机
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MqConsumerItemKey.QueueName">
+            <summary>
+            MQ队列
+            </summary>
+        </member>
+        <member name="T:TianYu.Core.MQSubscribeWinService.Code.MqConsumerPullThreadSettings">
+            <summary>
+            运行任务线程关系
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MqConsumerPullThreadSettings.ThreadName">
+            <summary>
+            运行线程名
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MqConsumerPullThreadSettings.ThreadId">
+            <summary>
+            运行线程ID
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MqConsumerPullThreadSettings.TaskId">
+            <summary>
+            运行任务id
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MqConsumerPullThreadSettings.RunTread">
+            <summary>
+            运行线程
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.MqConsumerPullThreadSettings.TaskModel">
+            <summary>
+            任务对象
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.TaskWorker.Consumers">
+            <summary>
+            MQ消费者对象
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.TaskWorker.TaskList">
+            <summary>
+            定时任务配置信息
+            </summary>
+        </member>
+        <member name="P:TianYu.Core.MQSubscribeWinService.Code.TaskWorker.ThreadList">
+            <summary>
+            定时pull线程配置信息
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.Code.TaskWorker.Init">
+            <summary>
+            初始化数据任务
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.Code.TaskWorker.RunFactory(TianYu.Core.MQSubscribeWinService.Code.MqConsumerItemKey)">
+            <summary>
+            根据配置创建消费者
+            </summary>
+            <param name="itemKey"></param>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.Code.TaskWorker.Run">
+            <summary>
+            运行任务
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.Code.TaskWorker.Stop">
+            <summary>
+            停止任务
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.Code.TaskWorker.InitSaveFailThread">
+            <summary>
+            初始化数据存储线程
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.Code.TaskWorker.InitFailMessageHandle">
+            <summary>
+            初始化错误消息处理任务
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.Code.TaskWorker.FailMessageHandle">
+            <summary>
+            错误消息处理任务
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.MQSubscribeWinService.MQSubscribeService.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.MQSubscribeService.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.MQSubscribeService.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.Program.Main">
+            <summary>
+            应用程序的主入口点。
+            </summary>
+        </member>
+        <member name="F:TianYu.Core.MQSubscribeWinService.ProjectInstaller.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.ProjectInstaller.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TianYu.Core.MQSubscribeWinService.ProjectInstaller.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+    </members>
+</doc>
